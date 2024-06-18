@@ -4,8 +4,11 @@ using MediatR;
 
 namespace Application.UseCases.Tenants.Commands;
 
-public record CreateTenantCommand(
-    string Name) : IRequest<Guid>;
+public class CreateTenantCommand(
+    string name) : IRequest<Guid>
+{
+    public string Name { get; set; } = name;
+}
 
 public class CreateTenantCommandHandler(ITenantRepository tenantRepository) : IRequestHandler<CreateTenantCommand, Guid>
 {
@@ -16,7 +19,7 @@ public class CreateTenantCommandHandler(ITenantRepository tenantRepository) : IR
             Name = request.Name
         };
 
-        await tenantRepository.AddAsync(tenant);
+        await tenantRepository.AddAsync(tenant, cancellationToken);
 
         return tenant.Id;
     }
