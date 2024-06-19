@@ -15,7 +15,10 @@ public class CreateTenantCommandHandler(
     public async Task<int> Handle(CreateTenantCommand request, CancellationToken cancellationToken)
     {
         var existingTenant = await tenantRepository.GetTenantByNameAsync(request.Name, cancellationToken);
-        if (existingTenant is not null) throw new ConflictException("Tenant with the same name already exists");
+        if (existingTenant is not null)
+        {
+            throw new ConflictException("Tenant with the same name already exists");
+        }
 
         var tenant = new Tenant
         {

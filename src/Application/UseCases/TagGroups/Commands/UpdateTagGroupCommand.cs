@@ -21,8 +21,9 @@ public class UpdateTagGroupCommandHandler(
         {
             throw new NotFoundException(nameof(TagGroup), request.Id);
         }
-        
-        var existingTagGroup = await tagGroupRepository.GetTagGroupByNameAsync(tagGroup.TenantId, request.Name!, cancellationToken);
+
+        var existingTagGroup
+            = await tagGroupRepository.GetTagGroupByNameAsync(tagGroup.TenantId, request.Name!, cancellationToken);
         if (existingTagGroup is not null)
         {
             throw new ConflictException("Tag Group with the same name for the tenant already exists");

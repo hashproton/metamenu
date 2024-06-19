@@ -9,23 +9,25 @@ public class DeleteTagGroupCommandTests : BaseIntegrationTest
     public async Task DeleteTagGroup_Success()
     {
         // Arrange: Create a tag group to delete
-        var tenantId = await TenantRepository.AddAsync(new()
-        {
-            Name = "Tenant to delete tag group"
-        }, default);
-        
-        var tagGroupId = await TagGroupRepository.AddAsync(new()
-        {
-            Name = "TagGroup to delete",
-            TenantId = tenantId
-        }, default);
+        var tenantId = await TenantRepository.AddAsync(new Tenant
+            {
+                Name = "Tenant to delete tag group"
+            },
+            default);
+
+        var tagGroupId = await TagGroupRepository.AddAsync(new TagGroup
+            {
+                Name = "TagGroup to delete",
+                TenantId = tenantId
+            },
+            default);
 
         // Act: Delete the tag group
         var deleteCommand = new DeleteTagGroupCommand(tagGroupId);
         await Mediator.Send(deleteCommand);
 
         // Assert: Verify the tag group was deleted
-        var tenant = await TagGroupRepository.GetByIdAsync(tagGroupId, default);
-        Assert.IsNull(tenant);
+        var tagGroup = await TagGroupRepository.GetByIdAsync(tagGroupId, default);
+        Assert.IsNull(tagGroup);
     }
 }

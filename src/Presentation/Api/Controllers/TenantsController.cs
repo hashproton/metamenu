@@ -11,8 +11,7 @@ public class TenantsController(
     ISender mediator) : BaseController
 {
     [HttpPost]
-    public async Task<ActionResult> CreateTenant(
-        [FromBody] CreateTenantCommand command)
+    public async Task<ActionResult> CreateTenant([FromBody] CreateTenantCommand command)
     {
         var result = await mediator.Send(command);
 
@@ -29,8 +28,7 @@ public class TenantsController(
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<GetTenantByIdQueryResponse>> GetTenantById(
-        [FromRoute] int id)
+    public async Task<ActionResult<GetTenantByIdQueryResponse>> GetTenantById([FromRoute] int id)
     {
         var result = await mediator.Send(new GetTenantByIdQuery(id));
 
@@ -50,8 +48,7 @@ public class TenantsController(
     }
 
     [HttpDelete("{id:int}")]
-    public async Task<ActionResult> DeleteTenant(
-        [FromRoute] int id)
+    public async Task<ActionResult> DeleteTenant([FromRoute] int id)
     {
         await mediator.Send(new DeleteTenantCommand(id));
 

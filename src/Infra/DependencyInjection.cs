@@ -28,8 +28,7 @@ public static class DependencyInjection
 
         services.AddSingleton<ILogger, Logger>();
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-        services.AddScoped<ITenantRepository, TenantRepository>();
-        services.AddScoped<ITagGroupRepository, TagGroupRepository>();
+
         services.AddDatabase(configuration);
 
         if (environment.IsDevelopment())
@@ -50,5 +49,27 @@ public static class DependencyInjection
             ?.Validate();
 
         services.AddDbContext<AppDbContext>(op => op.UseNpgsql(databaseConfiguration!.ConnectionString));
+
+        var repositoriesInterfaces = typeof(IGenericRepository<>).Assembly.GetTypes()
+            .Where(t => t.IsInterface && t.Name.EndsWith("Repository"))
+            .ToList();
+
+        var repositoriesImplementations = typeof(GenericRepository<>).Assembly.GetTypes()
+            .Where(t => t.IsClass && t.Name.EndsWith("Repository"))
+            .ToList();
+
+        foreach (var repositoryInterface in repositoriesInterfaces)
+        {
+            var repositoryImplementation = repositoriesImplementations
+                .FirstOrDefault(t => t.Name == repositoryInterface.Name[1..]);
+
+            if (repositoryImplementation is null)
+            {
+                throw new InvalidOperationException(
+                    $"Repository implementation for {repositoryInterface.Name} not found");
+            }
+
+            services.AddScoped(repositoryInterface, repositoryImplementation);
+        }
     }
 }

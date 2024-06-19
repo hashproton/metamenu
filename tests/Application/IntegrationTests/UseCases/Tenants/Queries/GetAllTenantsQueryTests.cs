@@ -1,3 +1,4 @@
+using Application.Repositories.Common;
 using Application.UseCases.Tenants.Queries;
 
 namespace IntegrationTests.UseCases.Tenants.Queries;
@@ -9,16 +10,17 @@ public class GetAllTenantsQueryTests : BaseIntegrationTest
     public async Task GetAllTenants_PaginationPropertiesVerified_Success()
     {
         // Arrange: Create tenants to retrieve
-        for (int i = 0; i < 15; i++)
+        for (var i = 0; i < 15; i++)
         {
-            await TenantRepository.AddAsync(new()
-            {
-                Name = $"Tenant {i+1}"
-            }, default);
+            await TenantRepository.AddAsync(new Tenant
+                {
+                    Name = $"Tenant {i + 1}"
+                },
+                default);
         }
 
         // Act: Retrieve all tenants with pagination
-        var getAllTenantsQuery = new GetAllTenantsQuery(new(2, 5));
+        var getAllTenantsQuery = new GetAllTenantsQuery(new PaginatedQuery(2, 5));
         var paginatedTenants = await Mediator.Send(getAllTenantsQuery);
 
         // Assert: Verify all tenants were retrieved and pagination properties

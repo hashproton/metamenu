@@ -19,10 +19,10 @@ public class CreateTagGroupCommandTests
     public CreateTagGroupCommandTests()
     {
         _handler = new CreateTagGroupCommandHandler(_logger, _tagGroupRepository, _tenantRepository);
-        
+
         _tenantRepository.GetByIdAsync(Arg.Any<int>(), default).Returns(new Tenant());
     }
-    
+
     [TestMethod]
     public async Task CreateTagGroup_WithNonExistentTenant_ThrowsNotFoundException()
     {
@@ -46,7 +46,8 @@ public class CreateTagGroupCommandTests
             TenantId = 1
         };
 
-        _tagGroupRepository.GetTagGroupByNameAsync(existingTagGroup.TenantId, existingTagGroup.Name, default).Returns(existingTagGroup);
+        _tagGroupRepository.GetTagGroupByNameAsync(existingTagGroup.TenantId, existingTagGroup.Name, default)
+            .Returns(existingTagGroup);
 
         var command = new CreateTagGroupCommand(existingTagGroup.Name, existingTagGroup.TenantId);
 

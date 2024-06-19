@@ -17,12 +17,21 @@ public class UpdateTenantCommandHandler(
     public async Task Handle(UpdateTenantCommand request, CancellationToken cancellationToken)
     {
         var tenant = await tenantRepository.GetByIdAsync(request.Id, cancellationToken);
-        if (tenant is null) throw new NotFoundException(nameof(Tenant), request.Id);
+        if (tenant is null)
+        {
+            throw new NotFoundException(nameof(Tenant), request.Id);
+        }
 
         var existingTenant = await tenantRepository.GetTenantByNameAsync(request.Name, cancellationToken);
-        if (existingTenant is not null) throw new ConflictException("Tenant with the same name already exists");
+        if (existingTenant is not null)
+        {
+            throw new ConflictException("Tenant with the same name already exists");
+        }
 
-        if (request.Name is not null && request.Name != tenant.Name) tenant.Name = request.Name;
+        if (request.Name is not null && request.Name != tenant.Name)
+        {
+            tenant.Name = request.Name;
+        }
 
         await tenantRepository.UpdateAsync(tenant, cancellationToken);
 

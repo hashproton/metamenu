@@ -55,7 +55,8 @@ public class UpdateTagGroupCommandTests
         };
 
         _tagGroupRepository.GetByIdAsync(anotherTagGroup.Id, default).Returns(anotherTagGroup);
-        _tagGroupRepository.GetTagGroupByNameAsync(Arg.Any<int>(), existingTagGroup.Name, default).Returns(existingTagGroup);
+        _tagGroupRepository.GetTagGroupByNameAsync(Arg.Any<int>(), existingTagGroup.Name, default)
+            .Returns(existingTagGroup);
 
         var command = new UpdateTagGroupCommand(anotherTagGroup.Id)
         {

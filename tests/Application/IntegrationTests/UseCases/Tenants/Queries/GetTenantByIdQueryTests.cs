@@ -9,10 +9,11 @@ public class GetTenantByIdQueryTests : BaseIntegrationTest
     public async Task GetTenantById_Success()
     {
         // Arrange: Create a tenant to retrieve
-        var tenantId = await TenantRepository.AddAsync(new()
-        {
-            Name = "Tenant to retrieve"
-        }, default);
+        var tenantId = await TenantRepository.AddAsync(new Tenant
+            {
+                Name = "Tenant to retrieve"
+            },
+            default);
 
         // Act: Retrieve the tenant
         var getTenantByIdQuery = new GetTenantByIdQuery(tenantId);

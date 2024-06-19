@@ -7,7 +7,10 @@ namespace Infra.Repositories;
 
 public class TagGroupRepository(AppDbContext context) : GenericRepository<TagGroup>(context), ITagGroupRepository
 {
-    public Task<TagGroup?> GetTagGroupByNameAsync(int tenantId, string tagGroupName, CancellationToken cancellationToken)
+    public Task<TagGroup?> GetTagGroupByNameAsync(
+        int tenantId,
+        string tagGroupName,
+        CancellationToken cancellationToken)
     {
         return context.TagGroups
             .Include(tg => tg.Tenant)

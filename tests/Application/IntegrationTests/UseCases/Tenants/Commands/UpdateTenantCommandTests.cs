@@ -9,10 +9,11 @@ public class UpdateTenantCommandTests : BaseIntegrationTest
     public async Task UpdateTenant_Success()
     {
         // Arrange: Create a tenant to update
-        var tenantId = await TenantRepository.AddAsync(new()
-        {
-            Name = "Tenant to update"
-        }, default);
+        var tenantId = await TenantRepository.AddAsync(new Tenant
+            {
+                Name = "Tenant to update"
+            },
+            default);
 
         // Act: Update the tenant
         var updateCommand = new UpdateTenantCommand(tenantId)

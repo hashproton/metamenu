@@ -16,11 +16,11 @@ public class BaseIntegrationTest
     private static ServiceProvider _provider = null!;
 
     protected ITenantRepository TenantRepository => _provider.GetRequiredService<ITenantRepository>();
-    
+
     protected ITagGroupRepository TagGroupRepository => _provider.GetRequiredService<ITagGroupRepository>();
 
     protected ISender Mediator => _provider.GetRequiredService<ISender>();
-    
+
     private static AppDbContext DbContext => _provider.GetRequiredService<AppDbContext>();
 
     [AssemblyInitialize]
@@ -38,13 +38,13 @@ public class BaseIntegrationTest
         _provider = services.BuildServiceProvider();
         await DbContext.Database.MigrateAsync();
     }
-    
+
     [AssemblyCleanup]
     public static async Task AssemblyCleanup()
     {
         await DbContext.Database.EnsureDeletedAsync();
     }
-    
+
     [TestCleanup]
     public async Task TestCleanup()
     {

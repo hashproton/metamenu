@@ -9,13 +9,14 @@ public class CreateTagGroupCommandTests : BaseIntegrationTest
     public async Task CreateTagGroup_Success()
     {
         // Arrange: Create a new tag group for an existing tenant
-        var tenantId = await TenantRepository.AddAsync(new()
-        {
-            Name = "Tenant for TagGroup"
-        }, default);
+        var tenantId = await TenantRepository.AddAsync(new Tenant
+            {
+                Name = "Tenant for TagGroup"
+            },
+            default);
 
         var command = new CreateTagGroupCommand("New TagGroup", tenantId);
-    
+
         // Act: Create the tag group
         var result = await Mediator.Send(command);
 

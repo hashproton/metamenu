@@ -9,10 +9,11 @@ public class DeleteTenantCommandTests : BaseIntegrationTest
     public async Task DeleteTenant_Success()
     {
         // Arrange: Create a tenant to delete
-        var tenantId = await TenantRepository.AddAsync(new()
-        {
-            Name = "Tenant to delete"
-        }, default);
+        var tenantId = await TenantRepository.AddAsync(new Tenant
+            {
+                Name = "Tenant to delete"
+            },
+            default);
 
         // Act: Delete the tenant
         var deleteCommand = new DeleteTenantCommand(tenantId);

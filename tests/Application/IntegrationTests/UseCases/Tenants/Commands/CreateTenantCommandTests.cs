@@ -10,7 +10,7 @@ public class CreateTenantCommandTests : BaseIntegrationTest
     {
         // Arrange: Create a new tenant
         var command = new CreateTenantCommand("New Tenant");
-        
+
         // Act: Create the tenant
         var result = await Mediator.Send(command);
 

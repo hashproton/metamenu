@@ -4,5 +4,8 @@ namespace Application.Repositories;
 
 public interface ITagGroupRepository : IGenericRepository<TagGroup>
 {
-    Task<TagGroup?> GetTagGroupByNameAsync(int tenantId, string tagGroupName, CancellationToken cancellationToken);
+    Task<TagGroup?> GetTagGroupByNameAsync(
+        int tenantId,
+        string tagGroupName,
+        CancellationToken cancellationToken);
 }

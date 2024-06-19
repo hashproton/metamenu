@@ -15,7 +15,10 @@ public class DeleteTenantCommandHandler(
     public async Task Handle(DeleteTenantCommand request, CancellationToken cancellationToken)
     {
         var tenant = await tenantRepository.GetByIdAsync(request.Id, cancellationToken);
-        if (tenant is null) throw new NotFoundException(nameof(Tenant), request.Id);
+        if (tenant is null)
+        {
+            throw new NotFoundException(nameof(Tenant), request.Id);
+        }
 
         await tenantRepository.DeleteAsync(tenant, cancellationToken);
 

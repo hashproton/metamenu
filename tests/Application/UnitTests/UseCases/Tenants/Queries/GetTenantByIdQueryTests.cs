@@ -25,7 +25,7 @@ public class GetTenantByIdQueryTests
     {
         var nonExistingTenantId = 1;
 
-        _tenantRepository.GetByIdAsync(nonExistingTenantId, default).Returns((Tenant)null);
+        _tenantRepository.GetByIdAsync(nonExistingTenantId, default).Returns((Tenant)null!);
 
         var query = new GetTenantByIdQuery(nonExistingTenantId);
 

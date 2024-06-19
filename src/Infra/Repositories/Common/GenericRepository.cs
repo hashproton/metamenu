@@ -18,7 +18,8 @@ public class GenericRepository<T>(
         return context.Set<T>().FirstOrDefaultAsync(query, cancellationToken);
     }
 
-    public async Task<PaginatedResult<T>> GetAllAsync(PaginatedQuery paginatedQuery,
+    public async Task<PaginatedResult<T>> GetAllAsync(
+        PaginatedQuery paginatedQuery,
         CancellationToken cancellationToken)
     {
         var totalItems = await context.Set<T>().CountAsync(cancellationToken);
