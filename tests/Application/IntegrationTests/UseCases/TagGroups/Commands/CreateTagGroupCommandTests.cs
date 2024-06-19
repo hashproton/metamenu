@@ -1,5 +1,4 @@
 using Application.UseCases.TagGroups.Commands;
-using MediatR;
 
 namespace IntegrationTests.UseCases.TagGroups.Commands;
 
