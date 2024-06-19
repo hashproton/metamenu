@@ -16,6 +16,8 @@ public class BaseIntegrationTest
     private static ServiceProvider _provider = null!;
 
     protected ITenantRepository TenantRepository => _provider.GetRequiredService<ITenantRepository>();
+    
+    protected ITagGroupRepository TagGroupRepository => _provider.GetRequiredService<ITagGroupRepository>();
 
     protected ISender Mediator => _provider.GetRequiredService<ISender>();
     
