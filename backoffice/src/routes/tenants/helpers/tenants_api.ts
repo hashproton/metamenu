@@ -1,5 +1,4 @@
-import type { AxiosInstance } from 'axios';
-import axios from 'axios';
+import axios, { type AxiosInstance } from 'axios';
 
 interface Tenant {
     id: string;
@@ -18,9 +17,8 @@ interface GetTenantsResponse {
 }
 
 class TenantsApi {
-    // Generate http client with base URL
-
     private http: AxiosInstance;
+
     constructor() {
         this.http = axios.create({
             baseURL: 'http://localhost:5105/api'
@@ -44,6 +42,10 @@ class TenantsApi {
         })
 
         return response.data;
+    }
+
+    async deleteTenant(id: number): Promise<void> {
+        await this.http.delete(`/tenants/${id}`);
     }
 }
 

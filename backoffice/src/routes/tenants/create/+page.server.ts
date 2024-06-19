@@ -18,8 +18,8 @@ export const actions: Actions  = {
             }
         } catch (error: any) {
             return fail(422, {
-                message: error.message
-            });            
+                errors: error.message
+            });
         }
     }
 }
