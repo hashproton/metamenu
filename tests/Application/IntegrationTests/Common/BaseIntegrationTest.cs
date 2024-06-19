@@ -31,7 +31,7 @@ public class BaseIntegrationTest
 
         var services = new ServiceCollection()
             .AddApplication()
-            .AddInfra(EnvironmentKind.Test, configuration);
+            .AddInfra(EnvironmentKind.Development, configuration);
 
         _provider = services.BuildServiceProvider();
         await DbContext.Database.MigrateAsync();
@@ -41,6 +41,11 @@ public class BaseIntegrationTest
     public static async Task AssemblyCleanup()
     {
         await DbContext.Database.EnsureDeletedAsync();
-        await _provider.DisposeAsync();
+    }
+    
+    [TestCleanup]
+    public async Task TestCleanup()
+    {
+        await DbContext.Tenants.ExecuteDeleteAsync();
     }
 }

@@ -2,7 +2,6 @@ namespace Application.Models;
 
 public enum EnvironmentKind
 {
-    Test,
     Development,
     Production
 }
@@ -17,11 +16,6 @@ public static class EnvironmentExtensions
             "Production" => EnvironmentKind.Production,
             _ => throw new ArgumentException("Invalid environment")
         };
-    }
-
-    public static bool IsTest(this EnvironmentKind environmentKind)
-    {
-        return environmentKind == EnvironmentKind.Test;
     }
 
     public static bool IsDevelopment(this EnvironmentKind environmentKind)
