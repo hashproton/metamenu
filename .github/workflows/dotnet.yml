@@ -14,6 +14,15 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_DB: metamenu-tests        
+          POSTGRES_PASSWORD: dev
+          POSTGRES_USER: dev
+        ports:
+          - 5432:5432
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
