@@ -8,14 +8,14 @@ using NSubstitute;
 namespace UnitTests.UseCases.Tenants.Commands;
 
 [TestClass]
-public class UpdateTenantTests
+public class UpdateTenantCommandTests
 {
     private readonly ITenantRepository _tenantRepository = Substitute.For<ITenantRepository>();
     private readonly ILogger _logger = Substitute.For<ILogger>();
 
     private readonly UpdateTenantCommandHandler _handler;
 
-    public UpdateTenantTests()
+    public UpdateTenantCommandTests()
     {
         _handler = new UpdateTenantCommandHandler(_logger, _tenantRepository);
     }

@@ -31,6 +31,7 @@ public static class DependencyInjection
         services.AddSingleton<ILogger, Logger>();
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         services.AddScoped<ITenantRepository, TenantRepository>();
+        services.AddScoped<ITagGroupRepository, TagGroupRepository>();
         services.AddDatabase(configuration);
 
         if (environment.IsDevelopment())
