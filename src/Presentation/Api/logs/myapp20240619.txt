@@ -1,0 +1,5 @@
+2024-06-19 13:12:17.136 +01:00 [INF] Database configuration: {"ConnectionString":"Host=localhost;Database=metamenu-dev;Username=dev;Password=dev","$type":"DatabaseConfiguration"}
+2024-06-19 14:20:22.757 +01:00 [INF] Database configuration: {"ConnectionString":"Host=localhost;Database=metamenu-dev;Username=dev;Password=dev","$type":"DatabaseConfiguration"}
+2024-06-19 14:22:18.249 +01:00 [INF] Database configuration: {"ConnectionString":"Host=localhost;Database=metamenu-dev;Username=dev;Password=dev","$type":"DatabaseConfiguration"}
+2024-06-19 14:22:37.706 +01:00 [INF] Database configuration: {"ConnectionString":"Host=localhost;Database=metamenu-dev;Username=dev;Password=dev","$type":"DatabaseConfiguration"}
+2024-06-19 14:22:44.224 +01:00 [INF] Database configuration: {"ConnectionString":"Host=localhost;Database=metamenu-dev;Username=dev;Password=dev","$type":"DatabaseConfiguration"}
