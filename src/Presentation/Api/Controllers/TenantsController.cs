@@ -1,9 +1,5 @@
-using Api.Controllers.Common;
-using Application.Repositories.Common;
 using Application.UseCases.Tenants.Commands;
 using Application.UseCases.Tenants.Queries;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 

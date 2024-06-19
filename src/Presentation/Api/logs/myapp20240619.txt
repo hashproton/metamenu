@@ -3,3 +3,24 @@
 2024-06-19 14:22:18.249 +01:00 [INF] Database configuration: {"ConnectionString":"Host=localhost;Database=metamenu-dev;Username=dev;Password=dev","$type":"DatabaseConfiguration"}
 2024-06-19 14:22:37.706 +01:00 [INF] Database configuration: {"ConnectionString":"Host=localhost;Database=metamenu-dev;Username=dev;Password=dev","$type":"DatabaseConfiguration"}
 2024-06-19 14:22:44.224 +01:00 [INF] Database configuration: {"ConnectionString":"Host=localhost;Database=metamenu-dev;Username=dev;Password=dev","$type":"DatabaseConfiguration"}
+2024-06-19 16:35:06.730 +01:00 [INF] Retrieving all tenants
+2024-06-19 16:35:18.065 +01:00 [INF] Tenant 1 created
+2024-06-19 16:35:23.730 +01:00 [INF] Retrieving tenant 1
+2024-06-19 16:35:28.089 +01:00 [INF] Retrieving all tenants
+2024-06-19 16:35:42.630 +01:00 [INF] Tenant 1 updated
+2024-06-19 16:35:47.382 +01:00 [INF] Retrieving all tenants
+2024-06-19 16:35:56.936 +01:00 [INF] Tenant 1 deleted
+2024-06-19 16:36:22.614 +01:00 [INF] Retrieving all tenants
+2024-06-19 16:36:27.853 +01:00 [INF] Tenant 2 created
+2024-06-19 16:36:41.486 +01:00 [INF] Tenant 3 created
+2024-06-19 16:36:55.336 +01:00 [INF] Retrieving all tenants
+2024-06-19 16:37:11.811 +01:00 [INF] Tenant 2 updated
+2024-06-19 16:37:16.400 +01:00 [INF] Retrieving all tenants
+2024-06-19 16:37:45.213 +01:00 [INF] Tenant 2 updated
+2024-06-19 16:37:47.727 +01:00 [INF] Retrieving all tenants
+2024-06-19 16:38:04.907 +01:00 [INF] Tag group 1 created
+2024-06-19 16:38:16.571 +01:00 [INF] Retrieving all tag groups for tenant Baby Deles.
+2024-06-19 16:38:20.473 +01:00 [INF] Retrieving all tag groups for tenant Baby Deles.
+2024-06-19 16:38:24.203 +01:00 [INF] Retrieving all tag groups for tenant Baby Deles.
+2024-06-19 16:38:32.371 +01:00 [INF] Tag group 2 created
+2024-06-19 16:38:38.398 +01:00 [INF] Retrieving all tag groups for tenant Baby Deles.

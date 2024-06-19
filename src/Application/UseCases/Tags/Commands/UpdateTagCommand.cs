@@ -1,8 +1,10 @@
 namespace Application.UseCases.Tags.Commands;
 
-public record UpdateTagCommand(
-    int TagId) : IRequest
+public class UpdateTagCommand(
+    int tagId) : IRequest
 {
+    public int TagId { get; set; } = tagId;
+    
     public int? TagGroupId { get; set; }
 
     public string? Name { get; set; }
