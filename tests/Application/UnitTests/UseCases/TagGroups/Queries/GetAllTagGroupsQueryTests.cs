@@ -1,10 +1,4 @@
-using Application.Exceptions;
-using Application.Repositories;
-using Application.Repositories.Common;
-using Application.Services;
 using Application.UseCases.TagGroups.Queries;
-using Domain.Entities;
-using NSubstitute;
 
 namespace UnitTests.UseCases.TagGroups.Queries;
 

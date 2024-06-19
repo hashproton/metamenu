@@ -22,18 +22,17 @@ public class GenericRepository<T>(
         PaginatedQuery paginatedQuery,
         CancellationToken cancellationToken)
     {
-        var totalItems = await context.Set<T>().CountAsync(cancellationToken);
-        var totalPages = (int)Math.Ceiling(totalItems / (double)paginatedQuery.PageSize);
+        return await context.Set<T>().ToPaginatedResultAsync(paginatedQuery, cancellationToken);
+    }
 
-        return new PaginatedResult<T>(
-            await context.Set<T>()
-                .Skip(paginatedQuery.PageSize * (paginatedQuery.PageNumber - 1))
-                .Take(paginatedQuery.PageSize)
-                .ToListAsync(cancellationToken),
-            totalItems,
-            totalPages,
-            paginatedQuery.PageNumber,
-            paginatedQuery.PageSize);
+    public async Task<PaginatedResult<T>> GetAllAsync(
+        Expression<Func<T, bool>> query,
+        PaginatedQuery paginatedQuery,
+        CancellationToken cancellationToken)
+    {
+        return await context.Set<T>()
+            .Where(query)
+            .ToPaginatedResultAsync(paginatedQuery, cancellationToken);
     }
 
     public async Task<int> AddAsync(T entity, CancellationToken cancellationToken)

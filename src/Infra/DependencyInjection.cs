@@ -1,5 +1,4 @@
 using Application.Models;
-using Application.Repositories;
 using Application.Repositories.Common;
 using Infra.Configuration;
 using Infra.Repositories;

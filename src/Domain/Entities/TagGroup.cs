@@ -8,4 +8,6 @@ public class TagGroup : BaseEntity
 
     public Tenant Tenant { get; set; } = default!;
     public int TenantId { get; set; }
+
+    public List<Tag> Tags { get; set; } = new();
 }
