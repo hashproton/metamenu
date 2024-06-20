@@ -1,3 +1,4 @@
+using Application.Errors;
 using Application.UseCases.Tenants.Commands;
 
 namespace UnitTests.UseCases.Tenants.Commands;
@@ -27,9 +28,11 @@ public class UpdateTenantCommandTests
             Name = "New Tenant Name"
         };
 
-        var exception = await Assert.ThrowsExceptionAsync<NotFoundException>(() => _handler.Handle(command, default));
+        var result = await _handler.Handle(command, default);
 
-        Assert.AreEqual($"Tenant with ID {nonExistingTenantId} was not found.", exception.Message);
+        Assert.IsFalse(result.IsSuccess);
+        Assert.IsNotNull(result.Error);
+        Assert.AreEqual(TenantErrors.TenantNotFound.Message, result.Error.Message);
 
         await _tenantRepository.DidNotReceiveWithAnyArgs().UpdateAsync(default!, default);
     }
@@ -57,9 +60,11 @@ public class UpdateTenantCommandTests
             Name = existingTenant.Name
         };
 
-        var exception = await Assert.ThrowsExceptionAsync<ConflictException>(() => _handler.Handle(command, default));
+        var result = await _handler.Handle(command, default);
 
-        Assert.AreEqual("Tenant with the same name already exists", exception.Message);
+        Assert.IsFalse(result.IsSuccess);
+        Assert.IsNotNull(result.Error);
+        Assert.AreEqual(TenantErrors.TenantAlreadyExists.Message, result.Error.Message);
 
         await _tenantRepository.DidNotReceiveWithAnyArgs().UpdateAsync(default!, default);
     }
