@@ -17,9 +17,10 @@ public class DeleteTenantCommandTests : BaseIntegrationTest
 
         // Act: Delete the tenant
         var deleteCommand = new DeleteTenantCommand(tenantId);
-        await Mediator.Send(deleteCommand);
+        var result = await Mediator.Send(deleteCommand);
 
         // Assert: Verify the tenant was deleted
+        Assert.IsTrue(result.IsSuccess);
         var tenant = await TenantRepository.GetByIdAsync(tenantId, default);
         Assert.IsNull(tenant);
     }

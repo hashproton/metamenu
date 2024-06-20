@@ -16,9 +16,9 @@ public class CreateTenantCommandTests : BaseIntegrationTest
 
         // Assert: Verify the tenant was created
         Assert.IsNotNull(result);
-        var tenant = await TenantRepository.GetByIdAsync(result, default);
+        var tenant = await TenantRepository.GetByIdAsync(result.Value, default);
         Assert.IsNotNull(tenant);
         Assert.AreEqual("New Tenant", tenant.Name);
-        Assert.AreEqual(result, tenant.Id);
+        Assert.AreEqual(result.Value, tenant.Id);
     }
 }

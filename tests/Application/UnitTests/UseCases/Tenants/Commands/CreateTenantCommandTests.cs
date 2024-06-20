@@ -1,3 +1,4 @@
+using Application.Errors;
 using Application.UseCases.Tenants.Commands;
 
 namespace UnitTests.UseCases.Tenants.Commands;
@@ -27,9 +28,10 @@ public class CreateTenantCommandTests
 
         var command = new CreateTenantCommand(existingTenant.Name);
 
-        var exception = await Assert.ThrowsExceptionAsync<ConflictException>(() => _handler.Handle(command, default));
+        var result = await _handler.Handle(command, default);
 
-        Assert.AreEqual("Tenant with the same name already exists", exception.Message);
+        Assert.IsFalse(result.IsSuccess);
+        Assert.AreEqual(TenantErrors.TenantAlreadyExists.Message, result.Error!.Message);
 
         await _tenantRepository.DidNotReceiveWithAnyArgs().AddAsync(default!, default);
     }

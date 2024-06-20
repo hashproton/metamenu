@@ -9,4 +9,9 @@ public class Logger : ILogger
     {
         Log.Information(message);
     }
+
+    public void LogError(string message)
+    {
+        Log.Error(message);
+    }
 }

@@ -17,7 +17,7 @@
 		}
 
 		if (form?.errors) {
-			toast.error(`Failed to create tenant: ${form.errors}`);
+			toast.error(`${form.errors[0].message}`);
 		}
 	});
 </script>

@@ -1,3 +1,4 @@
+using Api.Middlewares;
 using Application;
 using Application.Models;
 using Infra;
@@ -13,6 +14,8 @@ builder.Services
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
     .AddControllers();
+
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 var app = builder.Build();
 

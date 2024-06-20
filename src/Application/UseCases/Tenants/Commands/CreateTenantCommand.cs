@@ -1,23 +1,25 @@
+using Application.Errors;
+using Application.Models;
 using Application.Services;
 
 namespace Application.UseCases.Tenants.Commands;
 
 public class CreateTenantCommand(
-    string name) : IRequest<int>
+    string name) : IRequest<Result<int>>
 {
     public string Name { get; set; } = name;
 }
 
 public class CreateTenantCommandHandler(
     ILogger logger,
-    ITenantRepository tenantRepository) : IRequestHandler<CreateTenantCommand, int>
+    ITenantRepository tenantRepository) : IRequestHandler<CreateTenantCommand, Result<int>>
 {
-    public async Task<int> Handle(CreateTenantCommand request, CancellationToken cancellationToken)
+    public async Task<Result<int>> Handle(CreateTenantCommand request, CancellationToken cancellationToken)
     {
         var existingTenant = await tenantRepository.GetTenantByNameAsync(request.Name, cancellationToken);
         if (existingTenant is not null)
         {
-            throw new ConflictException("Tenant with the same name already exists");
+            return Result.Failure<int>(TenantErrors.TenantAlreadyExists);
         }
 
         var tenant = new Tenant
@@ -29,6 +31,6 @@ public class CreateTenantCommandHandler(
 
         logger.LogInformation($"Tenant {tenant.Id} created");
 
-        return tenant.Id;
+        return Result.Success(tenant.Id);
     }
 }

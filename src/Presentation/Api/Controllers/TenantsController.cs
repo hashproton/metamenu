@@ -1,3 +1,4 @@
+using Api.Extensions;
 using Application.UseCases.Tenants.Commands;
 using Application.UseCases.Tenants.Queries;
 
@@ -11,7 +12,7 @@ public class TenantsController(
     {
         var result = await mediator.Send(command);
 
-        return CreatedAtAction(nameof(GetTenantById), new { id = result }, result);
+        return result.IsSuccess ? CreatedAtAction(nameof(GetTenantById), new { id = result.Value }, result.Value) : result.ToActionResult();
     }
 
     [HttpGet]
@@ -46,8 +47,8 @@ public class TenantsController(
     [HttpDelete("{id:int}")]
     public async Task<ActionResult> DeleteTenant([FromRoute] int id)
     {
-        await mediator.Send(new DeleteTenantCommand(id));
+        var result = await mediator.Send(new DeleteTenantCommand(id));
 
-        return NoContent();
+        return result.IsSuccess ? NoContent() : result.ToActionResult();
     }
 }

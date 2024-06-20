@@ -1,3 +1,4 @@
+using Application.Errors;
 using Application.UseCases.Tenants.Commands;
 
 namespace UnitTests.UseCases.Tenants.Commands;
@@ -24,9 +25,10 @@ public class DeleteTenantCommandTests
 
         var command = new DeleteTenantCommand(nonExistingTenantId);
 
-        var exception = await Assert.ThrowsExceptionAsync<NotFoundException>(() => _handler.Handle(command, default));
+        var result = await _handler.Handle(command, default);
 
-        Assert.AreEqual($"Tenant with ID {nonExistingTenantId} was not found.", exception.Message);
+        Assert.IsFalse(result.IsSuccess);
+        Assert.AreEqual(TenantErrors.TenantNotFound.Message, result.Error!.Message);
 
         await _tenantRepository.DidNotReceiveWithAnyArgs().DeleteAsync(default!, default);
     }

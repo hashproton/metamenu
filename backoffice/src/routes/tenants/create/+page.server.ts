@@ -10,15 +10,21 @@ export const actions: Actions  = {
         const tenantName = formData.get('name') as string;
             
         try {
-            const newTenantId = await api.createTenant(tenantName);
+            const response = await api.createTenant(tenantName);
 
-            console.log('New tenant ID:', newTenantId);
+            console.log(response);
+            if (response.errors) {
+                return fail(422, {
+                    errors: response.errors
+                });
+            }
+
             return {
-                id: newTenantId
+                id: response
             }
         } catch (error: any) {
             return fail(422, {
-                errors: error.message
+                errors: error.errors
             });
         }
     }
