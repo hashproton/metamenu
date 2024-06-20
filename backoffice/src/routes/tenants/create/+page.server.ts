@@ -12,7 +12,6 @@ export const actions: Actions  = {
         try {
             const response = await api.createTenant(tenantName);
 
-            console.log(response);
             if (response.errors) {
                 return fail(422, {
                     errors: response.errors

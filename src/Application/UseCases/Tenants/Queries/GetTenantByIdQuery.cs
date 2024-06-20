@@ -3,26 +3,26 @@ using Application.Services;
 namespace Application.UseCases.Tenants.Queries;
 
 public record GetTenantByIdQuery(
-    int Id) : IRequest<GetTenantByIdQueryResponse>;
+    int Id) : IRequest<Result<GetTenantByIdQueryResponse>>;
 
 public class GetTenantByIdQueryHandler(
     ILogger logger,
     ITenantRepository tenantRepository)
-    : IRequestHandler<GetTenantByIdQuery, GetTenantByIdQueryResponse>
+    : IRequestHandler<GetTenantByIdQuery, Result<GetTenantByIdQueryResponse>>
 {
-    public async Task<GetTenantByIdQueryResponse> Handle(
+    public async Task<Result<GetTenantByIdQueryResponse>> Handle(
         GetTenantByIdQuery request,
         CancellationToken cancellationToken)
     {
         var tenant = await tenantRepository.GetByIdAsync(request.Id, cancellationToken);
         if (tenant is null)
         {
-            throw new NotFoundException(nameof(Tenant), request.Id);
+            return Result.Failure<GetTenantByIdQueryResponse>(TenantErrors.TenantNotFound);
         }
 
         logger.LogInformation($"Retrieving tenant {tenant.Id}");
 
-        return new GetTenantByIdQueryResponse(tenant.Id, tenant.Name);
+        return Result.Success(new GetTenantByIdQueryResponse(tenant.Id, tenant.Name));
     }
 }
 

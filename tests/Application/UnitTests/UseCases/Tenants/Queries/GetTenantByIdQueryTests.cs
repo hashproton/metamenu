@@ -1,3 +1,4 @@
+using Application.Errors;
 using Application.UseCases.Tenants.Queries;
 
 namespace UnitTests.UseCases.Tenants.Queries;
@@ -24,8 +25,11 @@ public class GetTenantByIdQueryTests
 
         var query = new GetTenantByIdQuery(nonExistingTenantId);
 
-        var exception = await Assert.ThrowsExceptionAsync<NotFoundException>(() => _handler.Handle(query, default));
+        var result = await _handler.Handle(query, default);
+        
+        Assert.IsFalse(result.IsSuccess);
+        Assert.AreEqual(TenantErrors.TenantNotFound.Message, result.Error!.Message);
 
-        Assert.AreEqual($"Tenant with ID {nonExistingTenantId} was not found.", exception.Message);
+        await _tenantRepository.DidNotReceiveWithAnyArgs().DeleteAsync(default!, default);
     }
 }

@@ -1,10 +1,4 @@
-import axios, { AxiosError, type AxiosInstance } from 'axios';
-
-interface Tenant {
-    id: string;
-    name: string;
-    isActive: boolean;
-}
+import axios, { type AxiosInstance } from 'axios';
 
 interface GetTenantsResponse {
     items: Tenant[];
@@ -16,96 +10,70 @@ interface GetTenantsResponse {
     hasNextPage: boolean;
 }
 
-interface ApiError {
-    code: string;
-    message: string;
+interface Tenant {
+    id: string;
+    name: string;
+    isActive: boolean;
 }
 
-interface ApiResponse<T> {
-    errors?: ApiError[];
-    data?: T;
+interface ApiError {
+    errors: {
+        code: string;
+        message: string;
+        type: number;
+    }[];
 }
+
+export function isApiError(response: any): response is ApiError {
+    return response && typeof response === 'object' && 'errors' in response;
+}
+
+type ApiResponse<T> = T | ApiError;
+type VoidApiResponse = ApiError | void;
 
 class TenantsApi {
     private http: AxiosInstance;
 
     constructor() {
         this.http = axios.create({
-            validateStatus(status) {
-                return status < 500; // Accept all responses, we'll handle status codes manually
-            },
-            baseURL: 'http://localhost:5105/api'
+            baseURL: 'http://localhost:5105/api',
+            validateStatus: () => true
         });
     }
 
     async createTenant(name: string): Promise<ApiResponse<number>> {
-        try {
-            const response = await this.http.post<ApiResponse<number>>('/tenants', { name });
+        const { data } = await this.http.post<ApiResponse<number>>('/tenants', { name });
 
-            if (response.status >= 500) {
-                return {
-                    errors: [{ code: response.status.toString(), message: response.statusText }]
-                };
-            }
-
-            return response.data;
-        } catch (error: unknown) {
-            return this.handleAxiosError(error);
-        }
+        return data;
     }
 
     async getTenants(pageNumber = 1, pageSize = 10): Promise<ApiResponse<GetTenantsResponse>> {
-        try {
-            const response = await this.http.get<GetTenantsResponse>('/tenants', {
-                params: {
-                    pageNumber,
-                    pageSize
-                }
-            });
-
-            if (response.status >= 500) {
-                return {
-                    errors: [{ code: response.status.toString(), message: response.statusText }]
-                };
+        const { data } = await this.http.get<GetTenantsResponse>('/tenants', {
+            params: {
+                pageNumber,
+                pageSize
             }
+        });
 
-            return { data: response.data };
-        } catch (error: unknown) {
-            return this.handleAxiosError(error);
-        }
+        return { data }
     }
 
-    async deleteTenant(id: string): Promise<ApiResponse<void>> {
-        try {
-            const response = await this.http.delete<void>(`/tenants/${id}`);
-
-            if (response.status >= 500) {
-                return {
-                    errors: [{ code: response.status.toString(), message: response.statusText }]
-                };
-            }
-
-            return { data: response.data };
-        } catch (error: unknown) {
-            return this.handleAxiosError(error);
-        }
+    async updateTenant(id: string, tenant: Partial<Pick<Tenant, "name">>) {
+        const { data } = await this.http.put<VoidApiResponse>(`/tenants/${id}`, tenant);
+        
+        return data
     }
 
-    private handleAxiosError(error: unknown): ApiResponse<any> {
-        if (error instanceof AxiosError && error.response) {
-            const statusCode = error.response.status;
-            if (statusCode >= 500) {
-                return {
-                    errors: [{ code: statusCode.toString(), message: error.response.statusText }]
-                };
-            }
+    async getTenantById(id: string) {
+        const { data } = await this.http.get<ApiResponse<Tenant>>(`/tenants/${id}`);
 
-            return {
-                errors: error.response.data.errors
-            };
-        }
+        return data;
+    }
 
-        throw error;
+    async deleteTenant(id: string) {
+        const { data } = await this.http.delete<VoidApiResponse>(`/tenants/${id}`);
+
+        return data
     }
 }
 

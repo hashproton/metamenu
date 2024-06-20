@@ -1,5 +1,5 @@
 using System.Net.Mime;
-using Application.Models;
+using Application.Errors.Common;
 
 namespace Api.Extensions;
 

@@ -29,7 +29,7 @@ public class TenantsController(
     {
         var result = await mediator.Send(new GetTenantByIdQuery(id));
 
-        return Ok(result);
+        return result.IsSuccess ? Ok(result.Value) : result.ToActionResult();
     }
 
     [HttpPut("{id:int}")]
@@ -39,9 +39,9 @@ public class TenantsController(
     {
         command.Id = id;
 
-        await mediator.Send(command);
+        var result = await mediator.Send(command);
 
-        return NoContent();
+        return result.IsSuccess ? NoContent() : result.ToActionResult();
     }
 
     [HttpDelete("{id:int}")]

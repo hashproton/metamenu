@@ -17,11 +17,12 @@ public class GetTenantByIdQueryTests : BaseIntegrationTest
 
         // Act: Retrieve the tenant
         var getTenantByIdQuery = new GetTenantByIdQuery(tenantId);
-        var tenant = await Mediator.Send(getTenantByIdQuery);
+        var result = await Mediator.Send(getTenantByIdQuery);
 
         // Assert: Verify the tenant was retrieved
-        Assert.IsNotNull(tenant);
-        Assert.AreEqual("Tenant to retrieve", tenant.Name);
-        Assert.AreEqual(tenantId, tenant.Id);
+        Assert.IsTrue(result.IsSuccess);
+        Assert.IsNotNull(result.Value);
+        Assert.AreEqual("Tenant to retrieve", result.Value.Name);
+        Assert.AreEqual(tenantId, result.Value.Id);
     }
 }

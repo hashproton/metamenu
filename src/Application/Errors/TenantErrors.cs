@@ -1,5 +1,3 @@
-using Application.Models;
-
 namespace Application.Errors;
 
 public static class TenantErrors

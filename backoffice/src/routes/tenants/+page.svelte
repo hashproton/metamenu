@@ -6,8 +6,8 @@
 	import * as Card from '$lib/components/ui/card/index.js';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
 	import * as Table from '$lib/components/ui/table/index.js';
-	
-	export let data;
+
+	let { data } = $props();
 </script>
 
 <main
@@ -40,6 +40,12 @@
 				<Card.Description>All businesses of metamenu.</Card.Description>
 			</Card.Header>
 			<Card.Content>
+				{#if data.response == null || data.response.items.length === 0}
+					<div class="flex items-center justify-center h-32">
+						<p class="text-muted
+							-foreground">No tenants found.</p>
+					</div>
+				{:else}
 				<Table.Root>
 					<Table.Header>
 						<Table.Row>
@@ -52,7 +58,9 @@
 						{#each data.response.items as tenant}
 							<Table.Row>
 								<Table.Cell>
-									<div class="font-medium">{tenant.name}</div>
+									<div class="font-medium">
+										<a href={`/tenants/${tenant.id}`}>{tenant.name}</a>
+									</div>
 									<div class="hidden text-sm text-muted-foreground md:inline">
 										<a href={'notimplemented'} target="_blank">{'notimplemented'}</a>
 									</div>
@@ -67,6 +75,7 @@
 						{/each}
 					</Table.Body>
 				</Table.Root>
+				{/if}
 			</Card.Content>
 		</Card.Root>
 	</div>
