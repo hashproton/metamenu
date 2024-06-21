@@ -8,12 +8,14 @@
 	import * as Select from '$lib/components/ui/select/index.js';
 	import { toast } from 'svelte-sonner';
 	import { enhance } from '$app/forms';
+	import { goto } from "$app/navigation"
 
 	let { form }= $props();
 
 	$effect(() => {
-		if (form?.id) {
-			toast.success(`Tenant ${form.id} has been created ✅`);
+		if (form?.success) {
+			toast.success(form.success.message);
+			goto(`/tenants/${form.success.data.id}`);
 		}
 
 		if (form?.errors) {
@@ -26,12 +28,10 @@
 	<form method="POST" use:enhance>
 		<div class="mx-auto grid max-w-[150rem] auto-rows-max gap-4 md:mx-48">
 			<div class="flex items-center gap-4">
-				<a href="/tenants">
-					<Button variant="outline" size="icon" class="h-7 w-7">
+					<Button variant="outline" size="icon" class="h-7 w-7" onclick={(() => history.back())}>
 						<ChevronLeft class="h-4 w-4" />
 						<span class="sr-only">Back</span>
 					</Button>
-				</a>
 				<h1
 					class="flex-1 shrink-0 whitespace-nowrap text-xl font-semibold tracking-tight sm:grow-0"
 				>
@@ -42,48 +42,23 @@
 					<Button size="sm" type="submit">Save Tenant</Button>
 				</div>
 			</div>
-			<div class="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
-				<div class="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
-					<Card.Root>
-						<Card.Header>
-							<Card.Title>Tenant Details</Card.Title>
-							<Card.Description>
-								This information will be displayed on the tenant profile
-							</Card.Description>
-						</Card.Header>
-						<Card.Content>
-							<div class="grid gap-6">
-								<div class="grid gap-3">
-									<Label for="name">Name</Label>
-									<Input id="name" name="name" type="text" class="w-full" />
-								</div>
+			<div class="grid auto-rows-max items-start gap-4 lg:col-span-full lg:gap-8">
+				<Card.Root>
+					<Card.Header>
+						<Card.Title>Tenant Details</Card.Title>
+						<Card.Description>
+							This information will be displayed on the tenant profile
+						</Card.Description>
+					</Card.Header>
+					<Card.Content>
+						<div class="grid gap-6">
+							<div class="grid gap-3">
+								<Label for="name">Name</Label>
+								<Input id="name" name="name" type="text" class="w-full" />
 							</div>
-						</Card.Content>
-					</Card.Root>
-				</div>
-				<div class="grid auto-rows-max items-start gap-4 lg:gap-8">
-					<Card.Root>
-						<Card.Header>
-							<Card.Title>Tenant Status</Card.Title>
-						</Card.Header>
-						<Card.Content>
-							<div class="grid gap-6">
-								<div class="grid gap-3">
-									<Label for="status">Status</Label>
-									<Select.Root>
-										<Select.Trigger id="status" aria-label="Select status">
-											<Select.Value placeholder="Select status" />
-										</Select.Trigger>
-										<Select.Content>
-											<Select.Item value="published" label="Active">Active</Select.Item>
-											<Select.Item value="archived" label="Archived">Inactive</Select.Item>
-										</Select.Content>
-									</Select.Root>
-								</div>
-							</div>
-						</Card.Content>
-					</Card.Root>
-				</div>
+						</div>
+					</Card.Content>
+				</Card.Root>
 			</div>
 			<div class="flex items-center justify-center gap-2 md:hidden">
 				<a href="/tenants"><Button variant="outline" size="sm">Discard</Button></a>

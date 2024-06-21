@@ -16,7 +16,7 @@
 		variant="ghost"
 		class={cn("gap-1 pr-2.5", className)}
 		builders={[builder]}
-		on:click
+		onclick
 		{...$$restProps}
 	>
 		<slot>

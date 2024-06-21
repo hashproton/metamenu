@@ -20,10 +20,16 @@ public class GetAllTenantsQueryTests : BaseIntegrationTest
         }
 
         // Act: Retrieve all tenants with pagination
-        var getAllTenantsQuery = new GetAllTenantsQuery(new PaginatedQuery(2, 5));
-        var paginatedTenants = await Mediator.Send(getAllTenantsQuery);
+        var getAllTenantsQuery = new GetAllTenantsQuery(new PaginatedQuery
+        {
+            PageNumber = 2,
+            PageSize = 5
+        });
+        var result = await Mediator.Send(getAllTenantsQuery);
 
         // Assert: Verify all tenants were retrieved and pagination properties
+        Assert.IsTrue(result.IsSuccess);
+        var paginatedTenants = result.Value;
         Assert.IsNotNull(paginatedTenants);
         Assert.AreEqual(5, paginatedTenants.Items.Count());
         Assert.AreEqual(2, paginatedTenants.PageNumber);

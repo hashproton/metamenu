@@ -1,28 +1,29 @@
 using Application.Repositories.Common;
 using Application.Services;
+using Application.UseCases.Tenants.Queries.Common;
 
 namespace Application.UseCases.Tenants.Queries;
 
 public record GetAllTenantsQuery(
-    PaginatedQuery PaginatedQuery) : IRequest<PaginatedResult<GetAllTenantsQueryResponse>>;
+    PaginatedQuery PaginatedQuery) : IRequest<Result<PaginatedResult<TenantQueryResponse>>>;
 
 public class GetAllTenantsQueryHandler(
     ILogger logger,
     ITenantRepository tenantRepository)
-    : IRequestHandler<GetAllTenantsQuery, PaginatedResult<GetAllTenantsQueryResponse>>
+    : IRequestHandler<GetAllTenantsQuery, Result<PaginatedResult<TenantQueryResponse>>>
 {
-    public async Task<PaginatedResult<GetAllTenantsQueryResponse>> Handle(
+    public async Task<Result<PaginatedResult<TenantQueryResponse>>> Handle(
         GetAllTenantsQuery request,
         CancellationToken cancellationToken)
     {
-        var result = await tenantRepository.GetAllAsync(request.PaginatedQuery, cancellationToken);
+        var result = await tenantRepository.GetAllSortedByQueryAsync(
+            request.PaginatedQuery,
+            t => t.Id,
+            cancellationToken);
 
         logger.LogInformation("Retrieving all tenants");
 
-        return result.Map(t => new GetAllTenantsQueryResponse(t.Id, t.Name));
+        return Result
+            .Success(result.Map(t => t.ToQueryResponse()));
     }
 }
-
-public record GetAllTenantsQueryResponse(
-    int Id,
-    string Name);

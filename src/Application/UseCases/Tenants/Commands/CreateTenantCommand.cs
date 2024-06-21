@@ -22,7 +22,8 @@ public class CreateTenantCommandHandler(
 
         var tenant = new Tenant
         {
-            Name = request.Name
+            Name = request.Name,
+            Status = TenantStatus.Inactive
         };
 
         await tenantRepository.AddAsync(tenant, cancellationToken);

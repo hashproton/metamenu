@@ -1,6 +1,7 @@
 using Api.Extensions;
 using Application.UseCases.Tenants.Commands;
 using Application.UseCases.Tenants.Queries;
+using Application.UseCases.Tenants.Queries.Common;
 
 namespace Api.Controllers;
 
@@ -16,18 +17,26 @@ public class TenantsController(
     }
 
     [HttpGet]
-    public async Task<ActionResult<PaginatedResult<GetAllTenantsQueryResponse>>> GetAllTenants(
+    public async Task<ActionResult<PaginatedResult<TenantQueryResponse>>> GetAllTenants(
         PaginatedQuery paginatedQuery)
     {
         var result = await mediator.Send(new GetAllTenantsQuery(paginatedQuery));
 
-        return Ok(result);
+        return result.IsSuccess ? Ok(result.Value) : result.ToActionResult();
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<GetTenantByIdQueryResponse>> GetTenantById([FromRoute] int id)
+    public async Task<ActionResult<TenantQueryResponse>> GetTenantById([FromRoute] int id)
     {
         var result = await mediator.Send(new GetTenantByIdQuery(id));
+
+        return result.IsSuccess ? Ok(result.Value) : result.ToActionResult();
+    }
+    
+    [HttpGet("info")]
+    public async Task<ActionResult<GetTenantsInfoQueryResponse>> GetTenantsInfo()
+    {
+        var result = await mediator.Send(new GetTenantsInfoQuery());
 
         return result.IsSuccess ? Ok(result.Value) : result.ToActionResult();
     }

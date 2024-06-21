@@ -18,11 +18,31 @@ public class GenericRepository<T>(
         return context.Set<T>().FirstOrDefaultAsync(query, cancellationToken);
     }
 
+    public Task<int> CountAsync(CancellationToken cancellationToken)
+    {
+        return context.Set<T>().CountAsync(cancellationToken);
+    }
+
+    public Task<int> CountByQueryAsync(Expression<Func<T, bool>> query, CancellationToken cancellationToken)
+    {
+        return context.Set<T>().CountAsync(query, cancellationToken);
+    }
+
     public async Task<PaginatedResult<T>> GetAllAsync(
         PaginatedQuery paginatedQuery,
         CancellationToken cancellationToken)
     {
         return await context.Set<T>().ToPaginatedResultAsync(paginatedQuery, cancellationToken);
+    }
+
+    public async Task<PaginatedResult<T>> GetAllSortedByQueryAsync(
+        PaginatedQuery paginatedQuery,
+        Expression<Func<T, object>> query,
+        CancellationToken cancellationToken)
+    {
+        return await context.Set<T>()
+            .OrderBy(query)
+            .ToPaginatedResultAsync(paginatedQuery, cancellationToken);
     }
 
     public async Task<PaginatedResult<T>> GetAllAsync(

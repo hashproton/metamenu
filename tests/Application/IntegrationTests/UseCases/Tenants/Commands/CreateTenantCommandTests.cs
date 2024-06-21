@@ -15,7 +15,7 @@ public class CreateTenantCommandTests : BaseIntegrationTest
         var result = await Mediator.Send(command);
 
         // Assert: Verify the tenant was created
-        Assert.IsNotNull(result);
+        Assert.IsTrue(result.IsSuccess);
         var tenant = await TenantRepository.GetByIdAsync(result.Value, default);
         Assert.IsNotNull(tenant);
         Assert.AreEqual("New Tenant", tenant.Name);

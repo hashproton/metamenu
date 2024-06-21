@@ -11,4 +11,15 @@ public class TenantRepository(AppDbContext context) : GenericRepository<Tenant>(
     {
         return context.Tenants.FirstOrDefaultAsync(t => t.Name == name, cancellationToken);
     }
+
+    public Task<List<TenantMetadata>> GetTenantsStatusAsync(CancellationToken cancellationToken)
+    {
+        return context.Tenants
+            .GroupBy(t => t.Status)
+            .Select(g => new TenantMetadata
+            {
+                Status = g.Key,
+                Count = g.Count()
+            }).ToListAsync(cancellationToken);
+    }
 }

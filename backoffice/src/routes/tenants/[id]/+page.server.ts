@@ -6,10 +6,10 @@ export const load: PageServerLoad = async ({
     params: { id }
 }) => {
     const api = new TenantsApi()
-    const data = await api.getTenantById(id)
+    const response = await api.getTenantById(id)
 
     return {
-        ...data
+        ...response
     }
 }
 
@@ -19,10 +19,13 @@ export const actions = {
 
         const formData = await e.request.formData()
 
-        const { name } = Object.fromEntries(formData)
+        const { name, status } = Object.fromEntries(formData)
+
+        const test = parseInt(status as string)
 
         const response = await api.updateTenant(e.params.id, {
-            name: name as string
+            name: name as string,
+            status: test
         })
 
         if (isApiError(response)) {

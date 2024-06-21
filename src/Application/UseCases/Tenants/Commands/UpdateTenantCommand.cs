@@ -8,6 +8,8 @@ public class UpdateTenantCommand(
     public int Id { get; set; } = id;
 
     public string? Name { get; set; }
+    
+    public TenantStatus? Status { get; set; }
 }
 
 public class UpdateTenantCommandHandler(
@@ -22,15 +24,21 @@ public class UpdateTenantCommandHandler(
             return Result.Failure(TenantErrors.TenantNotFound);
         }
 
-        var existingTenant = await tenantRepository.GetTenantByNameAsync(request.Name, cancellationToken);
-        if (existingTenant is not null)
-        {
-            return Result.Failure(TenantErrors.TenantAlreadyExists);
-        }
-
         if (request.Name is not null && request.Name != tenant.Name)
         {
+            var existingTenant = await tenantRepository.GetTenantByNameAsync(request.Name, cancellationToken);
+            if (existingTenant is not null)
+            {
+                return Result.Failure(TenantErrors.TenantAlreadyExists);
+            }
+
             tenant.Name = request.Name;
+        }
+        
+        if (request.Status is not null && request.Status != tenant.Status)
+        {
+            logger.LogInformation($"Updating tenant {tenant.Id} status to {request.Status.Value}");
+            tenant.Status = request.Status.Value;
         }
 
         await tenantRepository.UpdateAsync(tenant, cancellationToken);

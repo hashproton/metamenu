@@ -21,7 +21,6 @@ public class GetTenantByIdQueryTests : BaseIntegrationTest
 
         // Assert: Verify the tenant was retrieved
         Assert.IsTrue(result.IsSuccess);
-        Assert.IsNotNull(result.Value);
         Assert.AreEqual("Tenant to retrieve", result.Value.Name);
         Assert.AreEqual(tenantId, result.Value.Id);
     }

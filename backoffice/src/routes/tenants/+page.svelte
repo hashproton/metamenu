@@ -1,5 +1,7 @@
 <script lang="ts">
 	import ListFilter from 'lucide-svelte/icons/list-filter';
+	import ChevronLeft from 'lucide-svelte/icons/chevron-left';
+	import ChevronRight from 'lucide-svelte/icons/chevron-right';
 
 	import { Badge } from '$lib/components/ui/badge/index.js';
 	import { Button } from '$lib/components/ui/button/index.js';
@@ -7,7 +9,23 @@
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
 	import * as Table from '$lib/components/ui/table/index.js';
 
+	import * as Pagination from '$lib/components/ui/pagination/index.js';
+	import { goto } from '$app/navigation';
+	import { TenantStatus, isApiError } from './helpers/tenants_api.js';
+
+	function mapTenantStatusColor(status: TenantStatus) {
+		switch (status) {
+			case TenantStatus.Inactive:
+				return 'destructive';
+			case TenantStatus.Active:
+				return 'secondary';
+			case TenantStatus.Demo:
+				return 'default';
+		}
+	}
+
 	let { data } = $props();
+	console.log('data', data.info);
 </script>
 
 <main
@@ -40,41 +58,92 @@
 				<Card.Description>All businesses of metamenu.</Card.Description>
 			</Card.Header>
 			<Card.Content>
-				{#if data.response == null || data.response.items.length === 0}
-					<div class="flex items-center justify-center h-32">
-						<p class="text-muted
-							-foreground">No tenants found.</p>
+				{#if data.items && data.items.length === 0}
+					<div class="flex h-32 items-center justify-center">
+						<p
+							class="-foreground
+							text-muted"
+						>
+							No tenants found.
+						</p>
 					</div>
 				{:else}
-				<Table.Root>
-					<Table.Header>
-						<Table.Row>
-							<Table.Head>Name</Table.Head>
-							<Table.Head class="hidden sm:table-cell">Status</Table.Head>
-							<Table.Head class="text-right">Products</Table.Head>
-						</Table.Row>
-					</Table.Header>
-					<Table.Body>
-						{#each data.response.items as tenant}
-							<Table.Row>
-								<Table.Cell>
-									<div class="font-medium">
-										<a href={`/tenants/${tenant.id}`}>{tenant.name}</a>
-									</div>
-									<div class="hidden text-sm text-muted-foreground md:inline">
-										<a href={'notimplemented'} target="_blank">{'notimplemented'}</a>
-									</div>
-								</Table.Cell>
-								<Table.Cell class="hidden sm:table-cell">
-									<Badge class="text-xs" variant={tenant.isActive ? 'destructive' : 'default'}>
-										{tenant.isActive ? 'Active' : 'Inactive'}
-									</Badge>
-								</Table.Cell>
-								<Table.Cell class="text-right">32</Table.Cell>
-							</Table.Row>
-						{/each}
-					</Table.Body>
-				</Table.Root>
+				<div class="h-[40ch]">
+						<Table.Root>
+							<Table.Header>
+								<Table.Row>
+									<Table.Head class="w-[50ch]">Name</Table.Head>
+									<Table.Head class="hidden sm:table-cell">Status</Table.Head>
+									<Table.Head class="text-right">Products</Table.Head>
+								</Table.Row>
+							</Table.Header>
+							<Table.Body>
+								{#each data.items! as tenant}
+									<Table.Row>
+										<Table.Cell>
+											<div class="font-medium">
+												<a href={`/tenants/${tenant.id}`}>{tenant.name}</a>
+											</div>
+											<div class="hidden text-sm text-muted-foreground md:inline">
+												<a href={'notimplemented'} target="_blank">{'notimplemented'}</a>
+											</div>
+										</Table.Cell>
+										<Table.Cell class="hidden sm:table-cell">
+											<Badge class="text-xs" variant={mapTenantStatusColor(tenant.status)}>
+												{TenantStatus[tenant.status]}
+											</Badge>
+										</Table.Cell>
+										<Table.Cell class="text-right">32</Table.Cell>
+									</Table.Row>
+								{/each}
+							</Table.Body>
+						</Table.Root>
+					</div>
+
+					<Pagination.Root
+						count={data.totalItems!}
+						perPage={data.pageSize}
+						let:pages
+						let:currentPage
+					>
+						<Pagination.Content>
+							<Pagination.Item>
+								<Button
+									disabled={!data.hasPreviousPage}
+									variant="outline"
+									class="flex justify-center border-0"
+									onclick={() => goto(`?page=${data.pageNumber! - 1}`)}
+								>
+									<ChevronLeft strokeWidth={2} class="h-6 w-6" />
+									<span class="hidden sm:block">Previous</span>
+								</Button>
+							</Pagination.Item>
+							{#each pages as page (page.key)}
+								{#if page.type === 'ellipsis'}
+									<Pagination.Item>
+										<Pagination.Ellipsis />
+									</Pagination.Item>
+								{:else}
+									<Pagination.Item onclick={() => goto(`?page=${page.value}`)}>
+										<Pagination.Link {page} isActive={data.pageNumber! === page.value}>
+											{page.value}
+										</Pagination.Link>
+									</Pagination.Item>
+								{/if}
+							{/each}
+							<Pagination.Item>
+								<Button
+									disabled={!data.hasNextPage}
+									variant="outline"
+									class="flex justify-center border-0"
+									onclick={() => goto(`?page=${data.pageNumber! + 1}`)}
+								>
+									<span class="hidden sm:block">Next</span>
+									<ChevronRight strokeWidth={2} class="h-6 w-6" />
+								</Button>
+							</Pagination.Item>
+						</Pagination.Content>
+					</Pagination.Root>
 				{/if}
 			</Card.Content>
 		</Card.Root>
@@ -95,18 +164,28 @@
 				</div>
 			</Card.Header>
 			<Card.Content class="p-6 text-sm">
-				<div class="grid gap-3">
-					<ul class="grid gap-3">
-						<li class="flex items-center justify-between">
-							<span class="text-muted-foreground">Active</span>
-							<span>2</span>
-						</li>
-						<li class="flex items-center justify-between">
-							<span class="text-muted-foreground">Inactive</span>
-							<span>5</span>
-						</li>
-					</ul>
-				</div>
+				{#if !isApiError(data.info)}
+					<div class="grid gap-3">
+						<ul class="grid gap-3">
+							<li class="flex items-center justify-between">
+								<span class="text-muted-foreground">Active</span>
+								<span>{data.info.active}</span>
+							</li>
+							<li class="flex items-center justify-between">
+								<span class="text-muted-foreground">Inactive</span>
+								<span>{data.info.inactive}</span>
+							</li>
+							<li class="flex items-center justify-between">
+								<span class="text-muted-foreground">Demo</span>
+								<span>{data.info.demo}</span>
+							</li>
+							<li class="flex items-center justify-between">
+								<span class="text-muted-foreground">Total</span>
+								<span>{data.info.total}</span>
+							</li>
+						</ul>
+					</div>
+				{/if}
 			</Card.Content>
 		</Card.Root>
 	</div>

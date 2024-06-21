@@ -1,31 +1,28 @@
 using Application.Services;
+using Application.UseCases.Tenants.Queries.Common;
 
 namespace Application.UseCases.Tenants.Queries;
 
 public record GetTenantByIdQuery(
-    int Id) : IRequest<Result<GetTenantByIdQueryResponse>>;
+    int Id) : IRequest<Result<TenantQueryResponse>>;
 
 public class GetTenantByIdQueryHandler(
     ILogger logger,
     ITenantRepository tenantRepository)
-    : IRequestHandler<GetTenantByIdQuery, Result<GetTenantByIdQueryResponse>>
+    : IRequestHandler<GetTenantByIdQuery, Result<TenantQueryResponse>>
 {
-    public async Task<Result<GetTenantByIdQueryResponse>> Handle(
+    public async Task<Result<TenantQueryResponse>> Handle(
         GetTenantByIdQuery request,
         CancellationToken cancellationToken)
     {
         var tenant = await tenantRepository.GetByIdAsync(request.Id, cancellationToken);
         if (tenant is null)
         {
-            return Result.Failure<GetTenantByIdQueryResponse>(TenantErrors.TenantNotFound);
+            return Result.Failure<TenantQueryResponse>(TenantErrors.TenantNotFound);
         }
 
         logger.LogInformation($"Retrieving tenant {tenant.Id}");
 
-        return Result.Success(new GetTenantByIdQueryResponse(tenant.Id, tenant.Name));
+        return Result.Success(tenant.ToQueryResponse());
     }
 }
-
-public record GetTenantByIdQueryResponse(
-    int Id,
-    string Name);

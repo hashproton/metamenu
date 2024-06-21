@@ -1,4 +1,4 @@
-import TenantsApi from "../helpers/tenants_api";
+import TenantsApi, { isApiError } from "../helpers/tenants_api";
 import type { Actions } from "./$types";
 import { fail } from "@sveltejs/kit";
 
@@ -9,22 +9,21 @@ export const actions: Actions  = {
         const formData = await event.request.formData()
         const tenantName = formData.get('name') as string;
             
-        try {
-            const response = await api.createTenant(tenantName);
+        const response = await api.createTenant(tenantName);
 
-            if (response.errors) {
-                return fail(422, {
-                    errors: response.errors
-                });
-            }
-
-            return {
-                id: response
-            }
-        } catch (error: any) {
+        if (isApiError(response)) {
             return fail(422, {
-                errors: error.errors
+                ...response
             });
+        }
+
+        return {
+            success: {
+                message: 'Tenant created successfully',
+                data: {
+                    id: response
+                }
+            }
         }
     }
 }
