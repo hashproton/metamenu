@@ -11,7 +11,7 @@
 	import * as AlertDialog from '$lib/components/ui/alert-dialog';
 	import * as Select from '$lib/components/ui/select/index.js';
 	import type { Selected } from 'bits-ui';
-	import { mapTenantStatus } from '../helpers/tenants_api.js';
+	import { mapTenantStatus } from '../../../lib/clients/tenants_client.js';
 
 	let { data, form } = $props();
 

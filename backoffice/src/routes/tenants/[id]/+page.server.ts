@@ -1,11 +1,11 @@
 import { fail } from "@sveltejs/kit";
-import TenantsApi, { isApiError, tenantApi } from "../helpers/tenants_api";
+import { isApiError, tenantsClient } from '$lib/clients';
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({
     params: { id }
 }) => {
-    const response = await tenantApi.getTenantById(id)
+    const response = await tenantsClient.getTenantById(id)
 
     return {
         ...response
@@ -20,7 +20,7 @@ export const actions = {
 
         const test = parseInt(status as string)
 
-        const response = await tenantApi.updateTenant(e.params.id, {
+        const response = await tenantsClient.updateTenant(e.params.id, {
             name: name as string,
             status: test
         })
@@ -36,7 +36,7 @@ export const actions = {
         }
     },
     delete: async (e) => {
-        const response = await tenantApi.deleteTenant(e.params.id)
+        const response = await tenantsClient.deleteTenant(e.params.id)
 
         console.log(response);
 

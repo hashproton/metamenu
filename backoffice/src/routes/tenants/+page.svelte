@@ -11,7 +11,8 @@
 
 	import * as Pagination from '$lib/components/ui/pagination/index.js';
 	import { goto } from '$app/navigation';
-	import { TenantStatus, isApiError } from './helpers/tenants_api.js';
+	import { isApiError } from '$lib/clients';
+	import { TenantStatus } from '$lib/clients/tenants_client.js';
 
 	function mapTenantStatusColor(status: TenantStatus) {
 		switch (status) {
@@ -25,7 +26,6 @@
 	}
 
 	let { data } = $props();
-	console.log('data', data.info);
 </script>
 
 <main

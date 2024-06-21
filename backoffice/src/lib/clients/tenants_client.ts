@@ -1,14 +1,7 @@
 import axios, { type AxiosInstance } from 'axios';
+import { isApiError, type ApiError, type ApiResponse, type PaginatedResponse, type VoidApiResponse } from '.';
 
-interface PaginatedResponse<T> {
-    items: T[];
-    totalItems: number;
-    totalPages: number;
-    pageNumber: number;
-    pageSize: number;
-    hasPreviousPage: boolean;
-    hasNextPage: boolean;
-}
+
 
 export enum TenantStatus {
     Active = 0,
@@ -50,22 +43,7 @@ interface TenantInfo {
     total: number;
 }
 
-interface ApiError {
-    errors: {
-        code: string;
-        message: string;
-        type: number;
-    }[];
-}
-
-export function isApiError(response: any): response is ApiError {
-    return response && typeof response === 'object' && 'errors' in response;
-}
-
-type ApiResponse<T> = T | ApiError;
-type VoidApiResponse = ApiError | void;
-
-class TenantsApi {
+class TenantsClient {
     private http: AxiosInstance;
 
     constructor() {
@@ -101,13 +79,13 @@ class TenantsApi {
     async getTenantById(id: string) {
         const { data } = await this.http.get<ApiResponse<Tenant>>(`/tenants/${id}`);
 
-        return handleApiResponse(data);
+        return data;
     }
 
     async getTenantsInfo() {
         const { data } = await this.http.get<ApiResponse<TenantInfo>>(`/tenants/info`);
 
-        return handleApiResponse(data);
+        return data
     }
 
     async deleteTenant(id: string) {
@@ -117,6 +95,4 @@ class TenantsApi {
     }
 }
 
-export const tenantApi = new TenantsApi();
-
-export default tenantApi;
+export default TenantsClient;
