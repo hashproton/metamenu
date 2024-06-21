@@ -6,7 +6,7 @@ public class Error
     public string Message { get; }
     public ErrorType Type { get; }
 
-    private Error(string code, string message, ErrorType type)
+    public Error(string code, string message, ErrorType type)
     {
         Code = code;
         Message = message;

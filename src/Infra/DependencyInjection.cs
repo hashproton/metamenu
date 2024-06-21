@@ -1,5 +1,6 @@
 using Application.Models;
 using Application.Repositories.Common;
+using Application.Services;
 using Infra.Configuration;
 using Infra.Repositories;
 using Infra.Repositories.Common;
@@ -26,6 +27,7 @@ public static class DependencyInjection
             .CreateLogger();
 
         services.AddSingleton<ILogger, Logger>();
+        services.AddSingleton<IAuthService, AuthService>();
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
         services.AddDatabase(configuration);
@@ -36,6 +38,12 @@ public static class DependencyInjection
 
             context.Database.Migrate();
         }
+        
+        services.AddHttpClient("identipass", client =>
+        {
+            client.BaseAddress = new Uri("http://localhost:5124");
+            client.DefaultRequestHeaders.Add("Accept", "application/json");
+        });
 
         return services;
     }

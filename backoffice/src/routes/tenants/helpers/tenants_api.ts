@@ -117,4 +117,6 @@ class TenantsApi {
     }
 }
 
-export default TenantsApi;
+export const tenantApi = new TenantsApi();
+
+export default tenantApi;
