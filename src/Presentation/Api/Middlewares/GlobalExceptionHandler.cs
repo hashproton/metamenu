@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Api.Extensions;
 using Application.Exceptions;
+using Application.Models;
 using Application.Services.AuthService;
 using Application.UseCases.Tenants.Commands;
 using Microsoft.AspNetCore.Diagnostics;
@@ -76,15 +77,23 @@ internal sealed class SetAuthContextMiddleware(
         var authorization = context.Request.Headers["Authorization"];
         var refreshToken = context.Request.Headers["RefreshToken"];
 
-        if (string.IsNullOrWhiteSpace(authorization) || string.IsNullOrWhiteSpace(refreshToken))
+        if (string.IsNullOrWhiteSpace(authorization))
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
             await context.Response.WriteAsJsonAsync("Authorization header is missing", context.RequestAborted);
 
             return;
         }
+        
+        if (string.IsNullOrWhiteSpace(refreshToken))
+        {
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            await context.Response.WriteAsJsonAsync("RefreshToken header is missing", context.RequestAborted);
 
-        var user = await authService.GetMeAsync(authorization, refreshToken, context.RequestAborted);
+            return;
+        }
+
+        var user = await authService.GetMeAsync(authorization!, refreshToken!, context.RequestAborted);
         if (!user.IsSuccess)
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;

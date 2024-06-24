@@ -2,24 +2,6 @@ using Application.Services;
 
 namespace Application.UseCases.Tenants.Commands;
 
-public enum Role
-{
-    SuperAdmin,
-    Admin,
-    User
-}
-
-public class AuthContext
-{
-    public Guid UserId { get; set; }
-
-    public List<int> TenantIds { get; set; } = [];
-
-    public List<Role> Roles { get; set; } = [];
-    
-    public bool IsSuperAdmin => Roles.Contains(Role.SuperAdmin);
-}
-
 public class CreateTenantCommand(
     string name) : IRequest<Result<int>>
 {

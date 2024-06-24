@@ -21,7 +21,7 @@ public class UpdateTenantCommandTests
     {
         var nonExistingTenantId = 1;
 
-        _tenantRepository.GetByIdAsync(nonExistingTenantId, default).Returns((Tenant)null);
+        _tenantRepository.GetByIdAsync(nonExistingTenantId, default).Returns((Tenant)null!);
 
         var command = new UpdateTenantCommand(nonExistingTenantId)
         {

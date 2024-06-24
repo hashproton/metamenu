@@ -1,3 +1,4 @@
+using Application.Models.Auth;
 using Application.UseCases.Tenants.Commands;
 
 namespace Application.Services.AuthService.Responses;

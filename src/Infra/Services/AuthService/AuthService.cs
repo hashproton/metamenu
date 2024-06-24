@@ -4,6 +4,7 @@ using System.Text.Json;
 using Application.Errors;
 using Application.Errors.Common;
 using Application.Extensions.Utils;
+using Application.Models.Auth;
 using Application.Services.AuthService;
 using Application.Services.AuthService.Requests;
 using Application.Services.AuthService.Responses;
