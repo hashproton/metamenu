@@ -1,15 +1,33 @@
-import type { Handle } from "@sveltejs/kit";
+import { tenantsClient } from "$lib/clients";
+import { redirect, type Handle } from "@sveltejs/kit";
 
 export const handle: Handle = async ({ event, resolve }) => {
     const { get } = event.cookies;
 
     const token = get("token");
+    const refreshToken = get("refreshToken");
 
-    if (token && !isJwtExpired(token)) {
-        console.log("Token expired");
+    if (token && refreshToken && !isJwtExpired(token)) {
+        event.locals.auth = {
+            token,
+            refreshToken
+        }
+
+        if (event.route.id?.includes("/auth")) {
+            redirect(302, "/");
+        }
+    } else {
+        event.locals.auth = {
+            token: "",
+            refreshToken: ""
+        }
+
+        if (event.route.id !== "/auth/login") {
+            redirect(302, "/auth/login");
+        }
     }
 
-    console.log("Token", token);
+    tenantsClient.setAuth(event.locals.auth.token, event.locals.auth.refreshToken);
 
     return await resolve(event);
 };

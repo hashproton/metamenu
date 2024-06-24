@@ -1,5 +1,4 @@
 import { authClient, isApiError } from "$lib/clients";
-import type { PageServerData, PageServerLoad } from "./$types";
 import type { Actions } from './$types'
 
 export const actions: Actions = {
@@ -15,6 +14,11 @@ export const actions: Actions = {
 
         if (!isApiError(data)) {
             cookies.set('token', data.token, {
+                httpOnly: true,
+                path: '/',
+            });
+
+            cookies.set('refreshToken', data.refreshToken, {
                 httpOnly: true,
                 path: '/',
             });

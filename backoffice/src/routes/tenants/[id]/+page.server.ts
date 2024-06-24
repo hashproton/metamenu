@@ -3,9 +3,16 @@ import { isApiError, tenantsClient } from '$lib/clients';
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({
-    params: { id }
+    params: { id },
+    locals: { auth }
 }) => {
+    tenantsClient.auth = {
+        ...auth
+    }
+
     const response = await tenantsClient.getTenantById(id)
+
+    console.log(response);
 
     return {
         ...response

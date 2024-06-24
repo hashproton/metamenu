@@ -20,7 +20,8 @@ interface ApiError {
 }
 
 function isApiError(response: any): response is ApiError {
-    return response && typeof response === 'object' && 'errors' in response;
+    // 
+    return response && typeof response === 'object' && ('errors' in response) && 'status' in response;
 }
 
 type ApiResponse<T> = T | ApiError;

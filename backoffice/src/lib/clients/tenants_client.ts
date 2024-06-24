@@ -46,11 +46,26 @@ interface TenantInfo {
 class TenantsClient {
     private http: AxiosInstance;
 
+    public auth?: {
+        token: string;
+        refreshToken: string;
+    }
+
     constructor() {
         this.http = axios.create({
             baseURL: 'http://localhost:5105/api',
-            validateStatus: () => true
+            validateStatus: () => true,
         });
+    }
+
+    async setAuth(token: string, refreshToken: string) {
+        this.auth = {
+            token,
+            refreshToken
+        }
+
+        this.http.defaults.headers.Authorization = `Bearer ${token}`;
+        this.http.defaults.headers.RefreshToken = refreshToken;
     }
 
     async createTenant(name: string): Promise<ApiResponse<number>> {

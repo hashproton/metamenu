@@ -13,6 +13,7 @@
 	import { goto } from '$app/navigation';
 	import { isApiError } from '$lib/clients';
 	import { TenantStatus } from '$lib/clients/tenants_client.js';
+	import { toast } from 'svelte-sonner';
 
 	function mapTenantStatusColor(status: TenantStatus) {
 		switch (status) {
@@ -26,8 +27,19 @@
 	}
 
 	let { data } = $props();
+
+	$effect(() => {
+		if (isApiError(data)) {
+			setTimeout(() => {
+				toast.error(data.errors[0].message, { duration: 2000 });
+			}, 0);
+		}
+	});
+
+	console.log(data);
 </script>
 
+{#if !isApiError(data)}
 <main
 	class="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3"
 >
@@ -190,3 +202,4 @@
 		</Card.Root>
 	</div>
 </main>
+{/if}
