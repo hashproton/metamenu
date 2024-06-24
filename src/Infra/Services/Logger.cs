@@ -14,4 +14,9 @@ public class Logger : ILogger
     {
         Log.Error(message);
     }
+
+    public void LogWarning(string message)
+    {
+        Log.Warning(message);
+    }
 }

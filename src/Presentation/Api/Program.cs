@@ -10,6 +10,8 @@ builder
     .AddInfra(builder.Environment.EnvironmentName.ParseEnvironment(), builder.Configuration)
     .AddApplication();
 
+builder.Services.AddScoped<SetAuthContextMiddleware>();
+
 builder.Services
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
@@ -18,7 +20,7 @@ builder.Services
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 var app = builder.Build();
-
+app.UseExceptionHandler(opt => { });
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -26,6 +28,7 @@ if (app.Environment.IsDevelopment())
     app.UseCors(pb => pb.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 }
 
+app.UseMiddleware<SetAuthContextMiddleware>();
 app.MapControllers();
 app.UseHttpsRedirection();
 

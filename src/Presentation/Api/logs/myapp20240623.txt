@@ -1,0 +1,113 @@
+2024-06-23 21:30:21.652 +01:00 [INF] Retrieving all tenants
+2024-06-23 21:30:21.743 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:30:32.024 +01:00 [INF] Retrieving all tenants
+2024-06-23 21:30:32.044 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:30:32.552 +01:00 [INF] Retrieving all tenants
+2024-06-23 21:30:32.570 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:31:32.133 +01:00 [INF] Retrieving all tenants
+2024-06-23 21:31:32.219 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:32:09.836 +01:00 [INF] AUTH CONTEXT: 00000000-0000-0000-0000-000000000000
+2024-06-23 21:32:13.384 +01:00 [INF] Retrieving all tenants
+2024-06-23 21:32:13.460 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:32:58.830 +01:00 [INF] AUTH CONTEXT: 00000000-0000-0000-0000-000000000000
+2024-06-23 21:33:01.584 +01:00 [INF] Retrieving all tenants
+2024-06-23 21:33:01.651 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:33:35.604 +01:00 [INF] AUTH CONTEXT: 00000000-0000-0000-0000-000000000000
+2024-06-23 21:33:38.623 +01:00 [INF] Retrieving all tenants
+2024-06-23 21:33:41.683 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:36:29.363 +01:00 [INF] AUTH CONTEXT: f7f6bb6b-d477-4d98-b92f-4b2b59bb8249
+2024-06-23 21:36:33.378 +01:00 [INF] Retrieving all tenants
+2024-06-23 21:36:35.443 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:36:42.044 +01:00 [INF] AUTH CONTEXT: f7f6bb6b-d477-4d98-b92f-4b2b59bb8249
+2024-06-23 21:36:42.954 +01:00 [INF] Retrieving all tenants
+2024-06-23 21:36:43.646 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:37:37.270 +01:00 [INF] AUTH CONTEXT: 00000000-0000-0000-0000-000000000000
+2024-06-23 21:37:40.849 +01:00 [INF] Retrieving all tenants
+2024-06-23 21:37:42.045 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:38:09.378 +01:00 [INF] AUTH CONTEXT: f7f6bb6b-d477-4d98-b92f-4b2b59bb8249
+2024-06-23 21:38:10.332 +01:00 [INF] Retrieving all tenants
+2024-06-23 21:38:11.274 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:40:03.769 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:40:15.163 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:40:15.496 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:40:30.599 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:41:16.565 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:42:32.790 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:42:53.479 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:43:57.719 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:44:00.798 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:44:39.145 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:44:51.875 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:45:14.593 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:45:33.141 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:45:34.540 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:46:00.154 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:46:01.470 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:46:04.870 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:46:13.069 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:46:16.184 +01:00 [INF] Retrieving tenants info
+2024-06-23 21:47:56.015 +01:00 [INF] Retrieving tenants info
+2024-06-23 22:59:43.513 +01:00 [INF] Retrieving tenants info
+2024-06-23 23:00:03.659 +01:00 [INF] Retrieving tenants info
+2024-06-23 23:02:11.750 +01:00 [INF] AUTH CONTEXT: f7f6bb6b-d477-4d98-b92f-4b2b59bb8249
+2024-06-23 23:02:12.533 +01:00 [INF] Retrieving all tenants
+2024-06-23 23:02:12.602 +01:00 [INF] Retrieving tenants info
+2024-06-23 23:02:15.530 +01:00 [INF] AUTH CONTEXT: f7f6bb6b-d477-4d98-b92f-4b2b59bb8249
+2024-06-23 23:02:16.011 +01:00 [INF] Retrieving all tenants
+2024-06-23 23:02:16.032 +01:00 [INF] Retrieving tenants info
+2024-06-23 23:02:19.993 +01:00 [INF] AUTH CONTEXT: f7f6bb6b-d477-4d98-b92f-4b2b59bb8249
+2024-06-23 23:02:20.000 +01:00 [INF] Retrieving all tenants
+2024-06-23 23:02:20.020 +01:00 [INF] Retrieving tenants info
+2024-06-23 23:02:20.411 +01:00 [INF] AUTH CONTEXT: f7f6bb6b-d477-4d98-b92f-4b2b59bb8249
+2024-06-23 23:02:20.418 +01:00 [INF] Retrieving all tenants
+2024-06-23 23:02:20.439 +01:00 [INF] Retrieving tenants info
+2024-06-23 23:02:21.085 +01:00 [INF] AUTH CONTEXT: f7f6bb6b-d477-4d98-b92f-4b2b59bb8249
+2024-06-23 23:02:21.091 +01:00 [INF] Retrieving all tenants
+2024-06-23 23:02:21.112 +01:00 [INF] Retrieving tenants info
+2024-06-23 23:02:21.280 +01:00 [INF] AUTH CONTEXT: f7f6bb6b-d477-4d98-b92f-4b2b59bb8249
+2024-06-23 23:02:21.288 +01:00 [INF] Retrieving all tenants
+2024-06-23 23:02:21.309 +01:00 [INF] Retrieving tenants info
+2024-06-23 23:02:22.504 +01:00 [INF] AUTH CONTEXT: f7f6bb6b-d477-4d98-b92f-4b2b59bb8249
+2024-06-23 23:02:22.510 +01:00 [INF] Retrieving all tenants
+2024-06-23 23:02:22.529 +01:00 [INF] Retrieving tenants info
+2024-06-23 23:02:22.801 +01:00 [INF] AUTH CONTEXT: f7f6bb6b-d477-4d98-b92f-4b2b59bb8249
+2024-06-23 23:02:22.808 +01:00 [INF] Retrieving all tenants
+2024-06-23 23:02:22.826 +01:00 [INF] Retrieving tenants info
+2024-06-23 23:13:11.990 +01:00 [INF] Retrieving all tenants
+2024-06-23 23:13:21.520 +01:00 [INF] Retrieving all tenants
+2024-06-23 23:15:45.286 +01:00 [INF] Retrieving all tenants
+2024-06-23 23:15:45.382 +01:00 [INF] Retrieving tenants info
+2024-06-23 23:15:52.017 +01:00 [INF] Retrieving all tenants
+2024-06-23 23:15:52.039 +01:00 [INF] Retrieving tenants info
+2024-06-23 23:16:23.978 +01:00 [INF] Retrieving all tenants
+2024-06-23 23:16:24.071 +01:00 [INF] Retrieving tenants info
+2024-06-23 23:16:27.995 +01:00 [INF] Retrieving all tenants
+2024-06-23 23:16:28.015 +01:00 [INF] Retrieving tenants info
+2024-06-23 23:16:32.830 +01:00 [INF] Retrieving all tenants
+2024-06-23 23:16:32.849 +01:00 [INF] Retrieving tenants info
+2024-06-23 23:16:53.194 +01:00 [INF] Retrieving all tenants
+2024-06-23 23:16:53.214 +01:00 [INF] Retrieving tenants info
+2024-06-23 23:29:05.684 +01:00 [ERR] Exception of type 'Application.UseCases.Tenants.Queries.ResultErrorException' was thrown.
+2024-06-23 23:38:13.192 +01:00 [ERR] Exception of type 'Application.UseCases.Tenants.Queries.ResultErrorException' was thrown.
+2024-06-23 23:38:32.771 +01:00 [ERR] Exception of type 'Application.UseCases.Tenants.Queries.ResultErrorException' was thrown.
+2024-06-23 23:40:08.531 +01:00 [ERR] Exception of type 'Application.UseCases.Tenants.Queries.ResultErrorException' was thrown.
+2024-06-23 23:41:46.091 +01:00 [ERR] Exception of type 'Application.UseCases.Tenants.Queries.ResultErrorException' was thrown.
+2024-06-23 23:47:28.138 +01:00 [ERR] Exception of type 'Application.UseCases.Tenants.Queries.ResultErrorException' was thrown.
+2024-06-23 23:48:28.240 +01:00 [ERR] 'M' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+2024-06-23 23:48:49.038 +01:00 [ERR] 'M' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+2024-06-23 23:48:59.994 +01:00 [ERR] 'M' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+2024-06-23 23:49:13.010 +01:00 [ERR] 'M' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+2024-06-23 23:51:07.708 +01:00 [ERR] 'M' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+2024-06-23 23:51:41.540 +01:00 [ERR] 'M' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+2024-06-23 23:52:07.384 +01:00 [ERR] 'M' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+2024-06-23 23:52:52.433 +01:00 [ERR] 'M' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+2024-06-23 23:53:09.467 +01:00 [ERR] Exception of type 'Application.UseCases.Tenants.Queries.ResultErrorException' was thrown.
+2024-06-23 23:53:16.070 +01:00 [ERR] 'M' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+2024-06-23 23:53:31.081 +01:00 [ERR] 'M' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+2024-06-23 23:54:14.619 +01:00 [ERR] 'M' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0.
+2024-06-23 23:55:27.752 +01:00 [ERR] Exception of type 'Application.UseCases.Tenants.Queries.ResultErrorException' was thrown.
+2024-06-23 23:55:29.356 +01:00 [INF] Retrieving tenants info
+2024-06-23 23:55:40.051 +01:00 [ERR] Exception of type 'Application.UseCases.Tenants.Queries.ResultErrorException' was thrown.
+2024-06-23 23:55:41.935 +01:00 [INF] Retrieving tenants info
+2024-06-23 23:57:36.129 +01:00 [ERR] Exception of type 'Application.UseCases.Tenants.Queries.ResultErrorException' was thrown.
+2024-06-23 23:57:36.150 +01:00 [INF] Retrieving tenants info

@@ -21,4 +21,12 @@ public class AuthController(
 
         return result.IsSuccess ? NoContent() : result.ToActionResult();
     }
+    
+    [HttpGet("me")]
+    public async Task<ActionResult<GetMeResponse>> Me([FromHeader] string authorization, [FromHeader] string refreshToken)
+    {
+        var result = await authService.GetMeAsync(authorization, refreshToken, CancellationToken.None);
+
+        return result.IsSuccess ? Ok(result.Value) : result.ToActionResult();
+    }
 }
