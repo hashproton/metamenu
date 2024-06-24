@@ -2,7 +2,6 @@ using Application.Attributes.Authorize;
 using Application.Models.Auth;
 using Application.Repositories.Common;
 using Application.Services;
-using Application.UseCases.Tenants.Commands;
 using Application.UseCases.Tenants.Queries.Common;
 
 namespace Application.UseCases.Tenants.Queries;

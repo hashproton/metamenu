@@ -1,5 +1,4 @@
 using Application.Models.Auth;
-using Application.UseCases.Tenants.Commands;
 
 namespace Application.Attributes.Authorize;
 

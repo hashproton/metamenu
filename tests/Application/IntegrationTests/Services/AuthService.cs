@@ -1,4 +1,3 @@
-using Application.Models.Auth;
 using Application.Services.AuthService;
 using Application.Services.AuthService.Requests;
 using Infra.Services.AuthService;
@@ -6,8 +5,6 @@ using NSubstitute;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
 using WireMock.Server;
-using WireMock.Settings;
-using WireMock.Types;
 
 namespace Application.IntegrationTests.Services;
 

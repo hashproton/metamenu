@@ -1,7 +1,6 @@
 using Application.IntegrationTests.Common;
 using Application.Models.Auth;
 using Application.Repositories.Common;
-using Application.UseCases.Tenants.Commands;
 using Application.UseCases.Tenants.Queries;
 
 namespace Application.IntegrationTests.UseCases.Tenants.Queries;

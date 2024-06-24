@@ -22,10 +22,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <InternalsVisibleTo Include="..\..\..\src\Infra" />
-    </ItemGroup>
-
-    <ItemGroup>
         <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting"/>
     </ItemGroup>
 

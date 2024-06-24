@@ -1,7 +1,6 @@
 using Application.Attributes.Common;
 using Application.Models;
 using Application.Services;
-using Application.UseCases.Tenants.Commands;
 
 namespace Application.Attributes.Authorize;
 

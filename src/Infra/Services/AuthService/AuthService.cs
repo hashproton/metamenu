@@ -8,7 +8,6 @@ using Application.Models.Auth;
 using Application.Services.AuthService;
 using Application.Services.AuthService.Requests;
 using Application.Services.AuthService.Responses;
-using Application.UseCases.Tenants.Commands;
 using Infra.Services.AuthService.Responses;
 
 namespace Infra.Services.AuthService;

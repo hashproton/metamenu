@@ -2,7 +2,6 @@ using Application.Attributes.Authorize;
 using Application.Errors;
 using Application.Models;
 using Application.Models.Auth;
-using Application.UseCases.Tenants.Commands;
 using MediatR;
 
 namespace Application.UnitTests.Attributes;

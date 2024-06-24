@@ -1,7 +1,6 @@
 using Application.Attributes.TenantClaim;
 using Application.Errors;
 using Application.Models;
-using Application.UseCases.Tenants.Commands;
 using MediatR;
 
 namespace Application.UnitTests.Attributes;

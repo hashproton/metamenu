@@ -1,6 +1,5 @@
 using Application.Models;
 using Application.Repositories;
-using Application.UseCases.Tenants.Commands;
 using Infra;
 using Infra.Repositories;
 using MediatR;

@@ -3,7 +3,6 @@ using Api.Extensions;
 using Application.Exceptions;
 using Application.Models;
 using Application.Services.AuthService;
-using Application.UseCases.Tenants.Commands;
 using Microsoft.AspNetCore.Diagnostics;
 using ILogger = Application.Services.ILogger;
 
