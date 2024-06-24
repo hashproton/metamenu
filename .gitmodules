@@ -1,0 +1,3 @@
+[submodule "backoffice"]
+	path = backoffice
+	url = https://github.com/hashproton/backoffice.git
