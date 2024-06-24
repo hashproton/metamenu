@@ -40,10 +40,10 @@ public class AttributeHandlerPreProcessor<TRequest>(
                         [request, attribute, cancellationToken])!;
                     await handleTask.ConfigureAwait(false);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     logger.LogError($"Error handling attribute {attribute.GetType().Name}");
-                    throw; // Rethrow the exception to propagate it correctly
+                    throw;
                 }
             }
         }

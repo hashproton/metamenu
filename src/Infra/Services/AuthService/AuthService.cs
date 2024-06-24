@@ -4,28 +4,13 @@ using System.Text.Json;
 using Application.Errors;
 using Application.Errors.Common;
 using Application.Extensions.Utils;
-using Application.Services;
+using Application.Services.AuthService;
+using Application.Services.AuthService.Requests;
+using Application.Services.AuthService.Responses;
 using Application.UseCases.Tenants.Commands;
+using Infra.Services.AuthService.Responses;
 
-namespace Infra.Services;
-
-internal sealed class RawGetMeResponseClaim
-{
-    public string Type { get; set; }
-
-    public string Value { get; set; }
-}
-
-internal sealed class RawGetMeResponse
-{
-    public Guid UserId { get; set; }
-
-    public string Email { get; set; }
-
-    public List<string> Roles { get; set; }
-
-    public List<RawGetMeResponseClaim> Claims { get; set; }
-}
+namespace Infra.Services.AuthService;
 
 internal sealed class AuthService(IHttpClientFactory httpClientFactory) : IAuthService
 {
@@ -133,7 +118,7 @@ internal sealed class AuthService(IHttpClientFactory httpClientFactory) : IAuthS
 
         var errorResponse = JsonSerializer.Deserialize<ErrorsResponse>(responseContent, _jsonSerializerOptions);
 
-        var firstError = errorResponse.Errors.First();
+        var firstError = errorResponse!.Errors.First();
         var error = new Error(firstError.Code, firstError.Message, firstError.Type);
 
         return Result.Failure<GetMeResponse>(error);

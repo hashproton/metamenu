@@ -8,12 +8,14 @@ namespace Infra.Repositories;
 internal sealed class TagGroupRepository(AppDbContext context)
     : GenericRepository<TagGroup>(context), ITagGroupRepository
 {
+    private readonly AppDbContext _context = context;
+
     public Task<TagGroup?> GetTagGroupByNameAsync(
         int tenantId,
         string tagGroupName,
         CancellationToken cancellationToken)
     {
-        return context.TagGroups
+        return _context.TagGroups
             .Include(tg => tg.Tenant)
             .FirstOrDefaultAsync(tg => tg.Tenant.Id == tenantId && tg.Name == tagGroupName, cancellationToken);
     }

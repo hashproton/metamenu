@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Api.Extensions;
 using Application.Exceptions;
-using Application.Services;
+using Application.Services.AuthService;
 using Application.UseCases.Tenants.Commands;
 using Microsoft.AspNetCore.Diagnostics;
 using ILogger = Application.Services.ILogger;

@@ -1,10 +1,11 @@
 using Application.Models;
 using Application.Repositories.Common;
-using Application.Services;
+using Application.Services.AuthService;
 using Infra.Configuration;
 using Infra.Repositories;
 using Infra.Repositories.Common;
 using Infra.Services;
+using Infra.Services.AuthService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

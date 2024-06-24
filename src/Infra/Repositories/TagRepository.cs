@@ -8,12 +8,14 @@ namespace Infra.Repositories;
 
 internal sealed class TagRepository(AppDbContext context) : GenericRepository<Tag>(context), ITagRepository
 {
+    private readonly AppDbContext _context = context;
+
     public Task<Tag?> GetTagByNameAsync(
         int tenantId,
         string tagName,
         CancellationToken cancellationToken)
     {
-        return context.Tags
+        return _context.Tags
             .Include(t => t.TagGroup)
             .ThenInclude(tg => tg.Tenant)
             .FirstOrDefaultAsync(t => t.TagGroup.Tenant.Id == tenantId && t.Name == tagName, cancellationToken);
@@ -24,7 +26,7 @@ internal sealed class TagRepository(AppDbContext context) : GenericRepository<Ta
         PaginatedQuery paginatedQuery,
         CancellationToken cancellationToken)
     {
-        return context.Tags
+        return _context.Tags
             .Include(t => t.TagGroup)
             .ThenInclude(tg => tg.Tenant)
             .Where(t => t.TagGroup.Tenant.Id == tenantId)

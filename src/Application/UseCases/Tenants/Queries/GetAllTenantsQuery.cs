@@ -11,7 +11,6 @@ public record GetAllTenantsQuery(
     PaginatedQuery PaginatedQuery) : IRequest<Result<PaginatedResult<TenantQueryResponse>>>;
 
 public class GetAllTenantsQueryHandler(
-    AuthContext authContext,
     ILogger logger,
     ITenantRepository tenantRepository)
     : IRequestHandler<GetAllTenantsQuery, Result<PaginatedResult<TenantQueryResponse>>>

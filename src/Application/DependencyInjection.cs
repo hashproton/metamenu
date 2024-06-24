@@ -1,5 +1,4 @@
 using Application.Attributes.Common;
-using Application.Extensions;
 using Application.Extensions.DependencyInjection;
 using Application.UseCases.Tenants.Commands;
 using Microsoft.Extensions.DependencyInjection;

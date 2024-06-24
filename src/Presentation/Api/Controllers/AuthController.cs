@@ -1,5 +1,7 @@
 using Api.Extensions;
-using Application.Services;
+using Application.Services.AuthService;
+using Application.Services.AuthService.Requests;
+using Application.Services.AuthService.Responses;
 
 namespace Api.Controllers;
 

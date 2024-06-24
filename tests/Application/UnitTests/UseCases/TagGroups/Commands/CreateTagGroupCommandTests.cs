@@ -23,7 +23,7 @@ public class CreateTagGroupCommandTests
     {
         var command = new CreateTagGroupCommand("New TagGroup", 999); // 999 is a non-existent TenantId
 
-        _tenantRepository.GetByIdAsync(command.TenantId, default).Returns((Tenant)null);
+        _tenantRepository.GetByIdAsync(command.TenantId, default).Returns((Tenant)null!);
 
         var exception = await Assert.ThrowsExceptionAsync<NotFoundException>(() => _handler.Handle(command, default));
 

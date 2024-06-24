@@ -17,6 +17,8 @@ public class DeleteTagCommandHandler(
         }
 
         await tagRepository.DeleteAsync(tag, cancellationToken);
+        
+        logger.LogInformation($"Tag {request.TagId} deleted");
     }
 }
 
