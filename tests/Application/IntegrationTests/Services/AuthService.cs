@@ -1,3 +1,4 @@
+using Application.Errors.Common;
 using Application.Services.AuthService;
 using Application.Services.AuthService.Requests;
 using Infra.Services.AuthService;
@@ -47,10 +48,44 @@ public class AuthServiceTests
                 }));
 
         // Act
-        var result = await _authService.LoginAsync(request, CancellationToken.None);
+        var result = await _authService.LoginAsync(request, default);
 
         // Assert
         Assert.IsTrue(result.IsSuccess);
         Assert.AreEqual("mockToken", result.Value.Token);
+    }
+
+    [TestMethod]
+    public async Task LoginAsync_ShouldReturnFailure_WhenCredentialsAreInvalid()
+    {
+        // Arrange
+        var request = new LoginRequest("test", "email@test.com", "password");
+
+        _server.Given(Request.Create().WithPath("/api/auth/login").UsingPost())
+            .RespondWith(Response.Create()
+                .WithStatusCode(400)
+                .WithHeader("Content-Type", "application/json")
+                .WithBodyAsJson(new
+                {
+                    errors = new[]
+                    {
+                        new
+                        {
+                            code = "invalid_credentials",
+                            message = "Invalid credentials",
+                            type = ErrorType.Conflict
+                        }
+                    }
+                }));
+
+        // Act
+        var result = await _authService.LoginAsync(request, default);
+
+        // Assert
+        Assert.IsFalse(result.IsSuccess);
+
+        Assert.IsNotNull(result.Error);
+        Assert.AreEqual("Invalid credentials", result.Error.Message);
+        Assert.AreEqual("invalid_credentials", result.Error.Code);
     }
 }
