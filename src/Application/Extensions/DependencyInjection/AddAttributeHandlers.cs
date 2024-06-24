@@ -1,12 +1,11 @@
 using System.Reflection;
-using Application.Attributes;
-using Application.Mediator.PreProcessors;
+using Application.Attributes.Common;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.Extensions;
+namespace Application.Extensions.DependencyInjection;
 
 
-public static class ServiceCollectionExtensions
+public static partial class ServiceCollectionExtensions
 {
     private static readonly ServiceLifetime DefaultLifetime = ServiceLifetime.Scoped;
 
@@ -14,7 +13,7 @@ public static class ServiceCollectionExtensions
     {
         var handlerInterfaceType = typeof(IAttributeHandler<>);
 
-        var handlerTypes = typeof(DependencyInjection).Assembly.GetTypes()
+        var handlerTypes = typeof(Application.DependencyInjection).Assembly.GetTypes()
             .Where(type => type.GetInterfaces()
                 .Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == handlerInterfaceType))
             .ToList();

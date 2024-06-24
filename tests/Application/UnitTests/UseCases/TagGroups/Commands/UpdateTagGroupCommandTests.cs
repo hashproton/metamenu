@@ -1,6 +1,6 @@
 using Application.UseCases.TagGroups.Commands;
 
-namespace UnitTests.UseCases.TagGroups.Commands;
+namespace Application.UnitTests.UseCases.TagGroups.Commands;
 
 [TestClass]
 public class UpdateTagGroupCommandTests

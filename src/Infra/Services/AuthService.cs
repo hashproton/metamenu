@@ -1,15 +1,15 @@
 using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using Application.Errors;
 using Application.Errors.Common;
+using Application.Extensions.Utils;
 using Application.Services;
 using Application.UseCases.Tenants.Commands;
 
 namespace Infra.Services;
 
-public class Claim
+internal sealed class RawGetMeResponseClaim
 {
     public string Type { get; set; }
 
@@ -24,10 +24,10 @@ internal sealed class RawGetMeResponse
 
     public List<string> Roles { get; set; }
 
-    public List<Claim> Claims { get; set; }
+    public List<RawGetMeResponseClaim> Claims { get; set; }
 }
 
-public class AuthService(IHttpClientFactory httpClientFactory) : IAuthService
+internal sealed class AuthService(IHttpClientFactory httpClientFactory) : IAuthService
 {
     private readonly JsonSerializerOptions _jsonSerializerOptions = new()
     {
@@ -140,12 +140,3 @@ public class AuthService(IHttpClientFactory httpClientFactory) : IAuthService
     }
 }
 
-public static class StringExtensions
-{
-    public static string RemoveWhitespace(this string input)
-    {
-        return new string(input.ToCharArray()
-            .Where(c => !char.IsWhiteSpace(c))
-            .ToArray());
-    }
-}

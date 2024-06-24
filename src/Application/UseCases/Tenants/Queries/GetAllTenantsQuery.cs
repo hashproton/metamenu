@@ -1,4 +1,4 @@
-using Application.Attributes;
+using Application.Attributes.Authorize;
 using Application.Repositories.Common;
 using Application.Services;
 using Application.UseCases.Tenants.Commands;

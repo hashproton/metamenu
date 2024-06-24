@@ -1,6 +1,6 @@
-using Application.Attributes;
+using Application.Attributes.Common;
 using Application.Extensions;
-using Application.Mediator.PreProcessors;
+using Application.Extensions.DependencyInjection;
 using Application.UseCases.Tenants.Commands;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,7 +13,6 @@ public static class DependencyInjection
         services.AddMediatR(cfg =>
         {
             cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
-            cfg.AddOpenRequestPreProcessor(typeof(RolesPreProcessor<>));
             cfg.AddOpenRequestPreProcessor(typeof(AttributeHandlerPreProcessor<>));
         });
 

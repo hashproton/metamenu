@@ -1,6 +1,7 @@
+using Application.IntegrationTests.Common;
 using Application.UseCases.Tenants.Commands;
 
-namespace IntegrationTests.UseCases.Tenants.Commands;
+namespace Application.IntegrationTests.UseCases.Tenants.Commands;
 
 [TestClass]
 public class UpdateTenantCommandTests : BaseIntegrationTest

@@ -1,6 +1,6 @@
 using Application.UseCases.Tags.Queries;
 
-namespace UnitTests.UseCases.Tags.Queries;
+namespace Application.UnitTests.UseCases.Tags.Queries;
 
 [TestClass]
 public class GetAllTagsQueryHandlerTests

@@ -1,6 +1,6 @@
-using Application;
 using Application.Models;
 using Application.Repositories;
+using Application.UseCases.Tenants.Commands;
 using Infra;
 using Infra.Repositories;
 using MediatR;
@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace IntegrationTests.Common;
+namespace Application.IntegrationTests.Common;
 
 [TestClass]
 public class BaseIntegrationTest
@@ -22,6 +22,8 @@ public class BaseIntegrationTest
     protected ITagRepository TagRepository => _provider.GetRequiredService<ITagRepository>();
 
     protected ISender Mediator => _provider.GetRequiredService<ISender>();
+    
+    protected AuthContext AuthContext => _provider.GetRequiredService<AuthContext>();
 
     private static AppDbContext DbContext => _provider.GetRequiredService<AppDbContext>();
 
@@ -51,5 +53,18 @@ public class BaseIntegrationTest
     public async Task TestCleanup()
     {
         await DbContext.Tenants.ExecuteDeleteAsync();
+    }
+    
+    protected async Task<int> CreateAuthedTenantAsync(string name)
+    {
+        var tenantId = await TenantRepository.AddAsync(new Tenant
+            {
+                Name = name
+            },
+            default);
+
+        AuthContext.TenantIds = [..AuthContext.TenantIds, tenantId];
+
+        return tenantId;
     }
 }

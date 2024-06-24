@@ -1,7 +1,7 @@
 using Application.Errors;
 using Application.UseCases.Tenants.Commands;
 
-namespace UnitTests.UseCases.Tenants.Commands;
+namespace Application.UnitTests.UseCases.Tenants.Commands;
 
 [TestClass]
 public class CreateTenantCommandTests

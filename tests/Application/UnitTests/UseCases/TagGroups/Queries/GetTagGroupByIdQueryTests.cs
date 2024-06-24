@@ -1,6 +1,6 @@
 using Application.UseCases.TagGroups.Queries;
 
-namespace UnitTests.UseCases.TagGroups.Queries;
+namespace Application.UnitTests.UseCases.TagGroups.Queries;
 
 [TestClass]
 public class GetTagGroupByIdQueryTests

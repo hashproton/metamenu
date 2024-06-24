@@ -1,6 +1,7 @@
+using Application.IntegrationTests.Common;
 using Application.UseCases.Tenants.Queries;
 
-namespace IntegrationTests.UseCases.Tenants.Queries;
+namespace Application.IntegrationTests.UseCases.Tenants.Queries;
 
 [TestClass]
 public class GetTenantByIdQueryTests : BaseIntegrationTest
@@ -9,11 +10,7 @@ public class GetTenantByIdQueryTests : BaseIntegrationTest
     public async Task GetTenantById_Success()
     {
         // Arrange: Create a tenant to retrieve
-        var tenantId = await TenantRepository.AddAsync(new Tenant
-            {
-                Name = "Tenant to retrieve"
-            },
-            default);
+        var tenantId = await CreateAuthedTenantAsync("Tenant to retrieve");
 
         // Act: Retrieve the tenant
         var getTenantByIdQuery = new GetTenantByIdQuery(tenantId);

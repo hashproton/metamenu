@@ -1,6 +1,7 @@
+using Application.IntegrationTests.Common;
 using Application.UseCases.TagGroups.Commands;
 
-namespace IntegrationTests.UseCases.TagGroups.Commands;
+namespace Application.IntegrationTests.UseCases.TagGroups.Commands;
 
 [TestClass]
 public class UpdateTagGroupCommandTests : BaseIntegrationTest

@@ -1,7 +1,8 @@
+using Application.IntegrationTests.Common;
 using Application.Repositories.Common;
 using Application.UseCases.TagGroups.Queries;
 
-namespace IntegrationTests.UseCases.TagGroups.Queries;
+namespace Application.IntegrationTests.UseCases.TagGroups.Queries;
 
 [TestClass]
 public class GetAllTagGroupsQueryTests : BaseIntegrationTest

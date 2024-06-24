@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Repositories;
 
-public class TagRepository(AppDbContext context) : GenericRepository<Tag>(context), ITagRepository
+internal sealed class TagRepository(AppDbContext context) : GenericRepository<Tag>(context), ITagRepository
 {
     public Task<Tag?> GetTagByNameAsync(
         int tenantId,

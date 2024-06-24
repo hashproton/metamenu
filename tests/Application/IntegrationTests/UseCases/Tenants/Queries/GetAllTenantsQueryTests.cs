@@ -1,7 +1,9 @@
+using Application.IntegrationTests.Common;
 using Application.Repositories.Common;
+using Application.UseCases.Tenants.Commands;
 using Application.UseCases.Tenants.Queries;
 
-namespace IntegrationTests.UseCases.Tenants.Queries;
+namespace Application.IntegrationTests.UseCases.Tenants.Queries;
 
 [TestClass]
 public class GetAllTenantsQueryTests : BaseIntegrationTest
@@ -9,14 +11,11 @@ public class GetAllTenantsQueryTests : BaseIntegrationTest
     [TestMethod]
     public async Task GetAllTenants_PaginationPropertiesVerified_Success()
     {
+        AuthContext.Roles.Add(Role.SuperAdmin);
         // Arrange: Create tenants to retrieve
         for (var i = 0; i < 15; i++)
         {
-            await TenantRepository.AddAsync(new Tenant
-                {
-                    Name = $"Tenant {i + 1}"
-                },
-                default);
+            await CreateAuthedTenantAsync($"Tenant {i}");
         }
 
         // Act: Retrieve all tenants with pagination

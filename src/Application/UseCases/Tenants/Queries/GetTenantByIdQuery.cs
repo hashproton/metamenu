@@ -1,4 +1,4 @@
-using Application.Attributes;
+using Application.Attributes.TenantClaim;
 using Application.Services;
 using Application.UseCases.Tenants.Queries.Common;
 

@@ -1,6 +1,6 @@
 using Application.UseCases.Tenants.Commands;
 
-namespace Application.Attributes;
+namespace Application.Attributes.Authorize;
 
 [AttributeUsage(AttributeTargets.Class)]
 public class AuthorizeAttribute(

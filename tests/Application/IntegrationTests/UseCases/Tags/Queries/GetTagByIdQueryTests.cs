@@ -1,6 +1,7 @@
+using Application.IntegrationTests.Common;
 using Application.UseCases.Tags.Queries;
 
-namespace IntegrationTests.UseCases.Tags.Queries;
+namespace Application.IntegrationTests.UseCases.Tags.Queries;
 
 [TestClass]
 public class GetTagByIdQueryTests : BaseIntegrationTest

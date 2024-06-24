@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Repositories;
 
-public class TenantRepository(AppDbContext context) : GenericRepository<Tenant>(context), ITenantRepository
+internal sealed class TenantRepository(AppDbContext context) : GenericRepository<Tenant>(context), ITenantRepository
 {
     public Task<Tenant?> GetTenantByNameAsync(string name, CancellationToken cancellationToken)
     {

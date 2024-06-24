@@ -1,7 +1,7 @@
 using Application.Errors;
 using Application.UseCases.Tenants.Queries;
 
-namespace UnitTests.UseCases.Tenants.Queries;
+namespace Application.UnitTests.UseCases.Tenants.Queries;
 
 [TestClass]
 public class GetTenantByIdQueryTests

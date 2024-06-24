@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Repositories.Common;
 
-public class GenericRepository<T>(
+internal class GenericRepository<T>(
     AppDbContext context) : IGenericRepository<T> where T : BaseEntity
 {
     public async Task<T?> GetByIdAsync(int id, CancellationToken cancellationToken)

@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Api.Extensions;
 using Application.Exceptions;
-using Application.Models;
 using Application.Services;
 using Application.UseCases.Tenants.Commands;
 using Microsoft.AspNetCore.Diagnostics;
