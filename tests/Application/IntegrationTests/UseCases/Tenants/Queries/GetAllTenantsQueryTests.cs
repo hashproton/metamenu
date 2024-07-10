@@ -1,5 +1,6 @@
 using Application.IntegrationTests.Common;
 using Application.Models.Auth;
+using Application.Repositories;
 using Application.Repositories.Common;
 using Application.UseCases.Tenants.Queries;
 
@@ -19,7 +20,7 @@ public class GetAllTenantsQueryTests : BaseIntegrationTest
         }
 
         // Act: Retrieve all tenants with pagination
-        var getAllTenantsQuery = new GetAllTenantsQuery(new PaginatedQuery
+        var getAllTenantsQuery = new GetAllTenantsQuery(new TenantFilter
         {
             PageNumber = 2,
             PageSize = 5

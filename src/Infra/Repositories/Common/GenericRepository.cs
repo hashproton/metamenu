@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using Application.Repositories;
 using Application.Repositories.Common;
 using Domain.Common;
 using Microsoft.EntityFrameworkCore;
@@ -29,30 +30,33 @@ internal class GenericRepository<T>(
     }
 
     public async Task<PaginatedResult<T>> GetAllAsync(
-        PaginatedQuery paginatedQuery,
+        BaseFilter filter,
         CancellationToken cancellationToken)
     {
-        return await context.Set<T>().ToPaginatedResultAsync(paginatedQuery, cancellationToken);
+        return await context.Set<T>()
+            .ApplyFilter(filter)
+            .ToSort(filter)
+            .ToPaginatedResultAsync(filter, cancellationToken);
     }
 
     public async Task<PaginatedResult<T>> GetAllSortedByQueryAsync(
-        PaginatedQuery paginatedQuery,
+        BaseFilter filter,
         Expression<Func<T, object>> query,
         CancellationToken cancellationToken)
     {
         return await context.Set<T>()
             .OrderBy(query)
-            .ToPaginatedResultAsync(paginatedQuery, cancellationToken);
+            .ToPaginatedResultAsync(filter, cancellationToken);
     }
 
     public async Task<PaginatedResult<T>> GetAllAsync(
         Expression<Func<T, bool>> query,
-        PaginatedQuery paginatedQuery,
+        BaseFilter filter,
         CancellationToken cancellationToken)
     {
         return await context.Set<T>()
             .Where(query)
-            .ToPaginatedResultAsync(paginatedQuery, cancellationToken);
+            .ToPaginatedResultAsync(filter, cancellationToken);
     }
 
     public async Task<int> AddAsync(T entity, CancellationToken cancellationToken)

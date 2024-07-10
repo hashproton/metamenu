@@ -19,7 +19,7 @@ public class GetAllTagsQueryHandlerTests
     public async Task Handle_WithNonExistingTenantId_ThrowsNotFoundException()
     {
         var nonExistingTenantId = 999;
-        var query = new GetAllTagsQuery(nonExistingTenantId, new PaginatedQuery(1, 10));
+        var query = new GetAllTagsQuery(nonExistingTenantId, new BaseFilter());
 
         _tenantRepository.GetByIdAsync(nonExistingTenantId, default).Returns((Tenant)null!);
 

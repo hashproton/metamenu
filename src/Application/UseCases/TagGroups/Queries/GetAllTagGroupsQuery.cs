@@ -5,7 +5,7 @@ namespace Application.UseCases.TagGroups.Queries;
 
 public record GetAllTagGroupsQuery(
     int TenantId,
-    PaginatedQuery PaginatedQuery) : IRequest<PaginatedResult<GetAllTagGroupsQueryResponse>>;
+    BaseFilter Filter) : IRequest<PaginatedResult<GetAllTagGroupsQueryResponse>>;
 
 public class GetAllTagGroupsQueryHandler(
     ILogger logger,
@@ -23,7 +23,7 @@ public class GetAllTagGroupsQueryHandler(
             throw new NotFoundException(nameof(Tenant), request.TenantId);
         }
 
-        var result = await tagGroupRepository.GetAllAsync(request.PaginatedQuery, cancellationToken);
+        var result = await tagGroupRepository.GetAllAsync(request.Filter, cancellationToken);
 
         logger.LogInformation($"Retrieving all tag groups for tenant {tenant.Name}.");
 

@@ -11,6 +11,6 @@ public interface ITagRepository : IGenericRepository<Tag>
     
     Task<PaginatedResult<Tag>> GetAllAsync(
         int tenantId,
-        PaginatedQuery paginatedQuery,
+        BaseFilter baseFilter,
         CancellationToken cancellationToken);
 }

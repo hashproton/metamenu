@@ -1,4 +1,5 @@
 using Application.IntegrationTests.Common;
+using Application.Repositories;
 using Application.Repositories.Common;
 using Application.UseCases.Tags.Queries;
 
@@ -36,7 +37,11 @@ public class GetAllTagsQueryTests : BaseIntegrationTest
             await TagRepository.AddAsync(tag, default);
         }
 
-        var query = new GetAllTagsQuery(tenantId, new PaginatedQuery(1, 10));
+        var query = new GetAllTagsQuery(tenantId, new BaseFilter
+        {
+            PageNumber = 1,
+            PageSize = 10
+        });
 
         // Act: Retrieve the tags
         var result = await Mediator.Send(query);

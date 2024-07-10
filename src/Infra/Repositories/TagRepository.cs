@@ -23,13 +23,13 @@ internal sealed class TagRepository(AppDbContext context) : GenericRepository<Ta
 
     public Task<PaginatedResult<Tag>> GetAllAsync(
         int tenantId,
-        PaginatedQuery paginatedQuery,
+        BaseFilter filter,
         CancellationToken cancellationToken)
     {
         return _context.Tags
             .Include(t => t.TagGroup)
             .ThenInclude(tg => tg.Tenant)
             .Where(t => t.TagGroup.Tenant.Id == tenantId)
-            .ToPaginatedResultAsync(paginatedQuery, cancellationToken);
+            .ToPaginatedResultAsync(filter, cancellationToken);
     }
 }

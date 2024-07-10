@@ -1,4 +1,5 @@
 using Application.Models;
+using Application.Repositories;
 using Application.Repositories.Common;
 using Application.Services.AuthService;
 using Infra.Configuration;
@@ -31,25 +32,22 @@ public static class DependencyInjection
         services.AddSingleton<IAuthService, AuthService>();
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
-        services.AddDatabase(configuration);
+        services.AddDatabase(configuration, environment);
 
-        if (environment.IsDevelopment())
-        {
-            using var context = services.BuildServiceProvider().GetService<AppDbContext>()!;
-
-            context.Database.Migrate();
-        }
-        
-        services.AddHttpClient("identipass", client =>
-        {
-            client.BaseAddress = new Uri("http://localhost:5124");
-            client.DefaultRequestHeaders.Add("Accept", "application/json");
-        });
+        services.AddHttpClient("identipass",
+            client =>
+            {
+                client.BaseAddress = new Uri("http://localhost:5124");
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+            });
 
         return services;
     }
 
-    private static void AddDatabase(this IServiceCollection services, IConfiguration configuration)
+    private static void AddDatabase(
+        this IServiceCollection services,
+        IConfiguration configuration,
+        EnvironmentKind environment)
     {
         var databaseConfiguration = configuration
             .GetRequiredSection("Database")
@@ -57,6 +55,33 @@ public static class DependencyInjection
             ?.Validate();
 
         services.AddDbContext<AppDbContext>(op => op.UseNpgsql(databaseConfiguration!.ConnectionString));
+
+        var sp = services.BuildServiceProvider();
+        var logger = sp.GetRequiredService<ILogger>();
+        using var context = sp.GetRequiredService<AppDbContext>();
+
+        if (context.Database.CanConnect())
+        {
+            try
+            {
+                if (environment.IsDevelopment())
+                {
+                    context.Database.Migrate();
+                }
+            }
+            catch (Exception e)
+            {
+                logger.LogError($"An error occurred while migrating the database ${e.Message}");
+                throw;
+            }
+        }
+        else
+        {
+            logger.LogError("Could not connect to the database");
+            throw new InvalidOperationException("Could not connect to the database");
+        }
+
+        services.AddScoped<ITenantRepository, TenantRepository>();
 
         var repositoriesInterfaces = typeof(IGenericRepository<>).Assembly.GetTypes()
             .Where(t => t.IsInterface && t.Name.EndsWith("Repository"))

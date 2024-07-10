@@ -21,11 +21,9 @@ public class TenantsController(
 
     [HttpGet]
     public async Task<ActionResult<PaginatedResult<TenantQueryResponse>>> GetAllTenants(
-        [FromQuery] TenantFilter filter,
-        [FromQuery] PaginatedQuery paginatedQuery,
-        [FromQuery] SortableFilter sortableFilter)
+        [FromQuery] TenantFilter filter)
     {
-        var result = await mediator.Send(new GetAllTenantsQuery(filter, paginatedQuery, sortableFilter));
+        var result = await mediator.Send(new GetAllTenantsQuery(filter));
 
         return result.IsSuccess ? Ok(result.Value) : result.ToActionResult();
     }

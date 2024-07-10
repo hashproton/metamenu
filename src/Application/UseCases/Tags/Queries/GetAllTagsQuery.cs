@@ -5,7 +5,7 @@ namespace Application.UseCases.Tags.Queries;
 
 public record GetAllTagsQuery(
     int TenantId,
-    PaginatedQuery PaginatedQuery) : IRequest<PaginatedResult<GetAllTagsQueryResponse>>;
+    BaseFilter Filter) : IRequest<PaginatedResult<GetAllTagsQueryResponse>>;
 
 public class GetAllTagsQueryHandler(
     ILogger logger,
@@ -22,7 +22,7 @@ public class GetAllTagsQueryHandler(
             throw new NotFoundException(nameof(Tenant), request.TenantId);
         }
 
-        var tags = await tagRepository.GetAllAsync(request.TenantId, request.PaginatedQuery, cancellationToken);
+        var tags = await tagRepository.GetAllAsync(request.TenantId, request.Filter, cancellationToken);
 
         logger.LogInformation($"Retrieved {tags.Items.Count()} Tags.");
 

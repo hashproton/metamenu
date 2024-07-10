@@ -2,11 +2,6 @@ namespace Application.Repositories.Common;
 
 public class PaginatedQuery
 {
-    public PaginatedQuery()
-    {
-        
-    }
-
     public PaginatedQuery(
         int pageNumber,
         int pageSize)
