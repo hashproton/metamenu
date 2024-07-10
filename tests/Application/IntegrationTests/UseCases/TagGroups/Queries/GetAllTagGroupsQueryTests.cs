@@ -31,9 +31,11 @@ public class GetAllTagGroupsQueryTests : BaseIntegrationTest
             PageNumber = 2,
             PageSize = 5
         });
-        var paginatedTagGroups = await Mediator.Send(getAllTagGroupsQuery);
+        var result = await Mediator.Send(getAllTagGroupsQuery);
 
         // Assert: Verify all tag groups were retrieved and pagination properties
+        var paginatedTagGroups = result.Value;
+
         Assert.IsNotNull(paginatedTagGroups);
         Assert.AreEqual(5, paginatedTagGroups.Items.Count());
         Assert.AreEqual(2, paginatedTagGroups.PageNumber);

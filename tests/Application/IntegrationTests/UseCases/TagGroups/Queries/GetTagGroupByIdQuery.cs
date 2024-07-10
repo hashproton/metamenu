@@ -24,9 +24,11 @@ public class GetTagGroupByIdQueryTests : BaseIntegrationTest
 
         // Act: Retrieve the tag group
         var getTagGroupByIdQuery = new GetTagGroupByIdQuery(tagGroupId);
-        var tagGroup = await Mediator.Send(getTagGroupByIdQuery);
+        var result = await Mediator.Send(getTagGroupByIdQuery);
 
         // Assert: Verify the tag group was retrieved
+        var tagGroup = result.Value;
+
         Assert.IsNotNull(tagGroup);
         Assert.AreEqual("TagGroup to retrieve", tagGroup.Name);
         Assert.AreEqual(tagGroupId, tagGroup.Id);

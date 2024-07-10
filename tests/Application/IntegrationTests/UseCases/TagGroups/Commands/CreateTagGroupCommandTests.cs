@@ -22,10 +22,10 @@ public class CreateTagGroupCommandTests : BaseIntegrationTest
 
         // Assert: Verify the tag group was created
         Assert.IsNotNull(result);
-        var tagGroup = await TagGroupRepository.GetByIdAsync(result, default);
+        var tagGroup = await TagGroupRepository.GetByIdAsync(result.Value, default);
         Assert.IsNotNull(tagGroup);
         Assert.AreEqual("New TagGroup", tagGroup.Name);
         Assert.AreEqual(tenantId, tagGroup.TenantId);
-        Assert.AreEqual(result, tagGroup.Id);
+        Assert.AreEqual(result.Value, tagGroup.Id);
     }
 }

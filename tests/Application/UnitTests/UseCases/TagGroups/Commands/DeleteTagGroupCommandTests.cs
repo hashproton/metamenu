@@ -1,3 +1,4 @@
+using Application.Errors;
 using Application.UseCases.TagGroups.Commands;
 
 namespace Application.UnitTests.UseCases.TagGroups.Commands;
@@ -16,13 +17,18 @@ public class DeleteTagGroupCommandHandlerTests
     }
 
     [TestMethod]
-    public async Task Handle_InvalidTagGroup_ThrowsNotFoundException()
+    public async Task DeleteTagGroup_WithNonExistingId_ReturnsResult_NotFound()
     {
-        var command = new DeleteTagGroupCommand(1);
-        _tagGroupRepository.GetByIdAsync(command.Id, default).Returns((TagGroup)null!);
+        var nonExistingTagGroupId = 1;
 
-        var exception = await Assert.ThrowsExceptionAsync<NotFoundException>(() => _handler.Handle(command, default));
-        Assert.AreEqual($"TagGroup with ID {command.Id} was not found.", exception.Message);
+        _tagGroupRepository.GetByIdAsync(nonExistingTagGroupId, default).Returns((TagGroup)null!);
+
+        var command = new DeleteTagGroupCommand(nonExistingTagGroupId);
+
+        var result = await _handler.Handle(command, default);
+        Assert.IsFalse(result.IsSuccess);
+        Assert.AreEqual(TagGroupErrors.TagGroupNotFound, result.Error);
+
         await _tagGroupRepository.DidNotReceiveWithAnyArgs().DeleteAsync(default!, default);
     }
 }

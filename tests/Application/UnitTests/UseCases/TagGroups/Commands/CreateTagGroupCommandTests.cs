@@ -1,3 +1,4 @@
+using Application.Errors;
 using Application.UseCases.TagGroups.Commands;
 
 namespace Application.UnitTests.UseCases.TagGroups.Commands;
@@ -19,15 +20,15 @@ public class CreateTagGroupCommandTests
     }
 
     [TestMethod]
-    public async Task CreateTagGroup_WithNonExistentTenant_ThrowsNotFoundException()
+    public async Task CreateTagGroup_WithNonExistentTenant_ReturnsResult_NotFound()
     {
         var command = new CreateTagGroupCommand("New TagGroup", 999); // 999 is a non-existent TenantId
 
         _tenantRepository.GetByIdAsync(command.TenantId, default).Returns((Tenant)null!);
 
-        var exception = await Assert.ThrowsExceptionAsync<NotFoundException>(() => _handler.Handle(command, default));
-
-        Assert.AreEqual($"Tenant with ID {command.TenantId} was not found.", exception.Message);
+        var result = await _handler.Handle(command, default);
+        Assert.IsFalse(result.IsSuccess);
+        Assert.AreEqual(TenantErrors.TenantNotFound, result.Error);
 
         await _tagGroupRepository.DidNotReceiveWithAnyArgs().AddAsync(default!, default);
     }
@@ -46,9 +47,9 @@ public class CreateTagGroupCommandTests
 
         var command = new CreateTagGroupCommand(existingTagGroup.Name, existingTagGroup.TenantId);
 
-        var exception = await Assert.ThrowsExceptionAsync<ConflictException>(() => _handler.Handle(command, default));
-
-        Assert.AreEqual("Tag group with the same name for the tenant already exists", exception.Message);
+        var result = await _handler.Handle(command, default);
+        Assert.IsFalse(result.IsSuccess);
+        Assert.AreEqual(TagGroupErrors.TagGroupAlreadyExists, result.Error);
 
         await _tagGroupRepository.DidNotReceiveWithAnyArgs().AddAsync(default!, default);
     }

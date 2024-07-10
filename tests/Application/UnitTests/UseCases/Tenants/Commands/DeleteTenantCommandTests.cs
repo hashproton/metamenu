@@ -17,7 +17,7 @@ public class DeleteTenantCommandTests
     }
 
     [TestMethod]
-    public async Task DeleteTenant_WithNonExistingId_ThrowsNotFoundException()
+    public async Task DeleteTenant_WithNonExistingId_ReturnsResult_NotFound()
     {
         var nonExistingTenantId = 1;
 
@@ -28,7 +28,7 @@ public class DeleteTenantCommandTests
         var result = await _handler.Handle(command, default);
 
         Assert.IsFalse(result.IsSuccess);
-        Assert.AreEqual(TenantErrors.TenantNotFound.Message, result.Error!.Message);
+        Assert.AreEqual(TenantErrors.TenantNotFound, result.Error);
 
         await _tenantRepository.DidNotReceiveWithAnyArgs().DeleteAsync(default!, default);
     }

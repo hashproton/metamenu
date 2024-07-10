@@ -1,5 +1,6 @@
 using Application.UseCases.TagGroups.Commands;
 using Application.UseCases.TagGroups.Queries;
+using Application.UseCases.TagGroups.Queries.Common;
 
 namespace Api.Controllers;
 
@@ -14,7 +15,7 @@ public class TagGroupsController(ISender mediator) : BaseController
     }
 
     [HttpGet]
-    public async Task<ActionResult<PaginatedResult<GetAllTagGroupsQueryResponse>>> GetAllTagGroups(
+    public async Task<ActionResult<PaginatedResult<TagGroupQueryResponse>>> GetAllTagGroups(
         [FromQuery] int tenantId,
         [FromQuery] BaseFilter filter)
     {
@@ -24,7 +25,7 @@ public class TagGroupsController(ISender mediator) : BaseController
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<GetTagGroupByIdQueryResponse>> GetTagGroupById([FromRoute] int id)
+    public async Task<ActionResult<TagGroupQueryResponse>> GetTagGroupById([FromRoute] int id)
     {
         var result = await mediator.Send(new GetTagGroupByIdQuery(id));
 
