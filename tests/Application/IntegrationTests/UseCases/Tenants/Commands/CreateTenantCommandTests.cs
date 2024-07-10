@@ -1,3 +1,4 @@
+using Application.Models.Auth;
 using Application.UseCases.Tenants.Commands;
 
 namespace Application.IntegrationTests.UseCases.Tenants.Commands;
@@ -8,7 +9,10 @@ public class CreateTenantCommandTests : BaseIntegrationTest
     [TestMethod]
     public async Task CreateTenant_Success()
     {
-        // Arrange: Create a new tenant
+        // Arrange:
+        // * Create a new tenant
+        // * Set the current user as SuperAdmin
+        AuthContext.Roles = [Role.SuperAdmin];
         var command = new CreateTenantCommand("New Tenant");
 
         // Act: Create the tenant
