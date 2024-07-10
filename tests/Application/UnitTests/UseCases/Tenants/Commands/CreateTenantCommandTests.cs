@@ -17,7 +17,7 @@ public class CreateTenantCommandTests
     }
 
     [TestMethod]
-    public async Task CreateTenant_WithExistingName_ThrowsConflictException()
+    public async Task CreateTenant_WithExistingName_ReturnsResult_Conflict()
     {
         var existingTenant = new Tenant
         {
@@ -31,7 +31,7 @@ public class CreateTenantCommandTests
         var result = await _handler.Handle(command, default);
 
         Assert.IsFalse(result.IsSuccess);
-        Assert.AreEqual(TenantErrors.TenantAlreadyExists.Message, result.Error!.Message);
+        Assert.AreEqual(TenantErrors.TenantAlreadyExists, result.Error);
 
         await _tenantRepository.DidNotReceiveWithAnyArgs().AddAsync(default!, default);
     }

@@ -17,7 +17,7 @@ public class UpdateTenantCommandTests
     }
 
     [TestMethod]
-    public async Task UpdateTenant_WithNonExistingId_ThrowsNotFoundException()
+    public async Task UpdateTenant_WithNonExistingId_ReturnsResult_NotFound()
     {
         var nonExistingTenantId = 1;
 
@@ -29,16 +29,15 @@ public class UpdateTenantCommandTests
         };
 
         var result = await _handler.Handle(command, default);
-
         Assert.IsFalse(result.IsSuccess);
         Assert.IsNotNull(result.Error);
-        Assert.AreEqual(TenantErrors.TenantNotFound.Message, result.Error.Message);
+        Assert.AreEqual(TenantErrors.TenantNotFound, result.Error);
 
         await _tenantRepository.DidNotReceiveWithAnyArgs().UpdateAsync(default!, default);
     }
 
     [TestMethod]
-    public async Task UpdateTenant_WithExistingName_ThrowsConflictException()
+    public async Task UpdateTenant_WithExistingName_ReturnsResult_Conflict()
     {
         var existingTenant = new Tenant
         {
@@ -61,10 +60,9 @@ public class UpdateTenantCommandTests
         };
 
         var result = await _handler.Handle(command, default);
-
         Assert.IsFalse(result.IsSuccess);
         Assert.IsNotNull(result.Error);
-        Assert.AreEqual(TenantErrors.TenantAlreadyExists.Message, result.Error.Message);
+        Assert.AreEqual(TenantErrors.TenantAlreadyExists, result.Error);
 
         await _tenantRepository.DidNotReceiveWithAnyArgs().UpdateAsync(default!, default);
     }

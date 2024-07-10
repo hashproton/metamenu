@@ -1,3 +1,4 @@
+using Application.Errors;
 using Application.UseCases.TagGroups.Queries;
 
 namespace Application.UnitTests.UseCases.TagGroups.Queries;
@@ -17,7 +18,7 @@ public class GetAllTagGroupsQueryTests
     }
 
     [TestMethod]
-    public async Task GetAllTagGroups_WithNonExistingTenantId_ThrowsNotFoundException()
+    public async Task GetAllTagGroups_WithNonExistingTenantId_ReturnsResult_NotFound()
     {
         var nonExistingTenantId = 999;
         var filter = new BaseFilter();
@@ -26,9 +27,9 @@ public class GetAllTagGroupsQueryTests
 
         var query = new GetAllTagGroupsQuery(nonExistingTenantId, filter);
 
-        var exception = await Assert.ThrowsExceptionAsync<NotFoundException>(() => _handler.Handle(query, default));
-
-        Assert.AreEqual($"Tenant with ID {nonExistingTenantId} was not found.", exception.Message);
+        var result = await _handler.Handle(query, default);
+        Assert.IsFalse(result.IsSuccess);
+        Assert.AreEqual(TenantErrors.TenantNotFound, result.Error);
 
         await _tagGroupRepository.DidNotReceive().GetAllAsync(Arg.Any<BaseFilter>(), Arg.Any<CancellationToken>());
     }

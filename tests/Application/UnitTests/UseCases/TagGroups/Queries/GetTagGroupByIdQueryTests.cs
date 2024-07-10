@@ -16,7 +16,7 @@ public class GetTagGroupByIdQueryTests
     }
 
     [TestMethod]
-    public async Task GetTagGroupById_WithNonExistingId_ThrowsNotFoundException()
+    public async Task GetTagGroupById_WithNonExistingId_ReturnsResult_NotFound()
     {
         var nonExistingTagGroupId = 1;
 
@@ -24,8 +24,8 @@ public class GetTagGroupByIdQueryTests
 
         var query = new GetTagGroupByIdQuery(nonExistingTagGroupId);
 
-        var exception = await Assert.ThrowsExceptionAsync<NotFoundException>(() => _handler.Handle(query, default));
-
-        Assert.AreEqual($"TagGroup with ID {nonExistingTagGroupId} was not found.", exception.Message);
+        var result = await _handler.Handle(query, default);
+        Assert.IsFalse(result.IsSuccess);
+        Assert.IsNotNull(result.Error);
     }
 }

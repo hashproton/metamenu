@@ -17,7 +17,7 @@ public class GetTenantByIdQueryTests
     }
 
     [TestMethod]
-    public async Task GetTenantById_WithNonExistingId_ThrowsNotFoundException()
+    public async Task GetTenantById_WithNonExistingId_ReturnsResult_NotFound()
     {
         var nonExistingTenantId = 1;
 

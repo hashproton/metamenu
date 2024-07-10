@@ -4,7 +4,7 @@ namespace Application.UseCases.TagGroups.Commands;
 
 public class CreateTagGroupCommand(
     string name,
-    int tenantId) : IRequest<int>
+    int tenantId) : IRequest<Result<int>>
 {
     public string Name { get; set; } = name;
 
@@ -14,21 +14,21 @@ public class CreateTagGroupCommand(
 public class CreateTagGroupCommandHandler(
     ILogger logger,
     ITagGroupRepository tagGroupRepository,
-    ITenantRepository tenantRepository) : IRequestHandler<CreateTagGroupCommand, int>
+    ITenantRepository tenantRepository) : IRequestHandler<CreateTagGroupCommand, Result<int>>
 {
-    public async Task<int> Handle(CreateTagGroupCommand request, CancellationToken cancellationToken)
+    public async Task<Result<int>> Handle(CreateTagGroupCommand request, CancellationToken cancellationToken)
     {
         var tenant = await tenantRepository.GetByIdAsync(request.TenantId, cancellationToken);
         if (tenant is null)
         {
-            throw new NotFoundException(nameof(Tenant), request.TenantId);
+            return Result.Failure<int>(TenantErrors.TenantNotFound);
         }
 
         var existingTagGroup =
             await tagGroupRepository.GetTagGroupByNameAsync(request.TenantId, request.Name, cancellationToken);
         if (existingTagGroup is not null)
         {
-            throw new ConflictException("Tag group with the same name for the tenant already exists");
+            return Result.Failure<int>(TagGroupErrors.TagGroupAlreadyExists);
         }
 
         var tagGroup = new TagGroup
@@ -41,6 +41,6 @@ public class CreateTagGroupCommandHandler(
 
         logger.LogInformation($"Tag group {tagGroup.Id} created");
 
-        return tagGroup.Id;
+        return Result.Success(tagGroup.Id);
     }
 }

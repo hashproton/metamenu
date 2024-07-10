@@ -3,7 +3,7 @@ using Application.Services;
 namespace Application.UseCases.TagGroups.Commands;
 
 public class UpdateTagGroupCommand(
-    int id) : IRequest
+    int id) : IRequest<Result>
 {
     public int Id { get; set; } = id;
 
@@ -12,21 +12,20 @@ public class UpdateTagGroupCommand(
 
 public class UpdateTagGroupCommandHandler(
     ILogger logger,
-    ITagGroupRepository tagGroupRepository) : IRequestHandler<UpdateTagGroupCommand>
+    ITagGroupRepository tagGroupRepository) : IRequestHandler<UpdateTagGroupCommand, Result>
 {
-    public async Task Handle(UpdateTagGroupCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(UpdateTagGroupCommand request, CancellationToken cancellationToken)
     {
         var tagGroup = await tagGroupRepository.GetByIdAsync(request.Id, cancellationToken);
         if (tagGroup is null)
         {
-            throw new NotFoundException(nameof(TagGroup), request.Id);
+            return Result.Failure(TagGroupErrors.TagGroupNotFound);
         }
 
-        var existingTagGroup
-            = await tagGroupRepository.GetTagGroupByNameAsync(tagGroup.TenantId, request.Name!, cancellationToken);
+        var existingTagGroup = await tagGroupRepository.GetTagGroupByNameAsync(tagGroup.TenantId, request.Name!, cancellationToken);
         if (existingTagGroup is not null)
         {
-            throw new ConflictException("Tag Group with the same name for the tenant already exists");
+            return Result.Failure(TagGroupErrors.TagGroupAlreadyExists);
         }
 
         tagGroup.Name = request.Name;
@@ -34,5 +33,7 @@ public class UpdateTagGroupCommandHandler(
         await tagGroupRepository.UpdateAsync(tagGroup, cancellationToken);
 
         logger.LogInformation($"Tag group {tagGroup.Id} updated");
+        
+        return Result.Success();
     }
 }

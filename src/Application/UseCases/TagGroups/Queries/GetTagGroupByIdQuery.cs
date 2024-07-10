@@ -1,31 +1,27 @@
 using Application.Services;
+using Application.UseCases.TagGroups.Queries.Common;
 
 namespace Application.UseCases.TagGroups.Queries;
 
 public record GetTagGroupByIdQuery(
-    int Id) : IRequest<GetTagGroupByIdQueryResponse>;
+    int Id) : IRequest<Result<TagGroupQueryResponse>>;
 
 public class GetTagGroupByIdQueryHandler(
     ILogger logger,
-    ITagGroupRepository tagGroupRepository) : IRequestHandler<GetTagGroupByIdQuery, GetTagGroupByIdQueryResponse>
+    ITagGroupRepository tagGroupRepository) : IRequestHandler<GetTagGroupByIdQuery, Result<TagGroupQueryResponse>>
 {
-    public async Task<GetTagGroupByIdQueryResponse> Handle(
+    public async Task<Result<TagGroupQueryResponse>> Handle(
         GetTagGroupByIdQuery request,
         CancellationToken cancellationToken)
     {
         var tagGroup = await tagGroupRepository.GetByIdAsync(request.Id, cancellationToken);
         if (tagGroup is null)
         {
-            throw new NotFoundException(nameof(TagGroup), request.Id);
+            return Result.Failure<TagGroupQueryResponse>(TagGroupErrors.TagGroupNotFound);
         }
 
         logger.LogInformation($"Tag group {tagGroup.Id} retrieved");
 
-        return new GetTagGroupByIdQueryResponse(tagGroup.Id, tagGroup.Name, tagGroup.TenantId);
+        return Result.Success(tagGroup.ToQueryResponse());
     }
 }
-
-public record GetTagGroupByIdQueryResponse(
-    int Id,
-    string Name,
-    int TenantId);

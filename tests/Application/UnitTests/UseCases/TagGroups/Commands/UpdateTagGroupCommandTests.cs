@@ -1,3 +1,4 @@
+using Application.Errors;
 using Application.UseCases.TagGroups.Commands;
 
 namespace Application.UnitTests.UseCases.TagGroups.Commands;
@@ -16,7 +17,7 @@ public class UpdateTagGroupCommandTests
     }
 
     [TestMethod]
-    public async Task UpdateTagGroup_WithNonExistingId_ThrowsNotFoundException()
+    public async Task UpdateTagGroup_WithNonExistingId_ReturnsResult_NotFound()
     {
         var nonExistingTagGroupId = 1;
 
@@ -27,15 +28,16 @@ public class UpdateTagGroupCommandTests
             Name = "New TagGroup Name"
         };
 
-        var exception = await Assert.ThrowsExceptionAsync<NotFoundException>(() => _handler.Handle(command, default));
-
-        Assert.AreEqual($"TagGroup with ID {nonExistingTagGroupId} was not found.", exception.Message);
-
+        var result = await _handler.Handle(command, default);
+        Assert.IsFalse(result.IsSuccess);
+        Assert.IsNotNull(result.Error);
+        Assert.AreEqual(TagGroupErrors.TagGroupNotFound, result.Error);
+        
         await _tagGroupRepository.DidNotReceiveWithAnyArgs().UpdateAsync(default!, default);
     }
 
     [TestMethod]
-    public async Task UpdateTagGroup_WithExistingName_ThrowsConflictException()
+    public async Task UpdateTagGroup_WithExistingName_ReturnsResult_Conflict()
     {
         var existingTagGroup = new TagGroup
         {
@@ -58,10 +60,11 @@ public class UpdateTagGroupCommandTests
             Name = existingTagGroup.Name
         };
 
-        var exception = await Assert.ThrowsExceptionAsync<ConflictException>(() => _handler.Handle(command, default));
-
-        Assert.AreEqual("Tag Group with the same name for the tenant already exists", exception.Message);
-
+        var result = await _handler.Handle(command, default);
+        Assert.IsFalse(result.IsSuccess);
+        Assert.IsNotNull(result.Error);
+        Assert.AreEqual(TagGroupErrors.TagGroupAlreadyExists, result.Error);
+        
         await _tagGroupRepository.DidNotReceiveWithAnyArgs().UpdateAsync(default!, default);
     }
 }
