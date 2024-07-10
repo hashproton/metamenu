@@ -12,9 +12,8 @@ namespace Application.IntegrationTests.Services;
 [TestClass]
 public class AuthServiceTests
 {
-    private HttpClient _httpClient;
-    private IAuthService _authService;
-    private WireMockServer _server;
+    private IAuthService _authService = null!;
+    private WireMockServer _server = null!;
 
     [TestInitialize]
     public void SetUp()
@@ -22,11 +21,11 @@ public class AuthServiceTests
         _server = WireMockServer.Start();
 
         var httpClientFactory = Substitute.For<IHttpClientFactory>();
-        _httpClient = new HttpClient
+        var httpClient = new HttpClient
         {
             BaseAddress = new Uri($"{_server.Urls[0]}")
         };
-        httpClientFactory.CreateClient("identipass").Returns(_httpClient);
+        httpClientFactory.CreateClient("identipass").Returns(httpClient);
 
         _authService = new AuthService(httpClientFactory);
     }
