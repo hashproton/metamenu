@@ -1,4 +1,3 @@
-using Application.IntegrationTests.Common;
 using Application.UseCases.Tenants.Queries;
 
 namespace Application.IntegrationTests.UseCases.Tenants.Queries;

@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Api.Extensions;
 using Application.Exceptions;
-using Application.Models;
+using Application.Models.Auth;
 using Application.Services.AuthService;
 using Microsoft.AspNetCore.Diagnostics;
 using ILogger = Application.Services.ILogger;
@@ -32,12 +32,15 @@ internal sealed class GlobalExceptionHandler(
             };
         }
 
+        httpContext.Response.StatusCode = result.Status!.Value;
         await httpContext.Response.WriteAsJsonAsync(result, cancellationToken);
 
         return true;
     }
 
-    private static bool IsResultException(Exception exception, [NotNullWhen(true)] out ResultErrorException? resultException)
+    private static bool IsResultException(
+        Exception exception,
+        [NotNullWhen(true)] out ResultErrorException? resultException)
     {
         while (exception is not null)
         {
@@ -83,7 +86,7 @@ internal sealed class SetAuthContextMiddleware(
 
             return;
         }
-        
+
         if (string.IsNullOrWhiteSpace(refreshToken))
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;

@@ -1,0 +1,350 @@
+2024-07-10 00:40:19.778 +01:00 [WRN] User 00000000-0000-0000-0000-000000000000 tried to access GetAllTenantsQuery without required role SuperAdmin
+2024-07-10 00:40:19.907 +01:00 [ERR] Error handling attribute AuthorizeAttribute
+2024-07-10 00:40:19.995 +01:00 [ERR] Exception has been thrown by the target of an invocation.
+2024-07-10 00:40:51.748 +01:00 [WRN] User 00000000-0000-0000-0000-000000000000 tried to access GetAllTenantsQuery without required role SuperAdmin
+2024-07-10 00:41:21.444 +01:00 [ERR] Error handling attribute AuthorizeAttribute
+2024-07-10 00:41:28.291 +01:00 [ERR] Exception has been thrown by the target of an invocation.
+2024-07-10 00:41:40.008 +01:00 [WRN] User 00000000-0000-0000-0000-000000000000 tried to access GetAllTenantsQuery without required role SuperAdmin
+2024-07-10 00:41:41.425 +01:00 [ERR] Error handling attribute AuthorizeAttribute
+2024-07-10 00:41:43.228 +01:00 [ERR] Exception has been thrown by the target of an invocation.
+2024-07-10 00:42:17.299 +01:00 [WRN] User 00000000-0000-0000-0000-000000000000 tried to access GetAllTenantsQuery without required role SuperAdmin
+2024-07-10 00:42:28.360 +01:00 [ERR] Error handling attribute AuthorizeAttribute
+2024-07-10 00:42:29.805 +01:00 [ERR] Exception has been thrown by the target of an invocation.
+2024-07-10 00:42:53.282 +01:00 [INF] Retrieving all tenants
+2024-07-10 00:43:05.335 +01:00 [INF] Retrieving all tenants
+2024-07-10 00:43:11.898 +01:00 [INF] Retrieving all tenants
+2024-07-10 00:43:16.290 +01:00 [INF] Retrieving all tenants
+2024-07-10 00:43:37.963 +01:00 [INF] Retrieving all tenants
+2024-07-10 00:43:46.117 +01:00 [INF] Retrieving all tenants
+2024-07-10 00:44:50.577 +01:00 [INF] Retrieving all tenants
+2024-07-10 00:44:57.586 +01:00 [INF] Retrieving all tenants
+2024-07-10 00:45:05.418 +01:00 [INF] Retrieving all tenants
+2024-07-10 00:45:06.271 +01:00 [INF] Retrieving all tenants
+2024-07-10 00:45:07.152 +01:00 [INF] Retrieving all tenants
+2024-07-10 00:45:07.886 +01:00 [INF] Retrieving all tenants
+2024-07-10 00:45:08.566 +01:00 [INF] Retrieving all tenants
+2024-07-10 00:45:48.983 +01:00 [INF] Retrieving all tenants
+2024-07-10 00:46:00.862 +01:00 [ERR] The LINQ expression 'DbSet<Tenant>()
+    .OrderBy(t => __property_0.GetValue(t))' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+2024-07-10 01:07:39.667 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:07:43.007 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:09:28.295 +01:00 [ERR] The LINQ expression 'DbSet<Tenant>()
+    .OrderBy(t => __property_0.GetValue(t))' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+2024-07-10 01:17:12.798 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:17:37.352 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:17:45.274 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:18:00.976 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:18:57.702 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:20:15.600 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:21:14.753 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:21:25.371 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:21:46.140 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:21:54.531 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:21:58.942 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:23:14.219 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:23:24.643 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:23:32.676 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:23:38.485 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:23:43.258 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:23:46.233 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:27:51.976 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:27:57.938 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:28:13.961 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:28:38.260 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:34:19.712 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:35:40.549 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:35:49.805 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:35:58.037 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:36:08.093 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:36:12.810 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:36:15.815 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:36:17.716 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:36:20.776 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:36:29.712 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:36:37.255 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:36:43.234 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:36:49.728 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:36:54.694 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:36:58.355 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:37:03.464 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:37:13.838 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:38:18.747 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:38:22.580 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:38:38.482 +01:00 [ERR] Method 'Boolean Contains(System.String)' declared on type 'System.String' cannot be called with instance of type 'Domain.Entities.TenantStatus'
+2024-07-10 01:40:17.439 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:41:21.319 +01:00 [ERR] Contains operation can only be used on string properties
+2024-07-10 01:42:32.671 +01:00 [ERR] Contains operation can only be used on string properties
+2024-07-10 01:43:09.949 +01:00 [ERR] Contains operation can only be used on string properties
+2024-07-10 01:43:54.206 +01:00 [ERR] Contains operation can only be used on string properties
+2024-07-10 01:45:13.100 +01:00 [ERR] Contains operation can only be used on string properties
+2024-07-10 01:45:56.454 +01:00 [ERR] Contains operation can only be used on string properties
+2024-07-10 01:45:57.784 +01:00 [ERR] Contains operation can only be used on string properties
+2024-07-10 01:46:38.359 +01:00 [ERR] Contains operation can only be used on string properties, use Equals operation instead or change the filterValue
+2024-07-10 01:46:41.670 +01:00 [ERR] Contains operation can only be used on string properties, use Equals operation instead or change the filterValue
+2024-07-10 01:47:38.537 +01:00 [ERR] Contains operation can only be used on string properties, use Equals operation instead or change the filterValue
+2024-07-10 01:48:17.784 +01:00 [ERR] Contains operation can only be used on string properties, use Equals operation instead or change the filterValue
+2024-07-10 01:50:01.095 +01:00 [ERR] Contains operation can only be used on string properties, use Equals operation instead or change the filterValue
+2024-07-10 01:50:12.853 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:55:21.465 +01:00 [ERR] Property 'System.String Name' is not defined for type 'Domain.Entities.Tenant' (Parameter 'property')
+2024-07-10 01:55:22.696 +01:00 [ERR] Property 'System.String Name' is not defined for type 'Domain.Entities.Tenant' (Parameter 'property')
+2024-07-10 01:55:27.778 +01:00 [ERR] Property 'System.String Name' is not defined for type 'Domain.Entities.Tenant' (Parameter 'property')
+2024-07-10 01:55:28.740 +01:00 [ERR] Property 'System.String Name' is not defined for type 'Domain.Entities.Tenant' (Parameter 'property')
+2024-07-10 01:55:34.820 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:55:40.078 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:55:43.250 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:55:51.787 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:55:53.169 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:57:14.923 +01:00 [ERR] Property 'System.String Name' is not defined for type 'Domain.Entities.Tenant' (Parameter 'property')
+2024-07-10 01:57:16.122 +01:00 [ERR] Property 'System.String Name' is not defined for type 'Domain.Entities.Tenant' (Parameter 'property')
+2024-07-10 01:57:39.072 +01:00 [ERR] Property 'System.String Name' is not defined for type 'Domain.Entities.Tenant' (Parameter 'property')
+2024-07-10 01:57:47.081 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:57:52.680 +01:00 [INF] Retrieving all tenants
+2024-07-10 01:58:00.431 +01:00 [ERR] Property 'System.String Name' is not defined for type 'Domain.Entities.Tenant' (Parameter 'property')
+2024-07-10 01:58:06.658 +01:00 [ERR] Property 'System.String Name' is not defined for type 'Domain.Entities.Tenant' (Parameter 'property')
+2024-07-10 01:58:13.992 +01:00 [ERR] Property 'System.String Name' is not defined for type 'Domain.Entities.Tenant' (Parameter 'property')
+2024-07-10 01:58:26.182 +01:00 [ERR] Property 'System.String Name' is not defined for type 'Domain.Entities.Tenant' (Parameter 'property')
+2024-07-10 01:58:51.886 +01:00 [ERR] Property 'System.String Name' is not defined for type 'Domain.Entities.Tenant' (Parameter 'property')
+2024-07-10 02:04:50.803 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:04:57.499 +01:00 [ERR] The binary operator Equal is not defined for the types 'Domain.Entities.TenantStatus' and 'System.String'.
+2024-07-10 02:05:30.039 +01:00 [ERR] The binary operator Equal is not defined for the types 'Domain.Entities.TenantStatus' and 'System.String'.
+2024-07-10 02:05:54.723 +01:00 [ERR] You can't filter by this field.
+2024-07-10 02:05:57.325 +01:00 [ERR] You can't filter by this field.
+2024-07-10 02:06:07.417 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:08:24.976 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:08:33.587 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:08:39.118 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:08:46.312 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:08:49.687 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:08:52.787 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:08:55.872 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:09:04.372 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:09:05.197 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:09:07.692 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:09:08.646 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:09:16.185 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:09:22.888 +01:00 [ERR] Invalid sort field.
+2024-07-10 02:09:25.505 +01:00 [ERR] Invalid sort field.
+2024-07-10 02:10:13.696 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:10:18.174 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:10:19.612 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:10:21.290 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:10:31.625 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:10:32.683 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:10:39.689 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:10:44.191 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:10:44.889 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:10:45.518 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:10:46.449 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:13:20.925 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:13:21.964 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:13:43.176 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:13:47.903 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:13:57.520 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:14:09.711 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:14:13.128 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:14:28.346 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:14:32.049 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:14:43.005 +01:00 [ERR] Contains operation can only be used on string properties, use Equals operation instead or change the filterValue.
+2024-07-10 02:14:49.001 +01:00 [ERR] The binary operator Equal is not defined for the types 'Domain.Entities.TenantStatus' and 'System.String'.
+2024-07-10 02:14:52.851 +01:00 [ERR] The binary operator Equal is not defined for the types 'Domain.Entities.TenantStatus' and 'System.String'.
+2024-07-10 02:15:00.525 +01:00 [ERR] The binary operator Equal is not defined for the types 'Domain.Entities.TenantStatus' and 'System.String'.
+2024-07-10 02:15:47.879 +01:00 [ERR] The binary operator Equal is not defined for the types 'Domain.Entities.TenantStatus' and 'System.String'.
+2024-07-10 02:16:17.489 +01:00 [ERR] The binary operator Equal is not defined for the types 'Domain.Entities.TenantStatus' and 'System.String'.
+2024-07-10 02:22:44.915 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:22:50.944 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:22:53.876 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:22:58.930 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:23:10.822 +01:00 [ERR] Argument types do not match
+2024-07-10 02:23:12.125 +01:00 [ERR] Argument types do not match
+2024-07-10 02:23:32.560 +01:00 [ERR] Argument types do not match
+2024-07-10 02:26:39.339 +01:00 [ERR] The binary operator Equal is not defined for the types 'System.Int32' and 'System.String'.
+2024-07-10 02:26:57.178 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:27:01.538 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:27:06.941 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:27:12.696 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:27:22.394 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:27:27.887 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:27:34.971 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:30:15.279 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:30:21.615 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:30:22.301 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:30:25.238 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:30:31.463 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:30:35.138 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:30:39.572 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:30:43.643 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:30:58.600 +01:00 [ERR] Invalid filter field.
+2024-07-10 02:30:59.891 +01:00 [ERR] Invalid filter field.
+2024-07-10 02:31:12.539 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:31:16.001 +01:00 [ERR] The input string 'asd' was not in a correct format.
+2024-07-10 02:47:51.874 +01:00 [ERR] The binary operator Equal is not defined for the types 'System.Int32' and 'System.String'.
+2024-07-10 02:47:53.128 +01:00 [ERR] The binary operator Equal is not defined for the types 'System.Int32' and 'System.String'.
+2024-07-10 02:47:56.962 +01:00 [ERR] The binary operator Equal is not defined for the types 'System.Int32' and 'System.String'.
+2024-07-10 02:47:59.963 +01:00 [ERR] The binary operator Equal is not defined for the types 'System.Int32' and 'System.String'.
+2024-07-10 02:48:10.832 +01:00 [ERR] The binary operator Equal is not defined for the types 'System.Int32' and 'System.String'.
+2024-07-10 02:48:24.487 +01:00 [ERR] The binary operator Equal is not defined for the types 'System.Int32' and 'System.String'.
+2024-07-10 02:48:37.699 +01:00 [ERR] The binary operator Equal is not defined for the types 'System.Int32' and 'System.String'.
+2024-07-10 02:48:46.468 +01:00 [ERR] Expression of type 'System.String' cannot be used for parameter of type 'System.Collections.Generic.IEnumerable`1[System.Int32]' of method 'Boolean Contains[Int32](System.Collections.Generic.IEnumerable`1[System.Int32], Int32)' (Parameter 'arg0')
+2024-07-10 02:48:58.392 +01:00 [ERR] Expression of type 'System.String' cannot be used for parameter of type 'System.Collections.Generic.IEnumerable`1[System.Int32]' of method 'Boolean Contains[Int32](System.Collections.Generic.IEnumerable`1[System.Int32], Int32)' (Parameter 'arg0')
+2024-07-10 02:49:05.072 +01:00 [ERR] Expression of type 'System.String' cannot be used for parameter of type 'System.Collections.Generic.IEnumerable`1[System.Int32]' of method 'Boolean Contains[Int32](System.Collections.Generic.IEnumerable`1[System.Int32], Int32)' (Parameter 'arg0')
+2024-07-10 02:49:09.708 +01:00 [ERR] Expression of type 'System.String' cannot be used for parameter of type 'System.Collections.Generic.IEnumerable`1[System.Int32]' of method 'Boolean Contains[Int32](System.Collections.Generic.IEnumerable`1[System.Int32], Int32)' (Parameter 'arg0')
+2024-07-10 02:49:16.947 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:49:23.108 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:49:25.067 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:49:27.419 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:49:27.995 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:49:28.530 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:49:34.840 +01:00 [ERR] Expression of type 'System.String' cannot be used for parameter of type 'System.Collections.Generic.IEnumerable`1[Domain.Entities.TenantStatus]' of method 'Boolean Contains[TenantStatus](System.Collections.Generic.IEnumerable`1[Domain.Entities.TenantStatus], Domain.Entities.TenantStatus)' (Parameter 'arg0')
+2024-07-10 02:50:33.361 +01:00 [ERR] Failed to convert filter value to TenantStatus.
+2024-07-10 02:50:38.434 +01:00 [ERR] Failed to convert filter value to TenantStatus.
+2024-07-10 02:51:17.295 +01:00 [ERR] Failed to convert filter value to TenantStatus.
+2024-07-10 02:51:18.275 +01:00 [ERR] Failed to convert filter value to TenantStatus.
+2024-07-10 02:51:23.833 +01:00 [ERR] Failed to convert filter value to TenantStatus.
+2024-07-10 02:51:38.125 +01:00 [ERR] Failed to convert filter value to TenantStatus.
+2024-07-10 02:51:44.077 +01:00 [ERR] Expression of type 'System.Int32' cannot be used for parameter of type 'System.Collections.Generic.IEnumerable`1[System.Int32]' of method 'Boolean Contains[Int32](System.Collections.Generic.IEnumerable`1[System.Int32], Int32)' (Parameter 'arg0')
+2024-07-10 02:51:49.013 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:51:52.033 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:51:55.792 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:52:02.882 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:52:05.088 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:52:07.155 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:52:09.978 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:52:15.874 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:52:31.653 +01:00 [ERR] Failed to convert filter value to TenantStatus.
+2024-07-10 02:53:27.442 +01:00 [ERR] Expression of type 'Domain.Entities.TenantStatus' cannot be used for parameter of type 'System.Collections.Generic.IEnumerable`1[Domain.Entities.TenantStatus]' of method 'Boolean Contains[TenantStatus](System.Collections.Generic.IEnumerable`1[Domain.Entities.TenantStatus], Domain.Entities.TenantStatus)' (Parameter 'arg0')
+2024-07-10 02:53:28.746 +01:00 [ERR] Expression of type 'Domain.Entities.TenantStatus' cannot be used for parameter of type 'System.Collections.Generic.IEnumerable`1[Domain.Entities.TenantStatus]' of method 'Boolean Contains[TenantStatus](System.Collections.Generic.IEnumerable`1[Domain.Entities.TenantStatus], Domain.Entities.TenantStatus)' (Parameter 'arg0')
+2024-07-10 02:53:32.603 +01:00 [ERR] Expression of type 'Domain.Entities.TenantStatus' cannot be used for parameter of type 'System.Collections.Generic.IEnumerable`1[Domain.Entities.TenantStatus]' of method 'Boolean Contains[TenantStatus](System.Collections.Generic.IEnumerable`1[Domain.Entities.TenantStatus], Domain.Entities.TenantStatus)' (Parameter 'arg0')
+2024-07-10 02:53:36.645 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:53:39.453 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:53:46.776 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:53:50.933 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:53:57.949 +01:00 [ERR] Expression of type 'Domain.Entities.TenantStatus' cannot be used for parameter of type 'System.Collections.Generic.IEnumerable`1[Domain.Entities.TenantStatus]' of method 'Boolean Contains[TenantStatus](System.Collections.Generic.IEnumerable`1[Domain.Entities.TenantStatus], Domain.Entities.TenantStatus)' (Parameter 'arg0')
+2024-07-10 02:54:30.144 +01:00 [ERR] Expression of type 'Domain.Entities.TenantStatus' cannot be used for parameter of type 'System.Collections.Generic.IEnumerable`1[Domain.Entities.TenantStatus]' of method 'Boolean Contains[TenantStatus](System.Collections.Generic.IEnumerable`1[Domain.Entities.TenantStatus], Domain.Entities.TenantStatus)' (Parameter 'arg0')
+2024-07-10 02:54:50.203 +01:00 [ERR] Failed to convert filter value to TenantStatus.
+2024-07-10 02:56:26.428 +01:00 [ERR] Requested value '1, 2' was not found.
+2024-07-10 02:56:30.446 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:56:33.893 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:56:37.590 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:56:46.438 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:56:49.959 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:56:54.283 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:57:07.582 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:57:11.304 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:57:14.977 +01:00 [INF] Retrieving all tenants
+2024-07-10 02:57:19.341 +01:00 [INF] Retrieving all tenants
+2024-07-10 03:00:20.067 +01:00 [INF] Retrieving all tenants
+2024-07-10 03:00:26.428 +01:00 [ERR] Requested value 'asddddddcona' was not found.
+2024-07-10 03:00:28.985 +01:00 [INF] Retrieving all tenants
+2024-07-10 03:00:36.076 +01:00 [INF] Retrieving all tenants
+2024-07-10 03:00:38.970 +01:00 [ERR] The input string 'asdd' was not in a correct format.
+2024-07-10 03:00:44.639 +01:00 [INF] Retrieving all tenants
+2024-07-10 03:00:50.589 +01:00 [ERR] Filter value must be a list for 'Contains' operation.
+2024-07-10 03:00:52.041 +01:00 [ERR] Filter value must be a list for 'Contains' operation.
+2024-07-10 03:01:00.833 +01:00 [ERR] Filter value must be a list for 'Contains' operation.
+2024-07-10 03:01:03.313 +01:00 [ERR] Filter value must be a list for 'Contains' operation.
+2024-07-10 03:01:08.338 +01:00 [ERR] Filter value must be a list for 'Contains' operation.
+2024-07-10 03:01:09.108 +01:00 [ERR] Filter value must be a list for 'Contains' operation.
+2024-07-10 03:01:39.209 +01:00 [INF] Retrieving all tenants
+2024-07-10 03:01:44.002 +01:00 [INF] Retrieving all tenants
+2024-07-10 09:48:26.539 +01:00 [ERR] Could not connect to the database
+2024-07-10 09:49:49.853 +01:00 [INF] Retrieving all tenants
+2024-07-10 09:49:56.125 +01:00 [ERR] There was a parsing failure, likely due to an invalid comparison or logical operator. You may also be missing double quotes surrounding a string or guid.
+
+Parsing failure: unexpected '"'; expected letter or ( (Line 1, Column 1); recently consumed: 
+2024-07-10 09:50:03.535 +01:00 [ERR] There was a parsing failure, likely due to an invalid comparison or logical operator. You may also be missing double quotes surrounding a string or guid.
+
+Parsing failure: unexpected '"'; expected letter or ( (Line 1, Column 1); recently consumed: 
+2024-07-10 09:50:04.249 +01:00 [ERR] There was a parsing failure, likely due to an invalid comparison or logical operator. You may also be missing double quotes surrounding a string or guid.
+
+Parsing failure: unexpected '"'; expected letter or ( (Line 1, Column 1); recently consumed: 
+2024-07-10 09:50:08.279 +01:00 [INF] Retrieving all tenants
+2024-07-10 09:50:09.179 +01:00 [INF] Retrieving all tenants
+2024-07-10 09:50:12.669 +01:00 [INF] Retrieving all tenants
+2024-07-10 09:50:18.265 +01:00 [INF] Retrieving all tenants
+2024-07-10 09:50:23.886 +01:00 [INF] Retrieving all tenants
+2024-07-10 09:55:21.022 +01:00 [ERR] There was a parsing failure, likely due to an invalid comparison or logical operator. You may also be missing double quotes surrounding a string or guid.
+
+Parsing failure: Unexpected end of input reached; expected == or != or >= or <= or > or < or @= or _= or _-= or !@= or !_= or !_-= or ^^ or !^^ or ~~ or !~ or #== or #!= or #>= or #<= or #> or #< or ^$ or !^$ (Line 1, Column 5); recently consumed: name
+2024-07-10 09:55:25.404 +01:00 [ERR] There was a parsing failure, likely due to an invalid comparison or logical operator. You may also be missing double quotes surrounding a string or guid.
+
+Parsing failure: Unexpected end of input reached; expected == or != or >= or <= or > or < or @= or _= or _-= or !@= or !_= or !_-= or ^^ or !^^ or ~~ or !~ or #== or #!= or #>= or #<= or #> or #< or ^$ or !^$ (Line 1, Column 5); recently consumed: name
+2024-07-10 09:55:28.414 +01:00 [ERR] There was a parsing failure, likely due to an invalid comparison or logical operator. You may also be missing double quotes surrounding a string or guid.
+
+Parsing failure: Unexpected end of input reached; expected letter or ( (Line 1, Column 1); recently consumed: 
+2024-07-10 09:55:29.208 +01:00 [ERR] There was a parsing failure, likely due to an invalid comparison or logical operator. You may also be missing double quotes surrounding a string or guid.
+
+Parsing failure: Unexpected end of input reached; expected letter or ( (Line 1, Column 1); recently consumed: 
+2024-07-10 09:55:32.634 +01:00 [ERR] There was a parsing failure, likely due to an invalid comparison or logical operator. You may also be missing double quotes surrounding a string or guid.
+
+Parsing failure: Unexpected end of input reached; expected letter or ( (Line 1, Column 1); recently consumed: 
+2024-07-10 09:55:51.755 +01:00 [ERR] There was a parsing failure, likely due to an invalid comparison or logical operator. You may also be missing double quotes surrounding a string or guid.
+
+Parsing failure: Unexpected end of input reached; expected letter or ( (Line 1, Column 1); recently consumed: 
+2024-07-10 09:56:38.430 +01:00 [INF] Retrieving all tenants
+2024-07-10 10:10:46.671 +01:00 [ERR] The type or method has 1 generic parameter(s), but 2 generic argument(s) were provided. A generic argument must be provided for each generic parameter.
+2024-07-10 10:10:48.260 +01:00 [ERR] The type or method has 1 generic parameter(s), but 2 generic argument(s) were provided. A generic argument must be provided for each generic parameter.
+2024-07-10 10:10:52.132 +01:00 [INF] Retrieving all tenants
+2024-07-10 10:11:00.710 +01:00 [ERR] The type or method has 1 generic parameter(s), but 2 generic argument(s) were provided. A generic argument must be provided for each generic parameter.
+2024-07-10 10:11:04.870 +01:00 [ERR] The type or method has 1 generic parameter(s), but 2 generic argument(s) were provided. A generic argument must be provided for each generic parameter.
+2024-07-10 10:11:12.225 +01:00 [ERR] The type or method has 1 generic parameter(s), but 2 generic argument(s) were provided. A generic argument must be provided for each generic parameter.
+2024-07-10 10:11:23.215 +01:00 [ERR] The type or method has 1 generic parameter(s), but 2 generic argument(s) were provided. A generic argument must be provided for each generic parameter.
+2024-07-10 10:11:26.426 +01:00 [ERR] The type or method has 1 generic parameter(s), but 2 generic argument(s) were provided. A generic argument must be provided for each generic parameter.
+2024-07-10 10:12:17.722 +01:00 [ERR] The type or method has 1 generic parameter(s), but 2 generic argument(s) were provided. A generic argument must be provided for each generic parameter.
+2024-07-10 10:13:57.428 +01:00 [ERR] Object of type 'System.Linq.Expressions.Expression1`1[System.Func`2[Domain.Entities.Tenant,System.Int32]]' cannot be converted to type 'System.Linq.Expressions.Expression`1[System.Func`2[Domain.Entities.Tenant,System.Object]]'.
+2024-07-10 10:14:18.837 +01:00 [ERR] Object of type 'System.Linq.Expressions.Expression1`1[System.Func`2[Domain.Entities.Tenant,System.Int32]]' cannot be converted to type 'System.Linq.Expressions.Expression`1[System.Func`2[Domain.Entities.Tenant,System.Object]]'.
+2024-07-10 14:46:26.818 +01:00 [INF] Retrieving all tenants
+2024-07-10 14:46:35.453 +01:00 [INF] Retrieving all tenants
+2024-07-10 14:46:51.140 +01:00 [INF] Retrieving all tenants
+2024-07-10 14:47:01.771 +01:00 [INF] Retrieving all tenants
+2024-07-10 14:47:08.968 +01:00 [INF] Retrieving all tenants
+2024-07-10 14:47:14.715 +01:00 [INF] Retrieving all tenants
+2024-07-10 14:47:49.314 +01:00 [INF] Retrieving all tenants
+2024-07-10 14:47:55.721 +01:00 [INF] Retrieving all tenants
+2024-07-10 14:52:36.399 +01:00 [INF] Retrieving all tenants
+2024-07-10 14:53:00.919 +01:00 [INF] Retrieving all tenants
+2024-07-10 14:55:24.529 +01:00 [ERR] Instance property 'PageNumber' is not defined for type 'Domain.Entities.Tenant' (Parameter 'propertyName')
+2024-07-10 14:56:29.877 +01:00 [INF] Retrieving all tenants
+2024-07-10 14:56:34.701 +01:00 [INF] Retrieving all tenants
+2024-07-10 14:57:47.538 +01:00 [INF] Retrieving all tenants
+2024-07-10 15:00:26.595 +01:00 [INF] Retrieving all tenants
+2024-07-10 15:00:51.949 +01:00 [INF] Retrieving all tenants
+2024-07-10 15:01:24.749 +01:00 [INF] Retrieving all tenants
+2024-07-10 16:08:51.569 +01:00 [ERR] Could not connect to the database
+2024-07-10 16:10:41.854 +01:00 [ERR] No connection could be made because the target machine actively refused it. (localhost:5124)
+2024-07-10 16:13:33.205 +01:00 [INF] Retrieving all tenants
+2024-07-10 16:14:26.020 +01:00 [INF] Retrieving all tenants
+2024-07-10 16:14:36.835 +01:00 [ERR] Method 'Boolean Contains(System.String)' declared on type 'System.Collections.Generic.ICollection`1[System.String]' cannot be called with instance of type 'System.String'
+2024-07-10 16:14:43.049 +01:00 [ERR] Method 'Boolean Contains(System.String)' declared on type 'System.Collections.Generic.ICollection`1[System.String]' cannot be called with instance of type 'System.String'
+2024-07-10 16:15:44.805 +01:00 [ERR] Method 'Boolean Contains(System.String)' declared on type 'System.Collections.Generic.ICollection`1[System.String]' cannot be called with instance of type 'System.String'
+2024-07-10 16:17:22.991 +01:00 [INF] Retrieving all tenants
+2024-07-10 16:17:28.406 +01:00 [INF] Retrieving all tenants
+2024-07-10 16:17:52.393 +01:00 [INF] Retrieving all tenants
+2024-07-10 16:22:25.688 +01:00 [INF] Retrieving all tenants
+2024-07-10 16:22:27.724 +01:00 [INF] Retrieving all tenants
+2024-07-10 16:54:42.264 +01:00 [INF] Retrieving all tenants
+2024-07-10 16:55:19.012 +01:00 [ERR] Attempted to invoke a deleted method implementation. This can happen when a method is deleted or its name or signature is changed while the application is running.
+2024-07-10 16:55:19.917 +01:00 [ERR] Attempted to invoke a deleted method implementation. This can happen when a method is deleted or its name or signature is changed while the application is running.
+2024-07-10 16:56:09.611 +01:00 [INF] Retrieving all tenants
+2024-07-10 16:59:26.029 +01:00 [INF] Retrieving all tenants
+2024-07-10 16:59:40.335 +01:00 [INF] Retrieving all tenants
+2024-07-10 17:00:07.919 +01:00 [INF] Retrieving all tenants
+2024-07-10 17:00:31.954 +01:00 [INF] Retrieving all tenants
+2024-07-10 17:32:20.716 +01:00 [INF] Retrieving all tenants
+2024-07-10 17:32:30.777 +01:00 [INF] Retrieving all tenants
+2024-07-10 17:32:40.349 +01:00 [INF] Retrieving all tenants
+2024-07-10 17:33:42.117 +01:00 [ERR] Parsing failed during sorting. 'desc' was not recognized.
+2024-07-10 17:33:42.963 +01:00 [ERR] Parsing failed during sorting. 'desc' was not recognized.
+2024-07-10 17:33:53.192 +01:00 [INF] Retrieving all tenants
+2024-07-10 17:38:21.835 +01:00 [INF] Retrieving all tenants
+2024-07-10 18:27:18.369 +01:00 [INF] Retrieving all tenants
+2024-07-10 18:27:23.579 +01:00 [INF] Retrieving all tenants
+2024-07-10 18:27:29.438 +01:00 [INF] Retrieving all tenants
+2024-07-10 18:27:52.122 +01:00 [ERR] Method 'Boolean Contains(System.String)' declared on type 'System.Collections.Generic.ICollection`1[System.String]' cannot be called with instance of type 'System.String'
+2024-07-10 18:28:29.347 +01:00 [INF] Retrieving all tenants
+2024-07-10 18:29:07.568 +01:00 [INF] Retrieving all tenants
+2024-07-10 18:29:16.543 +01:00 [ERR] Invalid direction: first. Allowed values are 'asc' and 'desc'.
+2024-07-10 18:29:23.778 +01:00 [INF] Retrieving all tenants
+2024-07-10 18:29:38.204 +01:00 [INF] Retrieving all tenants
+2024-07-10 18:29:47.463 +01:00 [INF] Retrieving all tenants
+2024-07-10 18:29:53.255 +01:00 [INF] Retrieving all tenants
+2024-07-10 20:01:19.078 +01:00 [INF] Retrieving all tenants

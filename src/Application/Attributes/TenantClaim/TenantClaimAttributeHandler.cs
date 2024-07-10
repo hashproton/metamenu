@@ -1,5 +1,5 @@
 using Application.Attributes.Common;
-using Application.Models;
+using Application.Models.Auth;
 using Application.Services;
 
 namespace Application.Attributes.TenantClaim;
@@ -13,6 +13,11 @@ public class TenantClaimAttributeHandler(
         TenantClaimAttribute attribute,
         CancellationToken cancellationToken) where TRequest : notnull
     {
+        if (authContext.IsSuperAdmin)
+        {
+            return Task.CompletedTask;
+        }
+
         var tenantId = request.GetType()
             .GetProperty("TenantId")
             ?.GetValue(request);

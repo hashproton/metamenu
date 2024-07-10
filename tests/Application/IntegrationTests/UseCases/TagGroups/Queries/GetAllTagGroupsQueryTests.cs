@@ -1,5 +1,3 @@
-using Application.IntegrationTests.Common;
-using Application.Repositories.Common;
 using Application.UseCases.TagGroups.Queries;
 
 namespace Application.IntegrationTests.UseCases.TagGroups.Queries;
@@ -28,7 +26,11 @@ public class GetAllTagGroupsQueryTests : BaseIntegrationTest
         }
 
         // Act: Retrieve all tag groups with pagination
-        var getAllTagGroupsQuery = new GetAllTagGroupsQuery(tenantId, new PaginatedQuery(2, 5));
+        var getAllTagGroupsQuery = new GetAllTagGroupsQuery(tenantId, new BaseFilter
+        {
+            PageNumber = 2,
+            PageSize = 5
+        });
         var paginatedTagGroups = await Mediator.Send(getAllTagGroupsQuery);
 
         // Assert: Verify all tag groups were retrieved and pagination properties

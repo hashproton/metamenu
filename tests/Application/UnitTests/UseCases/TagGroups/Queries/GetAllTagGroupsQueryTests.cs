@@ -20,16 +20,16 @@ public class GetAllTagGroupsQueryTests
     public async Task GetAllTagGroups_WithNonExistingTenantId_ThrowsNotFoundException()
     {
         var nonExistingTenantId = 999;
-        var paginatedQuery = new PaginatedQuery(1, 10);
+        var filter = new BaseFilter();
 
         _tenantRepository.GetByIdAsync(nonExistingTenantId, default).Returns((Tenant)null!);
 
-        var query = new GetAllTagGroupsQuery(nonExistingTenantId, paginatedQuery);
+        var query = new GetAllTagGroupsQuery(nonExistingTenantId, filter);
 
         var exception = await Assert.ThrowsExceptionAsync<NotFoundException>(() => _handler.Handle(query, default));
 
         Assert.AreEqual($"Tenant with ID {nonExistingTenantId} was not found.", exception.Message);
 
-        await _tagGroupRepository.DidNotReceive().GetAllAsync(Arg.Any<PaginatedQuery>(), Arg.Any<CancellationToken>());
+        await _tagGroupRepository.DidNotReceive().GetAllAsync(Arg.Any<BaseFilter>(), Arg.Any<CancellationToken>());
     }
 }

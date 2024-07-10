@@ -1,6 +1,6 @@
 using Application.Attributes.Common;
 using Application.Extensions.DependencyInjection;
-using Application.Models;
+using Application.Models.Auth;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application;

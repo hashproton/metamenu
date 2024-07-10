@@ -16,9 +16,9 @@ public class TagGroupsController(ISender mediator) : BaseController
     [HttpGet]
     public async Task<ActionResult<PaginatedResult<GetAllTagGroupsQueryResponse>>> GetAllTagGroups(
         [FromQuery] int tenantId,
-        [FromQuery] PaginatedQuery paginatedQuery)
+        [FromQuery] BaseFilter filter)
     {
-        var result = await mediator.Send(new GetAllTagGroupsQuery(tenantId, paginatedQuery));
+        var result = await mediator.Send(new GetAllTagGroupsQuery(tenantId, filter));
 
         return Ok(result);
     }

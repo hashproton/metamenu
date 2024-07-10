@@ -15,9 +15,9 @@ public class TagsController(ISender mediator) : BaseController
 
     [HttpGet]
     public async Task<ActionResult<PaginatedResult<GetAllTagsQueryResponse>>> GetAllTags(
-        [FromQuery] int tenantId, [FromQuery] PaginatedQuery paginatedQuery)
+        [FromQuery] int tenantId, [FromQuery] BaseFilter filter)
     {
-        var result = await mediator.Send(new GetAllTagsQuery(tenantId, paginatedQuery));
+        var result = await mediator.Send(new GetAllTagsQuery(tenantId, filter));
 
         return Ok(result);
     }

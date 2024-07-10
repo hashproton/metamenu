@@ -1,6 +1,5 @@
 using Application.Attributes.Authorize;
 using Application.Errors;
-using Application.Models;
 using Application.Models.Auth;
 using MediatR;
 

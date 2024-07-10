@@ -1,4 +1,3 @@
-using Application.IntegrationTests.Common;
 using Application.UseCases.TagGroups.Commands;
 
 namespace Application.IntegrationTests.UseCases.TagGroups.Commands;

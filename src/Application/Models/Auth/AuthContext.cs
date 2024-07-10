@@ -1,6 +1,4 @@
-using Application.Models.Auth;
-
-namespace Application.Models;
+namespace Application.Models.Auth;
 
 public class AuthContext
 {
