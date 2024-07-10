@@ -1,4 +1,7 @@
+using Application.IntegrationTests.Common.Attributes;
+using Application.IntegrationTests.UseCases.Tenants.Queries;
 using Application.Models;
+using Application.Models.Auth;
 using Application.Repositories;
 using Infra;
 using Infra.Repositories;
@@ -12,6 +15,8 @@ namespace Application.IntegrationTests.Common;
 [TestClass]
 public class BaseIntegrationTest
 {
+    public TestContext TestContext { get; set; }
+
     private static ServiceProvider _provider = null!;
 
     protected ITenantRepository TenantRepository => _provider.GetRequiredService<ITenantRepository>();
@@ -21,13 +26,13 @@ public class BaseIntegrationTest
     protected ITagRepository TagRepository => _provider.GetRequiredService<ITagRepository>();
 
     protected ISender Mediator => _provider.GetRequiredService<ISender>();
-    
+
     protected AuthContext AuthContext => _provider.GetRequiredService<AuthContext>();
 
     private static AppDbContext DbContext => _provider.GetRequiredService<AppDbContext>();
 
     [AssemblyInitialize]
-    public static async Task AssemblyInitialize(TestContext context)
+    public static void AssemblyInitialize(TestContext context)
     {
         var configuration = new ConfigurationBuilder()
             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
@@ -39,7 +44,15 @@ public class BaseIntegrationTest
             .AddInfra(EnvironmentKind.Development, configuration);
 
         _provider = services.BuildServiceProvider();
-        await DbContext.Database.MigrateAsync();
+    }
+
+    [TestInitialize]
+    public void TestInitialize()
+    {
+        var testMethod = GetType().GetMethod(TestContext.TestName!);
+        var strategy = TestInitializationAttributeStrategyFactory.Create(testMethod!, AuthContext);
+
+        strategy?.Initialize(testMethod!);
     }
 
     [AssemblyCleanup]
@@ -53,7 +66,7 @@ public class BaseIntegrationTest
     {
         await DbContext.Tenants.ExecuteDeleteAsync();
     }
-    
+
     protected async Task<int> CreateAuthedTenantAsync(string name)
     {
         var tenantId = await TenantRepository.AddAsync(new Tenant

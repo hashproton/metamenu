@@ -1,4 +1,3 @@
-using Application.IntegrationTests.Common;
 using Application.UseCases.Tenants.Commands;
 
 namespace Application.IntegrationTests.UseCases.Tenants.Commands;

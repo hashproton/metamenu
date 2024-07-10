@@ -1,5 +1,4 @@
 using Application.Models;
-using Application.Repositories;
 using Application.Repositories.Common;
 using Application.Services.AuthService;
 using Infra.Configuration;
@@ -60,28 +59,26 @@ public static class DependencyInjection
         var logger = sp.GetRequiredService<ILogger>();
         using var context = sp.GetRequiredService<AppDbContext>();
 
-        if (context.Database.CanConnect())
+        var databaseExists = context.Database.CanConnect();
+        if (!databaseExists)
         {
-            try
-            {
-                if (environment.IsDevelopment())
-                {
-                    context.Database.Migrate();
-                }
-            }
-            catch (Exception e)
-            {
-                logger.LogError($"An error occurred while migrating the database ${e.Message}");
-                throw;
-            }
-        }
-        else
-        {
-            logger.LogError("Could not connect to the database");
-            throw new InvalidOperationException("Could not connect to the database");
+            logger.LogInformation("Database does not exist. Creating database...");
+
+            context.Database.EnsureCreated();
         }
 
-        services.AddScoped<ITenantRepository, TenantRepository>();
+        try
+        {
+            if (databaseExists)
+            {
+                context.Database.Migrate();
+            }
+        }
+        catch (Exception e)
+        {
+            logger.LogError($"An error occurred while migrating the database ${e.Message}");
+            throw;
+        }
 
         var repositoriesInterfaces = typeof(IGenericRepository<>).Assembly.GetTypes()
             .Where(t => t.IsInterface && t.Name.EndsWith("Repository"))

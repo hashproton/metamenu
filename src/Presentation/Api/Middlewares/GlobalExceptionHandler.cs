@@ -1,9 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using Api.Extensions;
 using Application.Exceptions;
-using Application.Models;
+using Application.Models.Auth;
 using Application.Services.AuthService;
-using Infra.Repositories.Common;
 using Microsoft.AspNetCore.Diagnostics;
 using ILogger = Application.Services.ILogger;
 
@@ -26,23 +25,11 @@ internal sealed class GlobalExceptionHandler(
         }
         else
         {
-            if (exception is QueryInvalidOperation queryInvalidOperation)
+            result = new ProblemDetails
             {
-                result = new ProblemDetails
-                {
-                    Title = "Invalid query operation",
-                    Detail = queryInvalidOperation.Message,
-                    Status = StatusCodes.Status400BadRequest,
-                };
-            }
-            else
-            {
-                result = new ProblemDetails
-                {
-                    Title = "Internal server error",
-                    Status = StatusCodes.Status500InternalServerError,
-                };
-            }
+                Title = "Internal server error",
+                Status = StatusCodes.Status500InternalServerError,
+            };
         }
 
         httpContext.Response.StatusCode = result.Status!.Value;

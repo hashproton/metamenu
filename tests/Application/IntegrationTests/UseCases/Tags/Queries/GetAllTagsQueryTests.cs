@@ -1,6 +1,3 @@
-using Application.IntegrationTests.Common;
-using Application.Repositories;
-using Application.Repositories.Common;
 using Application.UseCases.Tags.Queries;
 
 namespace Application.IntegrationTests.UseCases.Tags.Queries;

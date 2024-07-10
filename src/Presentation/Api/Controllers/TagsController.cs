@@ -1,4 +1,3 @@
-using Application.Repositories;
 using Application.UseCases.Tags.Commands;
 using Application.UseCases.Tags.Queries;
 

@@ -6,7 +6,7 @@ using Application.UseCases.Tenants.Queries.Common;
 
 namespace Application.UseCases.Tenants.Queries;
 
-[Authorize(Role.Admin)]
+[Authorize(Role.SuperAdmin)]
 public record GetAllTenantsQuery(
     TenantFilter Filter) : IRequest<Result<PaginatedResult<TenantQueryResponse>>>;
 

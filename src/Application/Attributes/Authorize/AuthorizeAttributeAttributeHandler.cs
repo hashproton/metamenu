@@ -1,5 +1,5 @@
 using Application.Attributes.Common;
-using Application.Models;
+using Application.Models.Auth;
 using Application.Services;
 
 namespace Application.Attributes.Authorize;
