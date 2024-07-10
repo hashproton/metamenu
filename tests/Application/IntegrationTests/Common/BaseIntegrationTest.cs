@@ -1,5 +1,3 @@
-using Application.IntegrationTests.Common.Attributes;
-using Application.IntegrationTests.UseCases.Tenants.Queries;
 using Application.Models;
 using Application.Models.Auth;
 using Application.Repositories;
@@ -46,15 +44,6 @@ public class BaseIntegrationTest
         _provider = services.BuildServiceProvider();
     }
 
-    [TestInitialize]
-    public void TestInitialize()
-    {
-        var testMethod = GetType().GetMethod(TestContext.TestName!);
-        var strategy = TestInitializationAttributeStrategyFactory.Create(testMethod!, AuthContext);
-
-        strategy?.Initialize(testMethod!);
-    }
-
     [AssemblyCleanup]
     public static async Task AssemblyCleanup()
     {
@@ -64,16 +53,16 @@ public class BaseIntegrationTest
     [TestCleanup]
     public async Task TestCleanup()
     {
+        AuthContext.UserId = default;
+        AuthContext.TenantIds = [];
+        AuthContext.Roles = [];
+
         await DbContext.Tenants.ExecuteDeleteAsync();
     }
 
-    protected async Task<int> CreateAuthedTenantAsync(string name)
+    protected async Task<int> CreateAuthedTenantAsync(Tenant tenant)
     {
-        var tenantId = await TenantRepository.AddAsync(new Tenant
-            {
-                Name = name
-            },
-            default);
+        var tenantId = await TenantRepository.AddAsync(tenant, default);
 
         AuthContext.TenantIds = [..AuthContext.TenantIds, tenantId];
 
