@@ -1,10 +1,7 @@
-using Application.Attributes.Authorize;
-using Application.Models.Auth;
 using Application.Services;
 
 namespace Application.UseCases.Tenants.Commands;
 
-[Authorize(Role.SuperAdmin)]
 public class CreateTenantCommand(
     string name) : IRequest<Result<int>>
 {

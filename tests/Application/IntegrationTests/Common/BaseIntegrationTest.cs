@@ -1,5 +1,4 @@
 using Application.Models;
-using Application.Models.Auth;
 using Application.Repositories;
 using Infra;
 using Infra.Repositories;
@@ -13,8 +12,6 @@ namespace Application.IntegrationTests.Common;
 [TestClass]
 public class BaseIntegrationTest
 {
-    public TestContext TestContext { get; set; }
-
     private static ServiceProvider _provider = null!;
 
     protected ITenantRepository TenantRepository => _provider.GetRequiredService<ITenantRepository>();
@@ -24,8 +21,6 @@ public class BaseIntegrationTest
     protected ITagRepository TagRepository => _provider.GetRequiredService<ITagRepository>();
 
     protected ISender Mediator => _provider.GetRequiredService<ISender>();
-
-    protected AuthContext AuthContext => _provider.GetRequiredService<AuthContext>();
 
     private static AppDbContext DbContext => _provider.GetRequiredService<AppDbContext>();
 
@@ -53,18 +48,12 @@ public class BaseIntegrationTest
     [TestCleanup]
     public async Task TestCleanup()
     {
-        AuthContext.UserId = default;
-        AuthContext.TenantIds = [];
-        AuthContext.Roles = [];
-
         await DbContext.Tenants.ExecuteDeleteAsync();
     }
 
-    protected async Task<int> CreateAuthedTenantAsync(Tenant tenant)
+    protected async Task<int> CreateTenantAsync(Tenant tenant)
     {
         var tenantId = await TenantRepository.AddAsync(tenant, default);
-
-        AuthContext.TenantIds = [..AuthContext.TenantIds, tenantId];
 
         return tenantId;
     }

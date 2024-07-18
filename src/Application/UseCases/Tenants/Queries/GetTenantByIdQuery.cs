@@ -1,10 +1,8 @@
-using Application.Attributes.TenantClaim;
 using Application.Services;
 using Application.UseCases.Tenants.Queries.Common;
 
 namespace Application.UseCases.Tenants.Queries;
 
-[TenantClaim]
 public record GetTenantByIdQuery(
     int TenantId) : IRequest<Result<TenantQueryResponse>>;
 

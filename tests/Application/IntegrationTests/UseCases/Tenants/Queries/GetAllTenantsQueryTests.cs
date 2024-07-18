@@ -1,6 +1,3 @@
-using Application.Errors;
-using Application.Exceptions;
-using Application.Models.Auth;
 using Application.Repositories;
 using Application.UseCases.Tenants.Queries;
 
@@ -12,14 +9,10 @@ public class GetAllTenantsQueryTests : BaseIntegrationTest
     [TestMethod]
     public async Task GetAllTenants_PaginationPropertiesVerified_Success()
     {
-        // Arrange:
-        // * Set the current user as SuperAdmin
-        // * Create 15 tenants
-        AuthContext.Roles = [Role.SuperAdmin];
-
+        // Arrange: Create 15 tenants
         for (var i = 0; i < 15; i++)
         {
-            await CreateAuthedTenantAsync(new() { Name = $"Tenant {i}" });
+            await CreateTenantAsync(new() { Name = $"Tenant {i}" });
         }
 
         // Act: Retrieve all tenants with pagination
@@ -44,14 +37,11 @@ public class GetAllTenantsQueryTests : BaseIntegrationTest
     [TestMethod]
     public async Task GetAllTenants_FilteredAndSorted_Success()
     {
-        // Arrange:
-        // * Set the current user as SuperAdmin
-        // * Create 10 tenants
-        AuthContext.Roles = [Role.SuperAdmin];
+        // Arrange: Create 10 tenants
 
         for (var i = 0; i < 10; i++)
         {
-            await CreateAuthedTenantAsync(new() { Name = $"Tenant {i}" });
+            await CreateTenantAsync(new() { Name = $"Tenant {i}" });
         }
 
         var expectedTenants = new List<Tenant>
@@ -97,20 +87,5 @@ public class GetAllTenantsQueryTests : BaseIntegrationTest
             Assert.AreEqual(expectedTenants[i].Name, actualTenants[i].Name);
             Assert.AreEqual(expectedTenants[i].Status, actualTenants[i].Status);
         }
-    }
-
-    [TestMethod]
-    public async Task GetAllTenants_Unauthorized_WhenUserIsNotSuperAdmin()
-    {
-        // Arrange: Set the current user as Admin
-        AuthContext.Roles = [Role.Admin];
-
-        // Act: Retrieve all tenants with pagination
-        var getAllTenantsQuery = new GetAllTenantsQuery(new());
-        var resultErrorException
-            = await Assert.ThrowsExceptionAsync<ResultErrorException>(() => Mediator.Send(getAllTenantsQuery));
-
-        // Assert: Verify the user is unauthorized
-        Assert.AreEqual(AuthErrors.Forbidden, resultErrorException.Error);
     }
 }
