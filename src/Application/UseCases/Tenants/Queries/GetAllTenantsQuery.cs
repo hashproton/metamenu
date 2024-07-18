@@ -1,12 +1,9 @@
-using Application.Attributes.Authorize;
-using Application.Models.Auth;
 using Application.Repositories.Common;
 using Application.Services;
 using Application.UseCases.Tenants.Queries.Common;
 
 namespace Application.UseCases.Tenants.Queries;
 
-[Authorize(Role.SuperAdmin)]
 public record GetAllTenantsQuery(
     TenantFilter Filter) : IRequest<Result<PaginatedResult<TenantQueryResponse>>>;
 

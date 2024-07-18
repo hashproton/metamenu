@@ -1,11 +1,9 @@
 using Application.Models;
 using Application.Repositories.Common;
-using Application.Services.AuthService;
 using Infra.Configuration;
 using Infra.Repositories;
 using Infra.Repositories.Common;
 using Infra.Services;
-using Infra.Services.AuthService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,17 +26,9 @@ public static class DependencyInjection
             .CreateLogger();
 
         services.AddSingleton<ILogger, Logger>();
-        services.AddSingleton<IAuthService, AuthService>();
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
         services.AddDatabase(configuration, environment);
-
-        services.AddHttpClient("identipass",
-            client =>
-            {
-                client.BaseAddress = new Uri("http://localhost:5124");
-                client.DefaultRequestHeaders.Add("Accept", "application/json");
-            });
 
         return services;
     }
