@@ -1,4 +1,3 @@
-using Application.Models;
 using Application.Repositories;
 using Infra;
 using Infra.Repositories;
@@ -34,7 +33,7 @@ public class BaseIntegrationTest
 
         var services = new ServiceCollection()
             .AddApplication()
-            .AddInfra(EnvironmentKind.Development, configuration);
+            .AddInfra(configuration);
 
         _provider = services.BuildServiceProvider();
     }

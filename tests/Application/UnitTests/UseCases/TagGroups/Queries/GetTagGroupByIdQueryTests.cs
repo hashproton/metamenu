@@ -26,6 +26,6 @@ public class GetTagGroupByIdQueryTests
 
         var result = await _handler.Handle(query, default);
         Assert.IsFalse(result.IsSuccess);
-        Assert.IsNotNull(result.Error);
+        Assert.IsNotNull(result.Errors);
     }
 }

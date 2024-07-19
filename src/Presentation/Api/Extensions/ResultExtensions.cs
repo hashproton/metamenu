@@ -12,23 +12,19 @@ public static class ResultExtensions
             Title = GetTitle(error!.Type),
             Status = GetStatusCode(error.Type),
             Detail = error.Message,
-            Extensions =
-            {
-                { "errors", new[] { error } }
-            },
+            Extensions = { { "code",  error } },
         };
     }
 
     public static ActionResult ToActionResult(this Result result)
     {
-        return new ObjectResult(GetTitle(result.Error!.Type))
+        return new ObjectResult(new Dictionary<string, object>
         {
-            ContentTypes = [MediaTypeNames.Application.Json],
-            StatusCode = GetStatusCode(result.Error.Type),
-            Value = new Dictionary<string, object>()
-            {
-                { "errors", new[] { result.Error } }
-            }
+            { "errors", result.Errors!.Select(x => x.ToProblemDetails()) },
+            { "status", GetStatusCode(result.Errors!.First().Type) }
+        })
+        {
+            StatusCode = GetStatusCode(result.Errors!.First().Type), ContentTypes = { MediaTypeNames.Application.Json }
         };
     }
 
