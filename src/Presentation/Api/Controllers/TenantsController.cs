@@ -3,6 +3,7 @@ using Application.Repositories;
 using Application.UseCases.Tenants.Commands;
 using Application.UseCases.Tenants.Queries;
 using Application.UseCases.Tenants.Queries.Common;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Api.Controllers;
 
@@ -10,6 +11,7 @@ public class TenantsController(
     ISender mediator) : BaseController
 {
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult> CreateTenant([FromBody] CreateTenantCommand command)
     {
         var result = await mediator.Send(command);

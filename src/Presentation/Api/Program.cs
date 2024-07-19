@@ -1,13 +1,12 @@
 using Api.Middlewares;
 using Application;
-using Application.Models;
 using Infra;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder
     .Services
-    .AddInfra(builder.Environment.EnvironmentName.ParseEnvironment(), builder.Configuration)
+    .AddInfra(builder.Configuration)
     .AddApplication();
 
 builder.Services
@@ -29,6 +28,8 @@ if (app.Environment.IsDevelopment())
     app.UseCors(pb => pb.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 }
 
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
 app.UseHttpsRedirection();
 

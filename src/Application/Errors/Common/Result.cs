@@ -17,20 +17,27 @@ public class Result<T> : Result
 
 public class Result
 {
-    public Error? Error { get; }
+    public IEnumerable<Error>? Errors { get; }
 
-    public bool IsSuccess => Error is null;
+    public bool IsSuccess => Errors is null || !Errors.Any(); 
 
     protected Result(Error? error = null)
     {
-        Error = error;
+        Errors = error is null ? null : new[] { error };
+    }
+
+    private Result(IEnumerable<Error>? errors)
+    {
+        Errors = errors;
     }
 
     public static Result Failure(Error error) => new(error);
+    
+    public static Result Failure(IEnumerable<Error> errors) => new(errors); 
 
     public static Result<T> Failure<T>(Error error) => new(error);
 
-    public static Result<T> Success<T>(T value) where T : notnull => new Result<T>(value);
+    public static Result<T> Success<T>(T value) where T : notnull => new(value);
 
     public static Result Success() => new();
 }
